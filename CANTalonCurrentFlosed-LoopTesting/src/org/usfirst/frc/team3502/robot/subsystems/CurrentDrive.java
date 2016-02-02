@@ -53,7 +53,7 @@ public class CurrentDrive extends Subsystem {
     }
     
     public void setCurrent(double out, int maxCurrent){
-    	driveMotor.set(out*maxCurrent);
+    	driveMotor.set(out * maxCurrent);
     }
     
 	public int getCurrent() {
