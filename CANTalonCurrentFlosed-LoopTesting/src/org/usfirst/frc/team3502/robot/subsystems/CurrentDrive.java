@@ -5,7 +5,6 @@ import org.usfirst.frc.team3502.robot.commands.RegulatedDrive;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 
 public class CurrentDrive extends Subsystem {
@@ -58,11 +57,13 @@ public class CurrentDrive extends Subsystem {
     	driveMotor.set(out);
     }
     
-    //returns the position on the encoder in encoder ticks
-	public int getPos() {
-		return driveMotor.getEncPosition();
+	public int getCurrent() {
+		return (int)(driveMotor.getOutputCurrent()/1000);
 	}
 	
+	public int getError(){
+		return driveMotor.getClosedLoopError();
+	}
 	//enables the motor to be moved
 	public void enable() {
 		driveMotor.enableControl();

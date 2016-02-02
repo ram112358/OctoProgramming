@@ -19,7 +19,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 
-	public static final CurrentDrive exampleSubsystem = new CurrentDrive();
+	public static final CurrentDrive currentControlled = new CurrentDrive();
 	public static OI oi;
 
     Command autonomousCommand;
