@@ -18,7 +18,9 @@ public class RegulatedDrive extends Command {
     }
 
     protected void execute() {
+    	//Robot.currentControlled.set(Robot.oi.getManY());
     	Robot.currentControlled.setCurrent(Robot.oi.getManY(), Robot.currentControlled.MAXCURRENT);
+    	//Robot.currentControlled.set(Robot.currentControlled.MAXCURRENT);
     	SmartDashboard.putNumber("Closed-Loop Error", Robot.currentControlled.getError());
     	SmartDashboard.putNumber("Curent Current", Robot.currentControlled.getCurrent());
     }

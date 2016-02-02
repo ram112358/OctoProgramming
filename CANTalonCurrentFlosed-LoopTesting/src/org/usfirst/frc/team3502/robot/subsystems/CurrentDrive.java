@@ -10,14 +10,14 @@ import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 public class CurrentDrive extends Subsystem {
 	//current in mA
 	public final int
-		MAXCURRENT = 3000;
+		MAXCURRENT = 1;
 	
 	//Closed-loop parameters.
 	public static final double
 		p = 0.0,
 		i = 0.0,
 		d = 0.0,
-		f = 0.0,
+		f = 0.4,
 		closeLoopRampRate = 0.0;
 	
 	public static final int
@@ -36,6 +36,7 @@ public class CurrentDrive extends Subsystem {
 		//setting PID values, this does update when I look on the roboRIO web interface
 		driveMotor.setPID(p, i, d, f, izone, closeLoopRampRate, profile);
 		//set the controlMode
+		//driveMotor.changeControlMode(TalonControlMode.PercentVbus);
 		driveMotor.changeControlMode(TalonControlMode.Current);
 		
 		//set up the second drive motor to follow the other one
