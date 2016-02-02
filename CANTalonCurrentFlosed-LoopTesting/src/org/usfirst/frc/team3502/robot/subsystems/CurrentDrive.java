@@ -12,10 +12,9 @@ public class CurrentDrive extends Subsystem {
 	public static final int
 		TOLERANCE = 0;
 	
-	//predefined positions for the lifter
-	public static final double
-		MID = 5,
-		BOTTOM = 0.0;
+	//current in mA
+	public final int
+		MAXCURRENT = 3000;
 	
 	//Closed-loop parameters.
 	public static final double
