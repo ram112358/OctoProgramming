@@ -8,19 +8,21 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 
 public class CurrentDrive extends Subsystem {
-	//tolerance value
-	public static final int
-		TOLERANCE = 0;
-	
 	//current in mA
 	public final int
 		MAXCURRENT = 3000;
 	
 	//Closed-loop parameters.
 	public static final double
-		P = 5.0,
-		I = 0.0,
-		D = 0.0;
+		p = 0.0,
+		i = 0.0,
+		d = 0.0,
+		f = 0.0,
+		closeLoopRampRate = 0.0;
+	
+	public static final int
+		izone = 0,
+		profile = 0;
 	
 	//CANTalon creation
 	private static final CANTalon driveMotor = new CANTalon(RobotMap.driveMotorPort);
@@ -32,7 +34,7 @@ public class CurrentDrive extends Subsystem {
 		driveMotor.ConfigRevLimitSwitchNormallyOpen(false);
 		driveMotor.ConfigFwdLimitSwitchNormallyOpen(true);
 		//setting PID values, this does update when I look on the roboRIO web interface
-		driveMotor.setPID(P, I, D, 0, 0, 0, 0);
+		driveMotor.setPID(p, i, d, f, izone, closeLoopRampRate, profile);
 		//set the controlMode
 		driveMotor.changeControlMode(TalonControlMode.Current);
 		
@@ -47,7 +49,6 @@ public class CurrentDrive extends Subsystem {
     	this.setDefaultCommand(new RegulatedDrive());
     }
     
-    //sets the position of the lifter using the CANTalon's set() function, hopefully this does PID
     public void set(double out){
     	driveMotor.set(out);
     }
@@ -63,6 +64,7 @@ public class CurrentDrive extends Subsystem {
 	public int getError(){
 		return driveMotor.getClosedLoopError();
 	}
+	
 	//enables the motor to be moved
 	public void enable() {
 		driveMotor.enableControl();

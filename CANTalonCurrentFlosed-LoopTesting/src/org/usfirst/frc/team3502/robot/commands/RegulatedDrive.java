@@ -10,34 +10,26 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class RegulatedDrive extends Command {
 
     public RegulatedDrive() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     	requires(Robot.currentControlled);
     }
 
-    // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.currentControlled.enable();
     }
 
-    // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.currentControlled.setCurrent(Robot.oi.getManY(), Robot.currentControlled.MAXCURRENT);
     	SmartDashboard.putNumber("Closed-Loop Error", Robot.currentControlled.getError());
     	SmartDashboard.putNumber("Curent Current", Robot.currentControlled.getCurrent());
     }
 
-    // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return false;
     }
 
-    // Called once after isFinished returns true
     protected void end() {
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
     protected void interrupted() {
     }
 }
