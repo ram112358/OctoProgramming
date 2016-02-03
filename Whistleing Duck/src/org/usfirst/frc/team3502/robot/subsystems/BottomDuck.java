@@ -23,6 +23,6 @@ public class BottomDuck extends Subsystem {
     }
     
     public void set(double outputValue){
-    	bottomTalon.set(outputValue);
+    	bottomTalon.set(outputValue * .25);
     }
 }
