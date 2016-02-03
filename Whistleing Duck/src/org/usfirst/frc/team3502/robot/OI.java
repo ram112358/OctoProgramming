@@ -1,7 +1,12 @@
 package org.usfirst.frc.team3502.robot;
 
+import org.usfirst.frc.team3502.robot.commands.BothDrive;
+import org.usfirst.frc.team3502.robot.commands.BottomDrive;
+import org.usfirst.frc.team3502.robot.commands.TopDrive;
+
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
-import org.usfirst.frc.team3502.robot.commands.ExampleCommand;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -15,24 +20,23 @@ public class OI {
     // Joystick stick = new Joystick(port);
     // Button button = new JoystickButton(stick, buttonNumber);
     
-    // There are a few additional built in buttons you can use. Additionally,
-    // by subclassing Button you can create custom triggers and bind those to
-    // commands the same as any other Button.
-    
-    //// TRIGGERING COMMANDS WITH BUTTONS
-    // Once you have a button, it's trivial to bind it to a button in one of
-    // three ways:
-    
-    // Start the command when the button is pressed and let it run the command
-    // until it is finished as determined by it's isFinished method.
-    // button.whenPressed(new ExampleCommand());
-    
-    // Run the command while the button is being held down and interrupt it once
-    // the button is released.
-    // button.whileHeld(new ExampleCommand());
-    
-    // Start the command when the button is released  and let it run the command
-    // until it is finished as determined by it's isFinished method.
-    // button.whenReleased(new ExampleCommand());
+	Joystick bothDuckJoy = new Joystick(RobotMap.bothDuckJoyPort);
+	
+	Button
+		bothDuckButton = new JoystickButton(bothDuckJoy, RobotMap.bothDuckButtonPort),
+	    bottomDuckButton = new JoystickButton(bothDuckJoy, RobotMap.bothDuckButtonPort),
+	    topDuckButton = new JoystickButton(bothDuckJoy, RobotMap.bothDuckButtonPort);
+	
+	public OI(){
+		//button.whenPressed(new ExampleCommand());
+		//button.whileHeld(new ExampleCommand());
+		//button.whenReleased(new ExampleCommand());
+		bothDuckButton.whenPressed(new BothDrive());
+		topDuckButton.whenPressed(new BottomDrive());
+		topDuckButton.whenPressed(new TopDrive());
+	}
+	
+	public double getDuckY(){
+		return bothDuckJoy.getY();
+	}
 }
-
