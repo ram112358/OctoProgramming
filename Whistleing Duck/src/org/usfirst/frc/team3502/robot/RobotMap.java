@@ -6,15 +6,25 @@ package org.usfirst.frc.team3502.robot;
  * floating around.
  */
 public class RobotMap {
-    public static int
+    
+	//Motor Ports
+	public static int
     	topDuckPort = 0,
     	bottomDuckPort = 1,
-    	intakePort = 2;
+    	intakePort = 2,
+		rightOnePort = 3,
+		rightTwoPort = 4,
+		leftOnePort = 5,
+		leftTwoPort = 6;
     
+    //Joystick Ports
     public static int
     	bothDuckJoyPort = 0,
-    	intakeJoyPort = 1;
+    	intakeJoyPort = 1,
+    	rightJoyPort = 2,
+    	lefttJoyPort = 3;
     
+    //Buttons
     public static int
     	bothDuckButtonPort = 1,
     	bottomDuckButtonPort = 2,
