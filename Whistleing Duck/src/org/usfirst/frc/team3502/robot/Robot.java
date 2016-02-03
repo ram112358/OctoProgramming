@@ -2,6 +2,7 @@
 package org.usfirst.frc.team3502.robot;
 
 import org.usfirst.frc.team3502.robot.subsystems.BottomDuck;
+import org.usfirst.frc.team3502.robot.subsystems.Intake;
 import org.usfirst.frc.team3502.robot.subsystems.TopDuck;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -20,8 +21,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 
-	public static final BottomDuck bottomDuck = new BottomDuck();
 	public static final TopDuck topDuck = new TopDuck();
+	public static final BottomDuck bottomDuck = new BottomDuck();
+	public static final Intake intake = new Intake();
 	public static OI oi;
 
     Command autonomousCommand;

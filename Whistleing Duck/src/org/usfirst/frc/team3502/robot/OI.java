@@ -19,8 +19,9 @@ public class OI {
     // number it is.
     // Joystick stick = new Joystick(port);
     // Button button = new JoystickButton(stick, buttonNumber);
-    
+
 	Joystick bothDuckJoy = new Joystick(RobotMap.bothDuckJoyPort);
+	Joystick intakeJoy = new Joystick(RobotMap.intakeJoyPort);
 	
 	Button
 		bothDuckButton = new JoystickButton(bothDuckJoy, RobotMap.bothDuckButtonPort),
@@ -35,8 +36,12 @@ public class OI {
 		topDuckButton.whenPressed(new BottomDrive());
 		topDuckButton.whenPressed(new TopDrive());
 	}
-	
+
 	public double getDuckY(){
 		return bothDuckJoy.getY();
+	}
+	
+	public double getIntakeY(){
+		return intakeJoy.getY();
 	}
 }

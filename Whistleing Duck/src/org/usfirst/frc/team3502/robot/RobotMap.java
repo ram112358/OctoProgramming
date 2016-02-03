@@ -8,10 +8,12 @@ package org.usfirst.frc.team3502.robot;
 public class RobotMap {
     public static int
     	topDuckPort = 0,
-    	bottomDuckPort = 1;
+    	bottomDuckPort = 1,
+    	intakePort = 2;
     
     public static int
-    	bothDuckJoyPort = 0;
+    	bothDuckJoyPort = 0,
+    	intakeJoyPort = 1;
     
     public static int
     	bothDuckButtonPort = 1,
