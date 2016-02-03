@@ -13,15 +13,12 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-    //// CREATING BUTTONS
-    // One type of button is a joystick button which is any button on a joystick.
-    // You create one by telling it which joystick it's on and which button
-    // number it is.
-    // Joystick stick = new Joystick(port);
-    // Button button = new JoystickButton(stick, buttonNumber);
-
-	Joystick bothDuckJoy = new Joystick(RobotMap.bothDuckJoyPort);
-	Joystick intakeJoy = new Joystick(RobotMap.intakeJoyPort);
+	
+	Joystick
+		bothDuckJoy = new Joystick(RobotMap.bothDuckJoyPort),
+		intakeJoy = new Joystick(RobotMap.intakeJoyPort),
+		rightJoy = new Joystick(RobotMap.rightJoyPort),
+		leftJoy = new Joystick(RobotMap.leftJoyPort);
 	
 	Button
 		bothDuckButton = new JoystickButton(bothDuckJoy, RobotMap.bothDuckButtonPort),
@@ -40,8 +37,16 @@ public class OI {
 	public double getDuckY(){
 		return bothDuckJoy.getY();
 	}
-	
+
 	public double getIntakeY(){
 		return intakeJoy.getY();
+	}
+
+	public double getRightY(){
+		return rightJoy.getY();
+	}
+	
+	public double getLeftY(){
+		return leftJoy.getY();
 	}
 }

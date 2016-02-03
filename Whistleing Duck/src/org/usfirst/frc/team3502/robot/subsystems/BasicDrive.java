@@ -20,14 +20,28 @@ public class BasicDrive extends Subsystem {
 	public BasicDrive(){
 		rightOne.changeControlMode(TalonControlMode.PercentVbus);
 		leftOne.changeControlMode(TalonControlMode.PercentVbus);
+		
 		rightTwo.changeControlMode(TalonControlMode.Follower);
 		rightTwo.set(RobotMap.rightOnePort);
 		leftTwo.changeControlMode(TalonControlMode.Follower);
 		leftTwo.set(RobotMap.leftOnePort);
+
+		rightOne.enable();
+		rightTwo.enable();
+		leftOne.enable();
+		leftTwo.enable();
 	}
 	
     public void initDefaultCommand() {
         setDefaultCommand(new DriveOMatic());
+    }
+    
+    public void setLeft(double outputValue){
+    	leftOne.set(outputValue);
+    }
+    
+    public void setRight(double outputValue){
+    	rightOne.set(outputValue);
     }
 }
 

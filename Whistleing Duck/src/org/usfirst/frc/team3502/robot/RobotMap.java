@@ -22,7 +22,7 @@ public class RobotMap {
     	bothDuckJoyPort = 0,
     	intakeJoyPort = 1,
     	rightJoyPort = 2,
-    	lefttJoyPort = 3;
+    	leftJoyPort = 3;
     
     //Buttons
     public static int
