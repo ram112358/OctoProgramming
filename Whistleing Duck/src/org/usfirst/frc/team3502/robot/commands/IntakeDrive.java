@@ -17,7 +17,15 @@ public class IntakeDrive extends Command {
     }
 
     protected void execute() {
-    	Robot.intake.set(Robot.oi.getIntakeY());
+    	if (Robot.oi.getIntakeInButton()){
+    		Robot.intake.set(Robot.oi.getIntakeThrottle());
+    	}
+    	else if(Robot.oi.getIntakeOutButton()){
+    		Robot.intake.set(-Robot.oi.getIntakeThrottle());
+    	}
+    	else{
+    		Robot.intake.set(0.0);
+    	}
     }
 
     protected boolean isFinished() {

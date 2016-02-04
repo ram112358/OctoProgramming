@@ -15,31 +15,28 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 	
 	Joystick
-		bothDuckJoy = new Joystick(RobotMap.bothDuckJoyPort),
-		intakeJoy = new Joystick(RobotMap.intakeJoyPort),
+		duckJoy = new Joystick(RobotMap.duckJoyPort),
 		rightJoy = new Joystick(RobotMap.rightJoyPort),
 		leftJoy = new Joystick(RobotMap.leftJoyPort);
 	
 	Button
-		bothDuckButton = new JoystickButton(bothDuckJoy, RobotMap.bothDuckButtonPort),
-	    bottomDuckButton = new JoystickButton(bothDuckJoy, RobotMap.bothDuckButtonPort),
-	    topDuckButton = new JoystickButton(bothDuckJoy, RobotMap.bothDuckButtonPort);
+		duckButton = new JoystickButton(duckJoy, RobotMap.bothDuckButtonPort),
+	    bottomDuckButton = new JoystickButton(duckJoy, RobotMap.bottomDuckButtonPort),
+	    topDuckButton = new JoystickButton(duckJoy, RobotMap.topDuckButtonPort),
+	    intakeInButton = new JoystickButton(duckJoy, RobotMap.intakeInButtonPort),
+	    intakeOutButton = new JoystickButton(duckJoy, RobotMap.intakeOutButtonPort);
 	
 	public OI(){
 		//button.whenPressed(new ExampleCommand());
 		//button.whileHeld(new ExampleCommand());
 		//button.whenReleased(new ExampleCommand());
-		bothDuckButton.whenPressed(new BothDrive());
+		duckButton.whenPressed(new BothDrive());
 		topDuckButton.whenPressed(new BottomDrive());
 		topDuckButton.whenPressed(new TopDrive());
 	}
 
 	public double getDuckY(){
-		return bothDuckJoy.getY();
-	}
-
-	public double getIntakeY(){
-		return intakeJoy.getY();
+		return duckJoy.getY();
 	}
 
 	public double getRightY(){
@@ -48,5 +45,17 @@ public class OI {
 	
 	public double getLeftY(){
 		return leftJoy.getY();
+	}
+
+	public boolean getIntakeInButton(){
+		return intakeInButton.get();
+	}
+
+	public boolean getIntakeOutButton(){
+		return intakeOutButton.get();
+	}
+	
+	public double getIntakeThrottle(){
+		return duckJoy.getThrottle();
 	}
 }
