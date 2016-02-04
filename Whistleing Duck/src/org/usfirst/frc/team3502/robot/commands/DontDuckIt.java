@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class BothDuckIt extends Command {
+public class DontDuckIt extends Command {
 
-    public BothDuckIt() {
+    public DontDuckIt() {
     	requires(Robot.topDuck);
     	requires(Robot.bottomDuck);
     }
@@ -18,8 +18,7 @@ public class BothDuckIt extends Command {
     }
 
     protected void execute() {
-    	Robot.topDuck.set(Robot.oi.getDuckY());
-    	Robot.bottomDuck.set(Robot.oi.getDuckY());
+    	
     }
 
     protected boolean isFinished() {

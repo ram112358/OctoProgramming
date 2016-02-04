@@ -29,5 +29,6 @@ public class TopDuckIt extends Command {
     }
 
     protected void interrupted() {
+    	Robot.topDuck.set(0);
     }
 }
