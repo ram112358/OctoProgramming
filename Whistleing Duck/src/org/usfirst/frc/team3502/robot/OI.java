@@ -1,8 +1,8 @@
 package org.usfirst.frc.team3502.robot;
 
-import org.usfirst.frc.team3502.robot.commands.BothDrive;
-import org.usfirst.frc.team3502.robot.commands.BottomDrive;
-import org.usfirst.frc.team3502.robot.commands.TopDrive;
+import org.usfirst.frc.team3502.robot.commands.BothDuckIt;
+import org.usfirst.frc.team3502.robot.commands.BottomDuckIt;
+import org.usfirst.frc.team3502.robot.commands.TopDuckIt;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -20,7 +20,7 @@ public class OI {
 		leftJoy = new Joystick(RobotMap.leftJoyPort);
 	
 	Button
-		duckButton = new JoystickButton(duckJoy, RobotMap.bothDuckButtonPort),
+		bothDuckButton = new JoystickButton(duckJoy, RobotMap.bothDuckButtonPort),
 	    bottomDuckButton = new JoystickButton(duckJoy, RobotMap.bottomDuckButtonPort),
 	    topDuckButton = new JoystickButton(duckJoy, RobotMap.topDuckButtonPort),
 	    intakeInButton = new JoystickButton(duckJoy, RobotMap.intakeInButtonPort),
@@ -30,9 +30,9 @@ public class OI {
 		//button.whenPressed(new ExampleCommand());
 		//button.whileHeld(new ExampleCommand());
 		//button.whenReleased(new ExampleCommand());
-		duckButton.whenPressed(new BothDrive());
-		topDuckButton.whenPressed(new BottomDrive());
-		topDuckButton.whenPressed(new TopDrive());
+		bothDuckButton.whenPressed(new BothDuckIt());
+		topDuckButton.whenPressed(new TopDuckIt());
+		bottomDuckButton.whenPressed(new BottomDuckIt());
 	}
 
 	public double getDuckY(){

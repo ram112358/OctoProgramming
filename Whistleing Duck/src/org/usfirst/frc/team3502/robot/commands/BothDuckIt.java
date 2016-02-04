@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class BottomDrive extends Command {
+public class BothDuckIt extends Command {
 
-    public BottomDrive() {
+    public BothDuckIt() {
     	requires(Robot.topDuck);
     	requires(Robot.bottomDuck);
     }
@@ -18,7 +18,8 @@ public class BottomDrive extends Command {
     }
 
     protected void execute() {
-    	Robot.bottomDuck.set(Robot.oi.getDuckY());
+    	//Robot.topDuck.set(Robot.oi.getDuckY());
+    	//Robot.bottomDuck.set(Robot.oi.getDuckY());
     }
 
     protected boolean isFinished() {

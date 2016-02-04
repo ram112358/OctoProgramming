@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class TopDrive extends Command {
+public class TopDuckIt extends Command {
 
-    public TopDrive() {
+    public TopDuckIt() {
     	requires(Robot.topDuck);
     	requires(Robot.bottomDuck);
     }

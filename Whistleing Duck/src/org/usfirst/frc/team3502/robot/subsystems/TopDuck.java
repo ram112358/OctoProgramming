@@ -16,6 +16,7 @@ public class TopDuck extends Subsystem {
 	public TopDuck(){
 		TopTalon.enableLimitSwitch(false, false);
 		TopTalon.changeControlMode(TalonControlMode.PercentVbus);
+		TopTalon.enableBrakeMode(true);
 	}
 	
     public void initDefaultCommand() {

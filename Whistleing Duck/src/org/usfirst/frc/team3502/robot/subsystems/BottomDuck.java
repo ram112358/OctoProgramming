@@ -16,6 +16,7 @@ public class BottomDuck extends Subsystem {
 	public BottomDuck(){
 		bottomTalon.enableLimitSwitch(false, false);
 		bottomTalon.changeControlMode(TalonControlMode.PercentVbus);
+		bottomTalon.enableBrakeMode(true);
 	}
 	
     public void initDefaultCommand() {
@@ -23,6 +24,6 @@ public class BottomDuck extends Subsystem {
     }
     
     public void set(double outputValue){
-    	bottomTalon.set(outputValue * .25);
+    	bottomTalon.set(outputValue * .4);
     }
 }
