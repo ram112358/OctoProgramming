@@ -2,6 +2,7 @@ package org.usfirst.frc.team3502.robot;
 
 import org.usfirst.frc.team3502.robot.commands.BothDuckIt;
 import org.usfirst.frc.team3502.robot.commands.BottomDuckIt;
+import org.usfirst.frc.team3502.robot.commands.BottomFullUp;
 import org.usfirst.frc.team3502.robot.commands.TopDuckIt;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -24,7 +25,8 @@ public class OI {
 	    bottomDuckButton = new JoystickButton(duckJoy, RobotMap.bottomDuckButtonPort),
 	    topDuckButton = new JoystickButton(duckJoy, RobotMap.topDuckButtonPort),
 	    intakeInButton = new JoystickButton(duckJoy, RobotMap.intakeInButtonPort),
-	    intakeOutButton = new JoystickButton(duckJoy, RobotMap.intakeOutButtonPort);
+	    intakeOutButton = new JoystickButton(duckJoy, RobotMap.intakeOutButtonPort),
+		bottomFullUpButton = new JoystickButton(duckJoy, RobotMap.bottomFullUpButtonPort);
 	
 	public OI(){
 		//button.whenPressed(new ExampleCommand());
@@ -33,6 +35,7 @@ public class OI {
 		bothDuckButton.whenPressed(new BothDuckIt());
 		topDuckButton.whenPressed(new TopDuckIt());
 		bottomDuckButton.whenPressed(new BottomDuckIt());
+		bottomFullUpButton.whileHeld(new BottomFullUp());
 	}
 
 	public double getDuckY(){
