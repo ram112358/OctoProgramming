@@ -11,19 +11,23 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class TopDuck extends Subsystem {
 	
-	private static final CANTalon TopTalon = new CANTalon(RobotMap.topDuckPort);
+	private static final CANTalon topTalon = new CANTalon(RobotMap.topDuckPort);
 	
 	public TopDuck(){
-		TopTalon.enableLimitSwitch(false, false);
-		TopTalon.changeControlMode(TalonControlMode.PercentVbus);
-		TopTalon.enableBrakeMode(true);
+		topTalon.enableLimitSwitch(false, false);
+		topTalon.changeControlMode(TalonControlMode.PercentVbus);
+		topTalon.enableBrakeMode(true);
 	}
 	
     public void initDefaultCommand() {
     	
     }
+
+    public void setSlow(double outputValue){
+    	topTalon.set(outputValue * .4);
+    }
     
     public void set(double outputValue){
-    	TopTalon.set(outputValue * .25);
+    	topTalon.set(outputValue);
     }
 }

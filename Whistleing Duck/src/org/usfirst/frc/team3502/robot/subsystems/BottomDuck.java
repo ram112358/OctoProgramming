@@ -22,8 +22,16 @@ public class BottomDuck extends Subsystem {
     public void initDefaultCommand() {
     	
     }
+
+    public void setSlow(double outputValue){
+    	bottomTalon.set(outputValue * .35);
+    }
     
     public void set(double outputValue){
-    	bottomTalon.set(outputValue * .4);
+    	bottomTalon.set(outputValue);
+    }
+    
+    public double getSpeed(){
+    	return bottomTalon.getSpeed();
     }
 }

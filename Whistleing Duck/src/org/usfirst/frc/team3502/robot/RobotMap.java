@@ -28,7 +28,8 @@ public class RobotMap {
     	bothDuckButtonPort = 1,
     	bottomDuckButtonPort = 3,
     	topDuckButtonPort = 5,
-    	bottomFullUpButtonPort = 10,
     	intakeInButtonPort = 4,
-    	intakeOutButtonPort = 6;
+    	intakeOutButtonPort = 6,
+    	bottomFullUpButtonPort = 10,
+    	bottomTimedFullUpButtonPort = 11;
 }

@@ -20,6 +20,9 @@ public class BasicDrive extends Subsystem {
 	public BasicDrive(){
 		rightOne.changeControlMode(TalonControlMode.PercentVbus);
 		leftOne.changeControlMode(TalonControlMode.PercentVbus);
+
+		rightOne.enableBrakeMode(true);
+		leftOne.enableBrakeMode(true);
 		
 		rightTwo.changeControlMode(TalonControlMode.Follower);
 		rightTwo.set(RobotMap.rightOnePort);
@@ -37,11 +40,11 @@ public class BasicDrive extends Subsystem {
     }
     
     public void setLeft(double outputValue){
-    	leftOne.set(-outputValue);
+    	rightOne.set(-outputValue);
     }
     
     public void setRight(double outputValue){
-    	rightOne.set(outputValue);
+    	leftOne.set(outputValue);
     }
 }
 

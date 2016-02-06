@@ -18,7 +18,7 @@ public class BottomFullUp extends Command {
     }
 
     protected void execute() {
-    	Robot.bottomDuck.set(1);
+    	Robot.bottomDuck.set(Math.abs(Robot.oi.getIntakeThrottle()));
     }
 
     protected boolean isFinished() {

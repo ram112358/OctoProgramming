@@ -3,6 +3,7 @@ package org.usfirst.frc.team3502.robot.commands;
 import org.usfirst.frc.team3502.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -26,6 +27,7 @@ public class IntakeDrive extends Command {
     	else{
     		Robot.intake.set(0.0);
     	}
+    	SmartDashboard.putNumber("Operator throttle" , Robot.oi.getIntakeThrottle());
     }
 
     protected boolean isFinished() {

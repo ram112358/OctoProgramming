@@ -9,6 +9,9 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class DriveOMatic extends Command {
 
+	//private boolean slowDrive = true;
+	//private boolean fastDrive = false;
+	
     public DriveOMatic() {
     	requires(Robot.drive);
     }
@@ -19,8 +22,8 @@ public class DriveOMatic extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.drive.setRight(Robot.oi.getRightY());
-    	Robot.drive.setLeft(Robot.oi.getLeftY());
+		Robot.drive.setRight(Robot.oi.getRightY());
+		Robot.drive.setLeft(Robot.oi.getLeftY());
     }
 
     // Make this return true when this Command no longer needs to run execute()
