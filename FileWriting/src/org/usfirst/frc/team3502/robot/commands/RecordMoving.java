@@ -93,8 +93,12 @@ public class RecordMoving extends Command {
     	BufferedWriter outputFile = new BufferedWriter(new FileWriter(path, true));
     	for(n = 0; n < 1000; n++){
     	outputFile.write(velocity[n] + "\t" + position[n] + "\t" + time[n]);
+    	velocity[n] = 0;
+    	position[n] = 0;
+    	time[n] = 0.0;
     	outputFile.newLine();
     	outputFile.close();
     	}
+    	n = 0;
     }
 }
