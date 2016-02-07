@@ -15,13 +15,13 @@ public class RecordMoving extends Command {
 	private double power;
 	private String note;
 	
-	private double[] time = new double[1000];
+	private double[] time;
 	private int
 		startPosition,
 		n = 0;
 	private int[]
-		position = new int[1000],
-		velocity = new int[1000];
+		position,
+		velocity;
 	private static final Timer timer = new Timer();
 	private static final String path = "/home/lvuser/ProfileTest.txt";
 
@@ -33,6 +33,10 @@ public class RecordMoving extends Command {
     	startPosition = Robot.drive.getPosition();
     	power = NetworkTable.getTable("Preferences").getNumber("Power Level", 0);
     	note = NetworkTable.getTable("Preferences").getString("Special Note", "");
+
+    	position = new int[1000];
+    	velocity = new int[1000];
+    	time = new double[1000];
     	
     	try {
 			openFile();
@@ -93,12 +97,8 @@ public class RecordMoving extends Command {
     	BufferedWriter outputFile = new BufferedWriter(new FileWriter(path, true));
     	for(n = 0; n < 1000; n++){
     	outputFile.write(velocity[n] + "\t" + position[n] + "\t" + time[n]);
-    	velocity[n] = 0;
-    	position[n] = 0;
-    	time[n] = 0.0;
     	outputFile.newLine();
     	outputFile.close();
     	}
-    	n = 0;
     }
 }
