@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3502.robot;
 
 import org.usfirst.frc.team3502.robot.commands.FileTester;
+import org.usfirst.frc.team3502.robot.commands.RecordMoving;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -19,7 +20,7 @@ public class OI {
 		// button.whenPressed(new ExampleCommand());
 	    // button.whileHeld(new ExampleCommand());
 	    // button.whenReleased(new ExampleCommand());		
-		writeFile.whileHeld(new FileTester());
+		writeFile.whileHeld(new RecordMoving());
 	}
 
     public double getManY(){

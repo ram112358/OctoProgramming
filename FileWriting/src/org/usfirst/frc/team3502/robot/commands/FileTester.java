@@ -26,7 +26,7 @@ public class FileTester extends Command {
 		}
     	timer.start();
     }
-
+    
     protected void execute() {
     	try {
     		writeFile();
