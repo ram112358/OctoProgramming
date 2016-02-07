@@ -91,8 +91,8 @@ public class RecordMoving extends Command {
     
     private void writeFile() throws IOException{
     	BufferedWriter outputFile = new BufferedWriter(new FileWriter(path, true));
-    	for(n = 0, n == ){
-    	outputFile.write(velocity + "\t" + position + "\t" + time);
+    	for(n = 0; n < 1000; n++){
+    	outputFile.write(velocity[n] + "\t" + position[n] + "\t" + time[n]);
     	outputFile.newLine();
     	outputFile.close();
     	}
