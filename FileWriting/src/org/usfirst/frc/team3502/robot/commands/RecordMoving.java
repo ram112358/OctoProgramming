@@ -18,7 +18,8 @@ public class RecordMoving extends Command {
 	private double[] time;
 	private int
 		startPosition,
-		n;
+		n,
+		counter;
 	private int[]
 		position,
 		velocity;
@@ -96,7 +97,7 @@ public class RecordMoving extends Command {
     
     private void writeFile() throws IOException{
     	BufferedWriter outputFile = new BufferedWriter(new FileWriter(path, true));
-    	for(n = 0; n < 1000; n++){
+    	for(counter = 0; counter < n; counter++){
     	outputFile.write(velocity[n] + "\t" + position[n] + "\t" + time[n]);
     	outputFile.newLine();
     	outputFile.close();
