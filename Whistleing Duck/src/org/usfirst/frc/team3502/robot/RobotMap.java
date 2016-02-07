@@ -31,5 +31,6 @@ public class RobotMap {
     	intakeInButtonPort = 4,
     	intakeOutButtonPort = 6,
     	bottomFullUpButtonPort = 10,
-    	bottomTimedFullUpButtonPort = 11;
+    	bottomTimedFullUpButtonPort = 11,
+    	climbingButton = 7;
 }

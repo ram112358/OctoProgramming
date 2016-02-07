@@ -1,6 +1,8 @@
 
 package org.usfirst.frc.team3502.robot;
 
+import org.usfirst.frc.team3502.robot.subsystems.RecordingDrive;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -16,7 +18,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
-
+	
+	public static final RecordingDrive drive = new RecordingDrive();
 	public static OI oi;
 
     Command autonomousCommand;

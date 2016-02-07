@@ -4,12 +4,9 @@ import org.usfirst.frc.team3502.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-/**
- *
- */
-public class DriveOMatic extends Command {
+public class ClimbingMode extends Command {
 
-    public DriveOMatic() {
+    public ClimbingMode() {
     	requires(Robot.drive);
     }
 
@@ -18,7 +15,7 @@ public class DriveOMatic extends Command {
 
     protected void execute() {
 		Robot.drive.setRight(Robot.oi.getRightY());
-		Robot.drive.setLeft(Robot.oi.getLeftY());
+		Robot.drive.setLeft(Robot.oi.getRightY());
     }
 
     protected boolean isFinished() {

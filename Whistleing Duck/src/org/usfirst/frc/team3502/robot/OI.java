@@ -4,6 +4,7 @@ import org.usfirst.frc.team3502.robot.commands.BothDuckIt;
 import org.usfirst.frc.team3502.robot.commands.BottomDuckIt;
 import org.usfirst.frc.team3502.robot.commands.BottomFullUp;
 import org.usfirst.frc.team3502.robot.commands.BottomTimedFullUp;
+import org.usfirst.frc.team3502.robot.commands.ClimbingMode;
 import org.usfirst.frc.team3502.robot.commands.TopDuckIt;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -28,7 +29,8 @@ public class OI {
 	    intakeInButton = new JoystickButton(duckJoy, RobotMap.intakeInButtonPort),
 	    intakeOutButton = new JoystickButton(duckJoy, RobotMap.intakeOutButtonPort),
 	    bottomFullUpButton = new JoystickButton(duckJoy, RobotMap.bottomFullUpButtonPort),
-	    bottomTimedFullUpButton = new JoystickButton(duckJoy, RobotMap.bottomTimedFullUpButtonPort);
+	    bottomTimedFullUpButton = new JoystickButton(duckJoy, RobotMap.bottomTimedFullUpButtonPort),
+    	climbingButton = new JoystickButton(rightJoy, RobotMap.climbingButton);
 	
 	public OI(){
 		//button.whenPressed(new ExampleCommand());
@@ -37,9 +39,10 @@ public class OI {
 		bothDuckButton.whenPressed(new BothDuckIt());
 		topDuckButton.whenPressed(new TopDuckIt());
 		bottomDuckButton.whenPressed(new BottomDuckIt());
-		bottomFullUpButton.whileHeld(new BottomFullUp());
 		bottomTimedFullUpButton.whenPressed(new BottomTimedFullUp());
 		
+		climbingButton.whileHeld(new ClimbingMode());
+		bottomFullUpButton.whileHeld(new BottomFullUp());
 	}
 	
 	
