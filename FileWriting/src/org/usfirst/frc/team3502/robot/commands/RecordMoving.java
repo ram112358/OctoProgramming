@@ -18,7 +18,7 @@ public class RecordMoving extends Command {
 	private double[] time;
 	private int
 		startPosition,
-		n = 0;
+		n;
 	private int[]
 		position,
 		velocity;
@@ -33,10 +33,11 @@ public class RecordMoving extends Command {
     	startPosition = Robot.drive.getPosition();
     	power = NetworkTable.getTable("Preferences").getNumber("Power Level", 0);
     	note = NetworkTable.getTable("Preferences").getString("Special Note", "");
-
+    	
     	position = new int[1000];
     	velocity = new int[1000];
     	time = new double[1000];
+    	n = 0;
     	
     	try {
 			openFile();
