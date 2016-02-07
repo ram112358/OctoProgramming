@@ -12,8 +12,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class RecordingDrive extends Subsystem {
 	
-	private static final CANTalon driveMotor = new CANTalon(RobotMap.driveMotorPort);
-	private static final CANTalon driveMotorFollow = new CANTalon(RobotMap.driveMotorFollowPort);
+	private static final CANTalon driveMotor = new CANTalon(RobotMap.driveMotorPort, 1, 1);
+	private static final CANTalon driveMotorFollow = new CANTalon(RobotMap.driveMotorFollowPort, 1, 1);
 
 	public RecordingDrive(){
 		driveMotor.changeControlMode(TalonControlMode.PercentVbus);

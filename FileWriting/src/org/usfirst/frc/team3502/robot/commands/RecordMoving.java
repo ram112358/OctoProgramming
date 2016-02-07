@@ -9,10 +9,16 @@ import org.usfirst.frc.team3502.robot.Robot;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 public class RecordMoving extends Command {
+	private double power;
+	private String note;
+	
+	
 	private double time;
 	private int
+		startPosition,
 		position,
 		velocity;
 	private static final Timer timer = new Timer();
@@ -23,6 +29,10 @@ public class RecordMoving extends Command {
     }
 
     protected void initialize() {
+    	startPosition = Robot.drive.getPosition();
+    	power = NetworkTable.getTable("Preferences").getNumber("Power Level", 0);
+    	note = NetworkTable.getTable("Preferences").getString("Special Note", "");
+    	
     	try {
 			openFile();
 		} 
@@ -34,13 +44,13 @@ public class RecordMoving extends Command {
     }
 
     protected void execute() {
-    	Robot.drive.set(.25);
+    	Robot.drive.set(power);
     	time = timer.get();
-    	position = Robot.drive.getPosition();
+    	position = startPosition - Robot.drive.getPosition();
     	velocity = Robot.drive.getVelocity();
     	try {
     		writeFile();
-    	} 
+    	}
     	catch (IOException e) {
     		// TODO Auto-generated catch block
     		e.printStackTrace();
@@ -52,9 +62,11 @@ public class RecordMoving extends Command {
     }
 
     protected void end() {
+    	Robot.drive.set(0.0);
     }
 
     protected void interrupted() {
+    	Robot.drive.set(0.0);
     }
     
     private void openFile() throws IOException{
@@ -62,7 +74,7 @@ public class RecordMoving extends Command {
     	if(!file.exists()) {
     		file.createNewFile();
     		BufferedWriter outputFile = new BufferedWriter(new FileWriter(path, true));
-    		outputFile.write("Vel\tPos\tTime");
+    		outputFile.write("Vel\tPos\tTime\tPower Level:" + power + "\t Special Note:" + note);
     		outputFile.newLine();
         	outputFile.close();
     	}
