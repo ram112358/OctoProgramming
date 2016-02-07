@@ -15,12 +15,13 @@ public class RecordMoving extends Command {
 	private double power;
 	private String note;
 	
-	
-	private double time;
+	private double[] time = new double[1000];
 	private int
 		startPosition,
-		position,
-		velocity;
+		n = 0;
+	private int[]
+		position = new int[1000],
+		velocity = new int[1000];
 	private static final Timer timer = new Timer();
 	private static final String path = "/home/lvuser/ProfileTest.txt";
 
@@ -45,9 +46,18 @@ public class RecordMoving extends Command {
 
     protected void execute() {
     	Robot.drive.set(power);
-    	time = timer.get();
-    	position = startPosition - Robot.drive.getPosition();
-    	velocity = Robot.drive.getVelocity();
+    	time[n] = timer.get();
+    	position[n] = startPosition - Robot.drive.getPosition();
+    	velocity[n] = Robot.drive.getVelocity();
+    	n++;
+    }
+
+    protected boolean isFinished() {
+        return false;
+    }
+
+    protected void end() {
+    	Robot.drive.set(0.0);
     	try {
     		writeFile();
     	}
@@ -57,16 +67,15 @@ public class RecordMoving extends Command {
     	}
     }
 
-    protected boolean isFinished() {
-        return false;
-    }
-
-    protected void end() {
-    	Robot.drive.set(0.0);
-    }
-
     protected void interrupted() {
     	Robot.drive.set(0.0);
+    	try {
+    		writeFile();
+    	}
+    	catch (IOException e) {
+    		// TODO Auto-generated catch block
+    		e.printStackTrace();
+    	}
     }
     
     private void openFile() throws IOException{
@@ -82,8 +91,10 @@ public class RecordMoving extends Command {
     
     private void writeFile() throws IOException{
     	BufferedWriter outputFile = new BufferedWriter(new FileWriter(path, true));
+    	for(n = 0, n == ){
     	outputFile.write(velocity + "\t" + position + "\t" + time);
     	outputFile.newLine();
     	outputFile.close();
+    	}
     }
 }
