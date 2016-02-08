@@ -17,7 +17,7 @@ public class BothDuckIt extends Command {
     protected void initialize() {
     }
 
-    protected void execute() {
+    protected void execute() { 
     	Robot.topDuck.setSlow(Robot.oi.getDuckY());
     	Robot.bottomDuck.setSlow(Robot.oi.getDuckY());
     }
