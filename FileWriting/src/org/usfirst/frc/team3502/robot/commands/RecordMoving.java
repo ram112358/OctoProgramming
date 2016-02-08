@@ -12,10 +12,12 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 public class RecordMoving extends Command {
-	private double power;
 	private String note;
-	
-	private double[] time;
+	private double
+		power,
+		endTime;
+	private double[]
+		time;
 	private int
 		startPosition,
 		n,
@@ -23,6 +25,8 @@ public class RecordMoving extends Command {
 	private int[]
 		position,
 		velocity;
+	private boolean[]
+		beingPowered;
 	private static final Timer timer = new Timer();
 	private static final String path = "/home/lvuser/ProfileTest.txt";
 
@@ -38,8 +42,37 @@ public class RecordMoving extends Command {
     	position = new int[1000];
     	velocity = new int[1000];
     	time = new double[1000];
+    	beingPowered = new boolean[1000];
     	n = 0;
     	
+    	timer.start();
+    }
+
+    protected void execute() {
+    	time[n] = getFPGATimer();;
+    	position[n] = startPosition - Robot.drive.getPosition();
+    	velocity[n] = Robot.drive.getVelocity();
+    	n = n + 1;
+
+    	if (Robot.oi.getWriteFileButton()){
+    		Robot.drive.set(power);
+    		beingPowered[n] = true;
+    		endTime = time[n];
+    	}
+    	else{
+    		Robot.drive.set(0.0);
+    		beingPowered[n] = true;
+    	}
+    }
+
+    protected boolean isFinished() {
+    	if (time[n] - endTime >= 1.5)
+    		return true;
+    	return false;
+    }
+
+    protected void end() {
+    	Robot.drive.set(0.0);
     	try {
 			openFile();
 		} 
@@ -47,23 +80,6 @@ public class RecordMoving extends Command {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	timer.start();
-    }
-
-    protected void execute() {
-    	Robot.drive.set(power);
-    	time[n] = timer.get();
-    	position[n] = startPosition - Robot.drive.getPosition();
-    	velocity[n] = Robot.drive.getVelocity();
-    	n++;
-    }
-
-    protected boolean isFinished() {
-        return false;
-    }
-
-    protected void end() {
-    	Robot.drive.set(0.0);
     	try {
     		writeFile();
     	}
@@ -75,6 +91,14 @@ public class RecordMoving extends Command {
 
     protected void interrupted() {
     	Robot.drive.set(0.0);
+
+    	try {
+			openFile();
+		} 
+		catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	try {
     		writeFile();
     	}
@@ -89,7 +113,7 @@ public class RecordMoving extends Command {
     	if(!file.exists()) {
     		file.createNewFile();
     		BufferedWriter outputFile = new BufferedWriter(new FileWriter(path, true));
-    		outputFile.write("Vel\tPos\tTime\tPower Level:" + power + "\t Special Note:" + note);
+    		outputFile.write("Vel\tPos\tTime\tBeingPowered\tPower Level: " + power + "\tSpecial Note: " + note);
     		outputFile.newLine();
         	outputFile.close();
     	}
@@ -98,9 +122,9 @@ public class RecordMoving extends Command {
     private void writeFile() throws IOException{
     	BufferedWriter outputFile = new BufferedWriter(new FileWriter(path, true));
     	for(counter = 0; counter < n; counter++){
-    	outputFile.write(velocity[n] + "\t" + position[n] + "\t" + time[n]);
-    	outputFile.newLine();
-    	outputFile.close();
+    		outputFile.write(velocity[counter] + "\t" + position[counter] + "\t" + time[counter] + "\t" + beingPowered[counter]);
+    		outputFile.newLine();
     	}
+    	outputFile.close();
     }
 }
