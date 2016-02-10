@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3502.robot;
 
 import org.usfirst.frc.team3502.robot.commands.FileTester;
+import org.usfirst.frc.team3502.robot.commands.ProfileExecuter;
 import org.usfirst.frc.team3502.robot.commands.RecordMoving;
 import org.usfirst.frc.team3502.robot.commands.RecordMovingTimeOnly;
 
@@ -16,6 +17,7 @@ public class OI {
 
 	Joystick manStick = new Joystick(RobotMap.manJoyPort);
 	Button writeFileButton = new JoystickButton(manStick, RobotMap.manJoyTrigger);
+	Button playFileButton = new JoystickButton(manStick, RobotMap.manJoyThumb);
 	
 	public OI(){
 		// button.whenPressed(new ExampleCommand());
@@ -26,6 +28,8 @@ public class OI {
 		// writeFileButton.whileHeld(new RecordMoving());
 		// writeFileButton.whenPressed(new RecordMoving());
 		writeFileButton.whileHeld(new RecordMovingTimeOnly());
+		
+		playFileButton.whenPressed(new ProfileExecuter());
 	}
 
     public double getManY(){

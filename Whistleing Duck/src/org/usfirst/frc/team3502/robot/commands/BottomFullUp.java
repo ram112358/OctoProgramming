@@ -15,6 +15,8 @@ public class BottomFullUp extends Command {
     }
 
     protected void initialize() {
+    	Robot.topDuck.setThrottleMode();
+    	Robot.bottomDuck.setThrottleMode();
     }
 
     protected void execute() {

@@ -49,7 +49,8 @@ public class RecordMoving extends Command {
     }
 
     protected void execute() {
-    	time[n] = getFPGATimer();;
+    	time[n] = Timer.getFPGATimestamp();
+    	// time[n] = timer.get();
     	position[n] = startPosition - Robot.drive.getPosition();
     	velocity[n] = Robot.drive.getVelocity();
     	n = n + 1;

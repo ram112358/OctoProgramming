@@ -24,6 +24,8 @@ public class BottomTimedFullUp extends Command {
     }
 
     protected void initialize() {
+    	Robot.topDuck.setThrottleMode();
+    	Robot.bottomDuck.setThrottleMode();
     	timer.start();
     	timeToRun = NetworkTable.getTable("Preferences").getNumber("Sec Run", 0);
     	timeToBrake = NetworkTable.getTable("Preferences").getNumber("Sec Brake", 0) + timeToRun;
