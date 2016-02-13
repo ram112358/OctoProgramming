@@ -30,13 +30,16 @@ public class OI {
 	    intakeOutButton = new JoystickButton(duckJoy, RobotMap.intakeOutButtonPort),
 	    bottomFullUpButton = new JoystickButton(duckJoy, RobotMap.bottomFullUpButtonPort),
 	    bottomTimedFullUpButton = new JoystickButton(duckJoy, RobotMap.bottomTimedFullUpButtonPort),
-    	climbingButton = new JoystickButton(rightJoy, RobotMap.climbingButton);
+    	climbingButton = new JoystickButton(rightJoy, RobotMap.climbingButton),
+    	rightIntakeInButton = new JoystickButton(rightJoy, RobotMap.rightIntakeInButtonPort),
+    	rightIntakeOutButton = new JoystickButton(rightJoy, RobotMap.rightIntakeOutButtonPort);
+		
 	
 	public OI(){
 		//button.whenPressed(new ExampleCommand());
 		//button.whileHeld(new ExampleCommand());
 		//button.whenReleased(new ExampleCommand());
-		bothDuckButton.whenPressed(new BothDuckIt());
+		//bothDuckButton.whenPressed(new BothDuckIt());
 		topDuckButton.whenPressed(new TopDuckIt());
 		bottomDuckButton.whenPressed(new BottomDuckIt());
 		bottomTimedFullUpButton.whenPressed(new BottomTimedFullUp());
@@ -59,11 +62,15 @@ public class OI {
 	}
 
 	public boolean getIntakeInButton(){
-		return intakeInButton.get();
+		if (intakeInButton.get() || rightIntakeInButton.get())
+			return true;
+		return false;
 	}
 
 	public boolean getIntakeOutButton(){
-		return intakeOutButton.get();
+		if (intakeOutButton.get() || rightIntakeOutButton.get())
+			return true;
+		return false;
 	}
 	
 	public double getIntakeThrottle(){

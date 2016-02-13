@@ -6,9 +6,8 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class ProfileExecuter extends Command {
-
-	private final int numPoints = 0;
-	private CANTalon.MotionProfileStatus talonStatus = new CANTalon.MotionProfileStatus();
+	
+	private CANTalon.SetValueMotionProfile setMode;
 	
     public ProfileExecuter() {
     	requires(Robot.drive);
@@ -16,9 +15,18 @@ public class ProfileExecuter extends Command {
 
     protected void initialize() {
     	Robot.drive.setProfileMode();
+    	Robot.drive.reset();
     }
 
     protected void execute() {
+    	//check for button to start process
+    	if (Robot.oi.getStartFileButton())
+    		Robot.drive.startMotionProfile();
+    	//run process every cycle
+    	Robot.drive.control();
+    	//do the set thing
+    	setMode = Robot.drive.getSetValue();
+    	Robot.drive.set(setMode.value);
     }
 
     protected boolean isFinished() {
@@ -26,8 +34,12 @@ public class ProfileExecuter extends Command {
     }
 
     protected void end() {
+    	Robot.drive.reset();
+    	Robot.drive.setThrottleMode();
     }
 
     protected void interrupted() {
+    	Robot.drive.reset();
+    	Robot.drive.setThrottleMode();
     }
 }

@@ -11,4 +11,5 @@ public class RobotMap {
     public static int manJoyPort = 1;
     public static int manJoyTrigger = 1;
     public static int manJoyThumb = 2;
+    public static int manJoyThree = 3;
 }

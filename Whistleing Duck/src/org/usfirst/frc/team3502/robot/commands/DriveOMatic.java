@@ -17,8 +17,8 @@ public class DriveOMatic extends Command {
     }
 
     protected void execute() {
-		Robot.drive.setRight(Robot.oi.getRightY());
-		Robot.drive.setLeft(Robot.oi.getLeftY());
+		Robot.drive.setLeft(-Robot.oi.getRightY());
+		Robot.drive.setRight(-Robot.oi.getLeftY());
     }
 
     protected boolean isFinished() {

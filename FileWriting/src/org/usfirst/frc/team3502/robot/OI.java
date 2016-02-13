@@ -16,8 +16,9 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 
 	Joystick manStick = new Joystick(RobotMap.manJoyPort);
-	Button writeFileButton = new JoystickButton(manStick, RobotMap.manJoyTrigger);
-	Button playFileButton = new JoystickButton(manStick, RobotMap.manJoyThumb);
+	Button writeFileButton = new JoystickButton(manStick, RobotMap.manJoyThree);
+	Button playFileButton = new JoystickButton(manStick, RobotMap.manJoyTrigger);
+	Button startFileButton = new JoystickButton(manStick, RobotMap.manJoyThumb);
 	
 	public OI(){
 		// button.whenPressed(new ExampleCommand());
@@ -30,13 +31,18 @@ public class OI {
 		writeFileButton.whileHeld(new RecordMovingTimeOnly());
 		
 		playFileButton.whenPressed(new ProfileExecuter());
+		
 	}
 
     public double getManY(){
     	return manStick.getY();
     }
- 
+
     public boolean getWriteFileButton(){
     	return writeFileButton.get();
+    }
+    
+    public boolean getStartFileButton(){
+    	return startFileButton.get();
     }
 }
