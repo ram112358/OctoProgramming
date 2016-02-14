@@ -15,6 +15,7 @@ public class RecordMoving extends Command {
 	private String note;
 	private double
 		power,
+		startTime,
 		endTime;
 	private double[]
 		time;
@@ -27,7 +28,7 @@ public class RecordMoving extends Command {
 		velocity;
 	private boolean[]
 		beingPowered;
-	private static final Timer timer = new Timer();
+	//private static final Timer timer = new Timer();
 	private static final String path = "/home/lvuser/ProfileTest.txt";
 
     public RecordMoving() {
@@ -45,12 +46,12 @@ public class RecordMoving extends Command {
     	beingPowered = new boolean[1000];
     	n = 0;
     	
-    	timer.start();
+    	//timer.start();
+    	startTime = Timer.getFPGATimestamp();
     }
 
     protected void execute() {
-    	time[n] = Timer.getFPGATimestamp();
-    	// time[n] = timer.get();
+    	time[n] = Timer.getFPGATimestamp() - startTime;
     	position[n] = startPosition - Robot.drive.getPosition();
     	velocity[n] = Robot.drive.getVelocity();
     	n = n + 1;

@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
 public class RecordMovingFancy extends Command {
 	private String note;
 	private double
+		startTime,	
 		endTime;
 	private double[]
 		time;
@@ -26,7 +27,7 @@ public class RecordMovingFancy extends Command {
 		velocity;
 	private boolean[]
 		beingPowered;
-	private static final Timer timer = new Timer();
+	//private static final Timer timer = new Timer();
 	private static final String path = "/home/lvuser/ProfileTest.txt";
 
     public RecordMovingFancy() {
@@ -41,18 +42,17 @@ public class RecordMovingFancy extends Command {
     	velocity = new int[1000];
     	time = new double[1000];
     	beingPowered = new boolean[1000];
-    	n = 0;
+    	n = -1;
     	
-    	timer.start();
+    	startTime = Timer.getFPGATimestamp();
     }
 
     protected void execute() {
-    	time[n] = Timer.getFPGATimestamp();
-    	// time[n] = timer.get();
-    	position[n] = startPosition - Robot.drive.getPosition();
-    	velocity[n] = Robot.drive.getVelocity();
     	n = n + 1;
-
+    	time[n] = Timer.getFPGATimestamp() - startTime;
+    	position[n] = Robot.drive.getPosition() - startPosition;
+    	velocity[n] = Robot.drive.getVelocity();
+    	
     	if (Robot.oi.getWriteFileButton()){
     		Robot.drive.set(Robot.oi.getManY());
     		beingPowered[n] = true;
@@ -60,12 +60,12 @@ public class RecordMovingFancy extends Command {
     	}
     	else{
     		Robot.drive.set(0.0);
-    		beingPowered[n] = true;
+    		beingPowered[n] = false;
     	}
     }
 
     protected boolean isFinished() {
-    	if (time[n] - endTime >= 1.5)
+    	if (time[n] - endTime >= .5)
     		return true;
     	return false;
     }

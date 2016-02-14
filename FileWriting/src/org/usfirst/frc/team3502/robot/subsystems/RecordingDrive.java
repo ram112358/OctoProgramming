@@ -29,6 +29,16 @@ public class RecordingDrive extends Subsystem {
 
 	private static final int numLoopsTimeout = 10;
 	
+	private static final double
+		p = 0.0,
+		i = 0.0,
+		d = 0.0,
+		f = 0.0,
+		closeLoopRampRate = 0.0;
+	private static final int
+		izone = 0,
+		profile = 0;
+	
 	class PeriodicRunnable implements java.lang.Runnable {
 	    public void run() {driveMotor.processMotionProfileBuffer();}
 	}
@@ -39,11 +49,14 @@ public class RecordingDrive extends Subsystem {
 		driveMotor.changeControlMode(TalonControlMode.PercentVbus);
 		driveMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		driveMotor.configEncoderCodesPerRev(360);
+		driveMotor.reverseOutput(false);
 		
 		driveMotorFollow.changeControlMode(TalonControlMode.Follower);
 		driveMotorFollow.set(RobotMap.driveMotorPort);
 		
 		driveMotor.setEncPosition(0);
+		
+		driveMotor.setPID(p, i, d, f, izone, closeLoopRampRate, profile);
 		
 		driveMotor.changeMotionControlFramePeriod(10);
 		notifier.startPeriodic(0.01);

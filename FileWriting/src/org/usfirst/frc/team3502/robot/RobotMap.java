@@ -12,4 +12,5 @@ public class RobotMap {
     public static int manJoyTrigger = 1;
     public static int manJoyThumb = 2;
     public static int manJoyThree = 3;
+    public static int manJoyFour = 4;
 }
