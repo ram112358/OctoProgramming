@@ -37,5 +37,5 @@ public class RobotMap {
     	climbingButton = 7,
     	rightIntakeInButtonPort = 2,
     	rightIntakeOutButtonPort = 3,
-    	clearEncButtonPort = 7;
+    	clearEncButtonPort = 2;
 }

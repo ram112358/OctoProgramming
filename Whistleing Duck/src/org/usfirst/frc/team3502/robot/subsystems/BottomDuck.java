@@ -7,13 +7,10 @@ import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-/**
- *
- */
 public class BottomDuck extends Subsystem {
 	
 	private final double
-		p = 0.01,
+		p = 0.09,
 		i = 0.0,
 		d = 0.0,
 		f = 0.0,
@@ -21,18 +18,17 @@ public class BottomDuck extends Subsystem {
 	
 	private final int
 		izone = 0;
-	
 
 	private static final CANTalon bottomTalon = new CANTalon(RobotMap.bottomDuckOnePort);
 	private static final CANTalon bottomAuxTalon = new CANTalon(RobotMap.bottomDuckTwoPort);
 	
 	public BottomDuck(){
 		bottomTalon.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
-		bottomTalon.reverseSensor(false);
 		bottomTalon.enableLimitSwitch(false, false);
 		bottomTalon.changeControlMode(TalonControlMode.PercentVbus);
 		bottomTalon.enableBrakeMode(true);
     	bottomTalon.setPID(p, i, d, f, izone, closeLoopRampRate, 0);
+    	
     	bottomAuxTalon.changeControlMode(TalonControlMode.Follower);
     	bottomAuxTalon.set(RobotMap.bottomDuckOnePort);
 	}
@@ -42,11 +38,11 @@ public class BottomDuck extends Subsystem {
     }
 
     public void setSlow(double outputValue){
-    	bottomTalon.set(outputValue * 0.3);
+    	bottomTalon.set(- outputValue * 0.3);
     }
     
     public void set(double outputValue){
-    	bottomTalon.set(outputValue);
+    	bottomTalon.set(- outputValue);
     }
     
     public double getSpeed(){

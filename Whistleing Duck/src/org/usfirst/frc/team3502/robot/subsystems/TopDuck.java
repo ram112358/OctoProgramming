@@ -7,15 +7,17 @@ import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-/**
- *
- */
 public class TopDuck extends Subsystem {
 	
 	private final double
-		p = 0.01,
+		p = 0.43,
 		i = 0.0,
-		d = 0.0;
+		d = 0.0,
+		f = 0.0,
+		closeLoopRampRate = 0.0;
+	
+	private final int
+		izone = 0;
 
 	private static final CANTalon topTalon = new CANTalon(RobotMap.topDuckOnePort);
 	private static final CANTalon topAuxTalon = new CANTalon(RobotMap.topDuckTwoPort);
@@ -25,7 +27,7 @@ public class TopDuck extends Subsystem {
 		topTalon.enableLimitSwitch(false, false);
 		topTalon.changeControlMode(TalonControlMode.PercentVbus);
 		topTalon.enableBrakeMode(true);
-    	topTalon.setPID(p, i, d);
+    	topTalon.setPID(p, i, d, f, izone, closeLoopRampRate, 0);
     	
     	topAuxTalon.changeControlMode(TalonControlMode.Follower);
     	topAuxTalon.set(RobotMap.topDuckOnePort);
@@ -55,10 +57,8 @@ public class TopDuck extends Subsystem {
     	topTalon.setEncPosition(pos);
     }
     
-    
     public void setPositionMode(){
     	topTalon.changeControlMode(TalonControlMode.Position);
-    	topTalon.setPID(p, i, d);
     }
     
     public void setThrottleMode(){

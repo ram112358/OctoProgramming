@@ -34,7 +34,7 @@ public class BottomTimedFullUp extends Command {
     protected void execute() {
     	time = timer.get();
     	if (time < timeToRun)
-    		Robot.bottomDuck.set(-Math.abs(Robot.oi.getIntakeThrottle()));
+    		Robot.bottomDuck.set(Robot.oi.getIntakeThrottle());
     	else if (time < timeToBrake)
     		Robot.bottomDuck.set(0.1);
     }

@@ -110,9 +110,9 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("topEnc", Robot.topDuck.getEncPosition());
     	SmartDashboard.putNumber("bottomEnc", Robot.bottomDuck.getEncPosition());
     	SmartDashboard.putNumber("bottomError", Robot.bottomDuck.getClosedLoopError());
-    	SmartDashboard.putNumber("Enc + Error", Robot.bottomDuck.getEncPosition() + Robot.bottomDuck.getClosedLoopError());
+    	SmartDashboard.putNumber("topError", Robot.topDuck.getClosedLoopError());
+    	// SmartDashboard.putNumber("top - bottom", Robot.topDuck.getEncPosition() - Robot.bottomDuck.getEncPosition());
     	
-    
     }
     
     /**

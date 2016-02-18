@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3502.robot;
 
+import org.usfirst.frc.team3502.robot.commands.BetterBothDuckIt;
 import org.usfirst.frc.team3502.robot.commands.BothDuckIt;
 import org.usfirst.frc.team3502.robot.commands.BottomDuckIt;
 import org.usfirst.frc.team3502.robot.commands.BottomFullUp;
@@ -42,20 +43,23 @@ public class OI {
 		// button.whileHeld(new ExampleCommand());
 		// button.whenReleased(new ExampleCommand());
 		
-		bothDuckButton.whenPressed(new BothDuckIt());
+		bothDuckButton.whenPressed(new BetterBothDuckIt());
 		topDuckButton.whenPressed(new TopDuckIt());
 		bottomDuckButton.whenPressed(new BottomDuckIt());
 		clearEncButtonPort.whenPressed(new ClearEncoders());
 		
 		// bottomTimedFullUpButton.whenPressed(new BottomTimedFullUp());
 		
-		// climbingButton.whileHeld(new ClimbingMode());
+		//climbingButton.whileHeld(new ClimbingMode());
 		// bottomFullUpButton.whileHeld(new BottomFullUp());
 	}
 	
 	
 	public double getDuckY(){
-		return duckJoy.getY();
+		if (duckJoy.getY() > 0.025 || duckJoy.getY() < -0.025)
+			return duckJoy.getY();
+		else
+			return 0.0;
 	}
 
 	public double getRightY(){
@@ -79,6 +83,6 @@ public class OI {
 	}
 	
 	public double getIntakeThrottle(){
-		return -(duckJoy.getThrottle())/2 + 0.55;
+		return -(duckJoy.getThrottle())/2 + 0.5;
 	}
 }

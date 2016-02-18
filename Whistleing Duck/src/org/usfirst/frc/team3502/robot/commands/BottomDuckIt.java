@@ -20,7 +20,7 @@ public class BottomDuckIt extends Command {
     }
 
     protected void execute() {
-    	Robot.bottomDuck.setSlow(-Robot.oi.getDuckY());
+    	Robot.bottomDuck.setSlow(Robot.oi.getDuckY());
     }
 
     protected boolean isFinished() {
