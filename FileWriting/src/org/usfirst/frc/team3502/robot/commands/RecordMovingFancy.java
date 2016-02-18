@@ -54,7 +54,7 @@ public class RecordMovingFancy extends Command {
     	velocity[n] = Robot.drive.getVelocity();
     	
     	if (Robot.oi.getWriteFileButton()){
-    		Robot.drive.set(Robot.oi.getManY());
+    		Robot.drive.set(-Robot.oi.getManY());
     		beingPowered[n] = true;
     		endTime = time[n];
     	}

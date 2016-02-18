@@ -106,6 +106,13 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        
+        SmartDashboard.putNumber("topEnc", Robot.topDuck.getEncPosition());
+    	SmartDashboard.putNumber("bottomEnc", Robot.bottomDuck.getEncPosition());
+    	SmartDashboard.putNumber("bottomError", Robot.bottomDuck.getClosedLoopError());
+    	SmartDashboard.putNumber("Enc + Error", Robot.bottomDuck.getEncPosition() + Robot.bottomDuck.getClosedLoopError());
+    	
+    
     }
     
     /**

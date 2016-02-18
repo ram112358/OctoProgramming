@@ -4,6 +4,7 @@ import org.usfirst.frc.team3502.robot.commands.BothDuckIt;
 import org.usfirst.frc.team3502.robot.commands.BottomDuckIt;
 import org.usfirst.frc.team3502.robot.commands.BottomFullUp;
 import org.usfirst.frc.team3502.robot.commands.BottomTimedFullUp;
+import org.usfirst.frc.team3502.robot.commands.ClearEncoders;
 import org.usfirst.frc.team3502.robot.commands.ClimbingMode;
 import org.usfirst.frc.team3502.robot.commands.TopDuckIt;
 
@@ -32,20 +33,24 @@ public class OI {
 	    bottomTimedFullUpButton = new JoystickButton(duckJoy, RobotMap.bottomTimedFullUpButtonPort),
     	climbingButton = new JoystickButton(rightJoy, RobotMap.climbingButton),
     	rightIntakeInButton = new JoystickButton(rightJoy, RobotMap.rightIntakeInButtonPort),
-    	rightIntakeOutButton = new JoystickButton(rightJoy, RobotMap.rightIntakeOutButtonPort);
+    	rightIntakeOutButton = new JoystickButton(rightJoy, RobotMap.rightIntakeOutButtonPort),
+		clearEncButtonPort = new JoystickButton(duckJoy, RobotMap.clearEncButtonPort);
 		
 	
 	public OI(){
-		//button.whenPressed(new ExampleCommand());
-		//button.whileHeld(new ExampleCommand());
-		//button.whenReleased(new ExampleCommand());
-		//bothDuckButton.whenPressed(new BothDuckIt());
+		// button.whenPressed(new ExampleCommand());
+		// button.whileHeld(new ExampleCommand());
+		// button.whenReleased(new ExampleCommand());
+		
+		bothDuckButton.whenPressed(new BothDuckIt());
 		topDuckButton.whenPressed(new TopDuckIt());
 		bottomDuckButton.whenPressed(new BottomDuckIt());
-		bottomTimedFullUpButton.whenPressed(new BottomTimedFullUp());
+		clearEncButtonPort.whenPressed(new ClearEncoders());
 		
-		climbingButton.whileHeld(new ClimbingMode());
-		bottomFullUpButton.whileHeld(new BottomFullUp());
+		// bottomTimedFullUpButton.whenPressed(new BottomTimedFullUp());
+		
+		// climbingButton.whileHeld(new ClimbingMode());
+		// bottomFullUpButton.whileHeld(new BottomFullUp());
 	}
 	
 	
@@ -74,6 +79,6 @@ public class OI {
 	}
 	
 	public double getIntakeThrottle(){
-		return duckJoy.getThrottle();
+		return -(duckJoy.getThrottle())/2 + 0.55;
 	}
 }

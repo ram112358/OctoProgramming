@@ -13,19 +13,28 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class BottomDuck extends Subsystem {
 	
 	private final double
-		p = 0.1,
+		p = 0.01,
 		i = 0.0,
-		d = 0.0;
+		d = 0.0,
+		f = 0.0,
+		closeLoopRampRate = 0.0;
 	
-	private static final CANTalon bottomTalon = new CANTalon(RobotMap.bottomDuckPort);
+	private final int
+		izone = 0;
+	
+
+	private static final CANTalon bottomTalon = new CANTalon(RobotMap.bottomDuckOnePort);
+	private static final CANTalon bottomAuxTalon = new CANTalon(RobotMap.bottomDuckTwoPort);
 	
 	public BottomDuck(){
 		bottomTalon.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
-		bottomTalon.reverseSensor(true);
+		bottomTalon.reverseSensor(false);
 		bottomTalon.enableLimitSwitch(false, false);
 		bottomTalon.changeControlMode(TalonControlMode.PercentVbus);
 		bottomTalon.enableBrakeMode(true);
-    	bottomTalon.setPID(p, i, d);
+    	bottomTalon.setPID(p, i, d, f, izone, closeLoopRampRate, 0);
+    	bottomAuxTalon.changeControlMode(TalonControlMode.Follower);
+    	bottomAuxTalon.set(RobotMap.bottomDuckOnePort);
 	}
 	
     public void initDefaultCommand() {
@@ -33,7 +42,7 @@ public class BottomDuck extends Subsystem {
     }
 
     public void setSlow(double outputValue){
-    	bottomTalon.set(outputValue * .35);
+    	bottomTalon.set(outputValue * 0.3);
     }
     
     public void set(double outputValue){
@@ -48,17 +57,20 @@ public class BottomDuck extends Subsystem {
     	return bottomTalon.getEncPosition();
     }
     
-    public void setEncPosition(double pos){
-    	bottomTalon.setPosition(pos);
+    public void setEncPosition(int pos){
+    	bottomTalon.setEncPosition(pos);
     }
     
     public void setPositionMode(){
     	bottomTalon.changeControlMode(TalonControlMode.Position);
-    	bottomTalon.setPID(p, i, d);
     }
     
     public void setThrottleMode(){
     	bottomTalon.changeControlMode(TalonControlMode.PercentVbus);
     	bottomTalon.set(0);
+    }
+    
+    public int getClosedLoopError(){
+    	return bottomTalon.getClosedLoopError();
     }
 }

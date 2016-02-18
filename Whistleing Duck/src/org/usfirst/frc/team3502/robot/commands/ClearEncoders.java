@@ -4,12 +4,11 @@ import org.usfirst.frc.team3502.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-/**
- *
- */
-public class BottomFullUp extends Command {
-
-    public BottomFullUp() {
+public class ClearEncoders extends Command {
+	
+	public double duckYPos;
+	
+    public ClearEncoders() {
     	requires(Robot.topDuck);
     	requires(Robot.bottomDuck);
     }
@@ -17,21 +16,21 @@ public class BottomFullUp extends Command {
     protected void initialize() {
     	Robot.topDuck.setThrottleMode();
     	Robot.bottomDuck.setThrottleMode();
+    	
+    	Robot.topDuck.setEncPosition(0);
+    	Robot.bottomDuck.setEncPosition(0);
     }
 
     protected void execute() {
-    	Robot.bottomDuck.set(Robot.oi.getIntakeThrottle());
     }
 
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     protected void end() {
-    	Robot.bottomDuck.set(0);
     }
- 
+
     protected void interrupted() {
-    	Robot.bottomDuck.set(0);
     }
 }

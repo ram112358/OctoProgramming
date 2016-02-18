@@ -9,13 +9,15 @@ public class RobotMap {
     
 	//Motor Ports
 	public static int
-    	topDuckPort = 1,
-    	bottomDuckPort = 2,
-    	intakePort = 3,
-		rightOnePort = 4,
-		rightTwoPort = 5,
-		leftOnePort = 6,
-		leftTwoPort = 7;
+		topDuckOnePort = 1,
+		topDuckTwoPort = 2,
+		bottomDuckOnePort = 3,
+		bottomDuckTwoPort = 4,
+    	intakePort = 5,
+		rightOnePort = 6,
+		rightTwoPort = 7,
+		leftOnePort = 8,
+		leftTwoPort = 9;
     
     //Joystick Ports
     public static int
@@ -34,5 +36,6 @@ public class RobotMap {
     	bottomTimedFullUpButtonPort = 11,
     	climbingButton = 7,
     	rightIntakeInButtonPort = 2,
-    	rightIntakeOutButtonPort = 3;
+    	rightIntakeOutButtonPort = 3,
+    	clearEncButtonPort = 7;
 }

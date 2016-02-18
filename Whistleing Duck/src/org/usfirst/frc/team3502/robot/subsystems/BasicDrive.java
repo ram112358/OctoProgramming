@@ -40,11 +40,11 @@ public class BasicDrive extends Subsystem {
     }
     
     public void setLeft(double outputValue){
-    	rightOne.set(-outputValue);
+    	// rightOne.set(-outputValue);
     }
     
     public void setRight(double outputValue){
-    	leftOne.set(outputValue);
+    	// leftOne.set(outputValue);
     }
 }
 

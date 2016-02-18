@@ -33,7 +33,7 @@ public class RecordingDrive extends Subsystem {
 		p = 0.0,
 		i = 0.0,
 		d = 0.0,
-		f = 0.0,
+		f = 0.0018,
 		closeLoopRampRate = 0.0;
 	private static final int
 		izone = 0,

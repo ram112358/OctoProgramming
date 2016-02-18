@@ -1,6 +1,5 @@
-package org.usfirst.frc.team3502.robot.commands;
+ package org.usfirst.frc.team3502.robot.commands;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -40,8 +39,8 @@ public class ReadFile extends Command {
     
     protected void execute() {
     	if (in.hasNextLine()) {
-    		Pos.add(in.nextInt());
     		Vel.add(in.nextInt());
+    		Pos.add(in.nextInt());
     		in.nextLine();
     	}
     	else {
@@ -64,9 +63,9 @@ public class ReadFile extends Command {
     }
     
     private void setupFile() throws IOException{
-    	File file = new File(path);
-    	in = new Scanner(file);
-    	in.nextLine();
+    	in = new Scanner(path);
+    	//in.nextLine();
+    	SmartDashboard.putString("setedup", "setedup");
     }
     
     private void setProfile(){
