@@ -25,5 +25,5 @@ public class Intake extends Subsystem {
     
     public void set(double outputValue){
     	intakeMotor.set(outputValue);
-    }
+    } 
 }
