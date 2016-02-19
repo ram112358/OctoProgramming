@@ -3,10 +3,8 @@ package org.usfirst.frc.team3502.robot.commands;
 import org.usfirst.frc.team3502.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-/**
- *
- */
 public class BottomDuckIt extends Command {
 
     public BottomDuckIt() {
@@ -15,12 +13,16 @@ public class BottomDuckIt extends Command {
     }
 
     protected void initialize() {
-    	Robot.topDuck.setThrottleMode();
-    	Robot.bottomDuck.setThrottleMode();
+    	Robot.topDuck.setPositionMode();
+    	Robot.bottomDuck.setPositionMode();
+    	
+    	Robot.topDuck.setEncPosition(0);
+    	Robot.bottomDuck.setEncPosition(0);
     }
 
     protected void execute() {
-    	Robot.bottomDuck.setSlow(Robot.oi.getDuckY());
+    	Robot.bottomDuck.setpointDrive(Robot.oi.getDuckY());
+    	Robot.topDuck.set(0.0);
     }
 
     protected boolean isFinished() {
@@ -28,9 +30,12 @@ public class BottomDuckIt extends Command {
     }
 
     protected void end() {
+    	Robot.topDuck.setThrottleMode();
+    	Robot.bottomDuck.setThrottleMode();
     }
 
     protected void interrupted() {
-    	Robot.bottomDuck.set(0);
+    	Robot.topDuck.setThrottleMode();
+    	Robot.bottomDuck.setThrottleMode();
     }
 }

@@ -9,6 +9,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class BottomDuck extends Subsystem {
 	
+	public double
+		setpoint = 0.0;
+	
 	private final double
 		p = 0.09,
 		i = 0.0,
@@ -37,14 +40,27 @@ public class BottomDuck extends Subsystem {
     	
     }
 
-    public void setSlow(double outputValue){
-    	bottomTalon.set(- outputValue * 0.3);
-    }
-    
     public void set(double outputValue){
     	bottomTalon.set(- outputValue);
     }
+
+    public void setSlow(double outputValue){
+    	bottomTalon.set(- outputValue * 0.3);
+    }
+
+    public void setpointDrive(double joystickValue){
+    	setpoint += joystickValue/4096*100;
+    	bottomTalon.set(- setpoint);
+    }
+
+    public void setSetpoint(double setpoint){
+    	this.setpoint = setpoint;
+    }
     
+    public double getSetpoint(){
+    	return setpoint;
+    }
+
     public double getSpeed(){
     	return bottomTalon.getSpeed();
     }
@@ -58,6 +74,7 @@ public class BottomDuck extends Subsystem {
     }
     
     public void setPositionMode(){
+    	setSetpoint(0.0);
     	bottomTalon.changeControlMode(TalonControlMode.Position);
     }
     

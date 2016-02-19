@@ -1,6 +1,5 @@
 package org.usfirst.frc.team3502.robot;
 
-import org.usfirst.frc.team3502.robot.commands.BetterBothDuckIt;
 import org.usfirst.frc.team3502.robot.commands.BothDuckIt;
 import org.usfirst.frc.team3502.robot.commands.BottomDuckIt;
 import org.usfirst.frc.team3502.robot.commands.BottomFullUp;
@@ -24,6 +23,7 @@ public class OI {
 		rightJoy = new Joystick(RobotMap.rightJoyPort),
 		leftJoy = new Joystick(RobotMap.leftJoyPort);
 	
+	
 	Button
 		bothDuckButton = new JoystickButton(duckJoy, RobotMap.bothDuckButtonPort),
 	    bottomDuckButton = new JoystickButton(duckJoy, RobotMap.bottomDuckButtonPort),
@@ -43,7 +43,7 @@ public class OI {
 		// button.whileHeld(new ExampleCommand());
 		// button.whenReleased(new ExampleCommand());
 		
-		bothDuckButton.whenPressed(new BetterBothDuckIt());
+		bothDuckButton.whenPressed(new BothDuckIt());
 		topDuckButton.whenPressed(new TopDuckIt());
 		bottomDuckButton.whenPressed(new BottomDuckIt());
 		clearEncButtonPort.whenPressed(new ClearEncoders());
