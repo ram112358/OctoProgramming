@@ -48,7 +48,8 @@ public class TopDuck extends Subsystem {
     }
 
     public void JoySetDrive(double joystickValue){
-    	JoySet += joystickValue/4096*100;
+    	if (!topTalon.isFwdLimitSwitchClosed() && !topTalon.isRevLimitSwitchClosed())
+    		JoySet += joystickValue/4096*100;
     	topTalon.set(JoySet);
     }
 

@@ -48,7 +48,8 @@ public class BottomDuck extends Subsystem {
     }
 
     public void JoySetDrive(double joystickValue){
-    	JoySet += joystickValue/4096*100;
+    	if (!bottomTalon.isFwdLimitSwitchClosed() && !bottomTalon.isRevLimitSwitchClosed())
+    		JoySet += joystickValue/4096*100;
     	bottomTalon.set(- JoySet);
     }
 

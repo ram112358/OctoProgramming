@@ -33,11 +33,11 @@ public class ReadFile extends Command {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	MotionProfile.notProcessing = false;
-        SmartDashboard.putBoolean("Processing Trajectory", MotionProfile.notProcessing);
+    	// MotionProfile.notProcessing = false;
+        // SmartDashboard.putBoolean("Processing Trajectory", MotionProfile.notProcessing);
     }
     
-    protected void execute() {
+    protected void execute() {/*
     	if (in.hasNextLine()) {
     		Vel.add(in.nextInt());
     		Pos.add(in.nextInt());
@@ -50,7 +50,7 @@ public class ReadFile extends Command {
         	MotionProfile.notProcessing = true;
     	}
         SmartDashboard.putBoolean("Processing Trajectory", MotionProfile.notProcessing);
-    }
+    */}
     
     protected boolean isFinished() {
         return done;

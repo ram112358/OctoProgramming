@@ -6,8 +6,8 @@ package org.usfirst.frc.team3502.robot;
  * floating around.
  */
 public class RobotMap {
-	public static int driveMotorPort = 3;
-    public static int driveMotorFollowPort = 2;
+	public static int driveMotorPort = 6;
+    public static int driveMotorFollowPort = 7;
     public static int manJoyPort = 1;
     public static int manJoyTrigger = 1;
     public static int manJoyThumb = 2;
