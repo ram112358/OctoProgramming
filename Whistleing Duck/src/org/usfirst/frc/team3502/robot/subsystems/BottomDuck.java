@@ -10,11 +10,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class BottomDuck extends Subsystem {
 	
 	public double
-		setpoint = 0.0;
+		JoySet = 0.0;
 	
 	private final double
 		p = 0.09,
-		i = 0.0,
+		i = 0.0002,
 		d = 0.0,
 		f = 0.0,
 		closeLoopRampRate = 0.0;
@@ -27,7 +27,7 @@ public class BottomDuck extends Subsystem {
 	
 	public BottomDuck(){
 		bottomTalon.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
-		bottomTalon.enableLimitSwitch(false, false);
+		bottomTalon.enableLimitSwitch(true, true);
 		bottomTalon.changeControlMode(TalonControlMode.PercentVbus);
 		bottomTalon.enableBrakeMode(true);
     	bottomTalon.setPID(p, i, d, f, izone, closeLoopRampRate, 0);
@@ -37,7 +37,6 @@ public class BottomDuck extends Subsystem {
 	}
 	
     public void initDefaultCommand() {
-    	
     }
 
     public void set(double outputValue){
@@ -48,17 +47,17 @@ public class BottomDuck extends Subsystem {
     	bottomTalon.set(- outputValue * 0.3);
     }
 
-    public void setpointDrive(double joystickValue){
-    	setpoint += joystickValue/4096*100;
-    	bottomTalon.set(- setpoint);
+    public void JoySetDrive(double joystickValue){
+    	JoySet += joystickValue/4096*100;
+    	bottomTalon.set(- JoySet);
     }
 
-    public void setSetpoint(double setpoint){
-    	this.setpoint = setpoint;
+    public void setJoySet(double JoySet){
+    	this.JoySet = JoySet;
     }
     
-    public double getSetpoint(){
-    	return setpoint;
+    public double getJoySet(){
+    	return JoySet;
     }
 
     public double getSpeed(){
@@ -74,8 +73,8 @@ public class BottomDuck extends Subsystem {
     }
     
     public void setPositionMode(){
-    	setSetpoint(0.0);
     	bottomTalon.changeControlMode(TalonControlMode.Position);
+    	set(getEncPosition());
     }
     
     public void setThrottleMode(){

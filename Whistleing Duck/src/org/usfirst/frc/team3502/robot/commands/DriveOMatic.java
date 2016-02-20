@@ -3,6 +3,7 @@ package org.usfirst.frc.team3502.robot.commands;
 import org.usfirst.frc.team3502.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -17,8 +18,8 @@ public class DriveOMatic extends Command {
     }
 
     protected void execute() {
-		Robot.drive.setLeft(-Robot.oi.getRightY());
-		Robot.drive.setRight(-Robot.oi.getLeftY());
+		Robot.drive.setRight(Robot.oi.getRightY());
+		Robot.drive.setLeft(Robot.oi.getLeftY());
     }
 
     protected boolean isFinished() {

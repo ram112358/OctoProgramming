@@ -13,15 +13,12 @@ public class BottomDuckIt extends Command {
     }
 
     protected void initialize() {
-    	Robot.topDuck.setPositionMode();
+    	Robot.topDuck.setThrottleMode();
     	Robot.bottomDuck.setPositionMode();
-    	
-    	Robot.topDuck.setEncPosition(0);
-    	Robot.bottomDuck.setEncPosition(0);
     }
 
     protected void execute() {
-    	Robot.bottomDuck.setpointDrive(Robot.oi.getDuckY());
+    	Robot.bottomDuck.JoySetDrive(Robot.oi.getDuckY());
     	Robot.topDuck.set(0.0);
     }
 

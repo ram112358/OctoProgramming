@@ -4,11 +4,12 @@ import org.usfirst.frc.team3502.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ClearEncoders extends Command {
-	
-	public double duckYPos;
-	
-    public ClearEncoders() {
+/**
+ *
+ */
+public class TestBottomThrottle extends Command {
+
+    public TestBottomThrottle() {
     	requires(Robot.topDuck);
     	requires(Robot.bottomDuck);
     }
@@ -19,17 +20,20 @@ public class ClearEncoders extends Command {
     }
 
     protected void execute() {
-    	Robot.topDuck.setEncPosition(0);
-    	Robot.bottomDuck.setEncPosition(0);
+    	Robot.bottomDuck.setSlow(Robot.oi.getDuckY());
     }
 
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     protected void end() {
+    	Robot.topDuck.setThrottleMode();
+    	Robot.bottomDuck.setThrottleMode();
     }
 
     protected void interrupted() {
+    	Robot.topDuck.setThrottleMode();
+    	Robot.bottomDuck.setThrottleMode();
     }
 }

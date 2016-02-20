@@ -8,12 +8,12 @@ import java.io.IOException;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class FileTester extends Command {
+public class TestFile extends Command {
 	private double time;
 	private static final Timer timer = new Timer();
 	private static final String path = "/home/lvuser/LeftDrive.txt";
 
-    public FileTester() {
+    public TestFile() {
     }
 
     protected void initialize() {

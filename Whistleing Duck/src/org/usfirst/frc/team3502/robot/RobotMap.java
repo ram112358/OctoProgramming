@@ -37,5 +37,14 @@ public class RobotMap {
     	climbingButton = 7,
     	rightIntakeInButtonPort = 2,
     	rightIntakeOutButtonPort = 3,
-    	clearEncButtonPort = 2;
+    	clearEncButtonPort = 2,
+    	regDriveButtonPort = 3,
+    	sineDriveButtonPort = 2;
+    
+    public static int
+    	PCMPort = 33,
+    	PTOForward = 0,
+    	PTOReverse = 1,
+    	BrakeForward = 2,
+    	BrakeReverse = 3;
 }

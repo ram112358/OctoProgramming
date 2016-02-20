@@ -15,14 +15,11 @@ public class BothDuckIt extends Command {
     protected void initialize() {
     	Robot.topDuck.setPositionMode();
     	Robot.bottomDuck.setPositionMode();
-    	
-    	Robot.topDuck.setEncPosition(0);
-    	Robot.bottomDuck.setEncPosition(0);
 }
 
     protected void execute() {
-    	Robot.topDuck.setpointDrive(Robot.oi.getDuckY());
-    	Robot.bottomDuck.setpointDrive(Robot.oi.getDuckY());
+    	Robot.topDuck.JoySetDrive(Robot.oi.getDuckY());
+    	Robot.bottomDuck.JoySetDrive(Robot.oi.getDuckY());
     }
 
     protected boolean isFinished() {

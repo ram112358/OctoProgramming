@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class TopDuck extends Subsystem {
 	
 	public double
-		setpoint = 0.0;
+		JoySet = 0.0;
 	
 	private final double
 		p = 0.43,
@@ -27,7 +27,7 @@ public class TopDuck extends Subsystem {
 	
 	public TopDuck(){
 		topTalon.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
-		topTalon.enableLimitSwitch(false, false);
+		topTalon.enableLimitSwitch(true, true);
 		topTalon.changeControlMode(TalonControlMode.PercentVbus);
 		topTalon.enableBrakeMode(true);
     	topTalon.setPID(p, i, d, f, izone, closeLoopRampRate, 0);
@@ -37,7 +37,6 @@ public class TopDuck extends Subsystem {
 	}
 	
     public void initDefaultCommand() {
-    	
     }
 
     public void set(double outputValue){
@@ -48,17 +47,17 @@ public class TopDuck extends Subsystem {
     	topTalon.set(outputValue * 0.4);
     }
 
-    public void setpointDrive(double joystickValue){
-    	setpoint += joystickValue/4096*100;
-    	topTalon.set(setpoint);
+    public void JoySetDrive(double joystickValue){
+    	JoySet += joystickValue/4096*100;
+    	topTalon.set(JoySet);
     }
 
-    public void setSetpoint(double setpoint){
-    	this.setpoint = setpoint;
+    public void setJoySet(double JoySet){
+    	this.JoySet = JoySet;
     }
     
-    public double getSetpoint(){
-    	return setpoint;
+    public double getJoySet(){
+    	return JoySet;
     }
 
     public double getSpeed(){
@@ -74,8 +73,8 @@ public class TopDuck extends Subsystem {
     }
     
     public void setPositionMode(){
-    	setSetpoint(0.0);
     	topTalon.changeControlMode(TalonControlMode.Position);
+    	set(getEncPosition());
     }
     
     public void setThrottleMode(){
