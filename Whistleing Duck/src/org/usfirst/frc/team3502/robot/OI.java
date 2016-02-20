@@ -4,8 +4,7 @@ import org.usfirst.frc.team3502.robot.commands.BothDuckIt;
 import org.usfirst.frc.team3502.robot.commands.BottomDuckIt;
 import org.usfirst.frc.team3502.robot.commands.BottomFullUp;
 import org.usfirst.frc.team3502.robot.commands.BottomTimedFullUp;
-import org.usfirst.frc.team3502.robot.commands.ClearEncoders;
-import org.usfirst.frc.team3502.robot.commands.ClimbingMode;
+import org.usfirst.frc.team3502.robot.commands.ClearDuckEncoders;
 import org.usfirst.frc.team3502.robot.commands.DriveOMatic;
 import org.usfirst.frc.team3502.robot.commands.SineDriving;
 import org.usfirst.frc.team3502.robot.commands.TestBottomThrottle;
@@ -29,19 +28,19 @@ public class OI {
 		
 	
 	Button
-		bothDuckButton = new JoystickButton(duckJoy, RobotMap.bothDuckButtonPort),
-	    bottomDuckButton = new JoystickButton(duckJoy, RobotMap.bottomDuckButtonPort),
-	    topDuckButton = new JoystickButton(duckJoy, RobotMap.topDuckButtonPort),
-	    intakeInButton = new JoystickButton(duckJoy, RobotMap.intakeInButtonPort),
-	    intakeOutButton = new JoystickButton(duckJoy, RobotMap.intakeOutButtonPort),
-	    bottomFullUpButton = new JoystickButton(duckJoy, RobotMap.bottomFullUpButtonPort),
-	    bottomTimedFullUpButton = new JoystickButton(duckJoy, RobotMap.bottomTimedFullUpButtonPort),
+		bothDuckButton = new JoystickButton(duckJoy, RobotMap.bothDuckButton),
+	    bottomDuckButton = new JoystickButton(duckJoy, RobotMap.bottomDuckButton),
+	    topDuckButton = new JoystickButton(duckJoy, RobotMap.topDuckButton),
+	    intakeInButton = new JoystickButton(duckJoy, RobotMap.intakeInButton),
+	    intakeOutButton = new JoystickButton(duckJoy, RobotMap.intakeOutButton),
+	    bottomFullUpButton = new JoystickButton(duckJoy, RobotMap.bottomFullUpButton),
+	    bottomTimedFullUpButton = new JoystickButton(duckJoy, RobotMap.bottomTimedFullUpButton),
     	climbingButton = new JoystickButton(rightJoy, RobotMap.climbingButton),
-    	rightIntakeInButton = new JoystickButton(rightJoy, RobotMap.rightIntakeInButtonPort),
-    	rightIntakeOutButton = new JoystickButton(rightJoy, RobotMap.rightIntakeOutButtonPort),
-		clearEncButton = new JoystickButton(duckJoy, RobotMap.clearEncButtonPort),
-		regDriveButton = new JoystickButton(leftJoy, RobotMap.regDriveButtonPort),
-		sineDriveButton = new JoystickButton(leftJoy, RobotMap.sineDriveButtonPort),
+    	rightIntakeInButton = new JoystickButton(rightJoy, RobotMap.rightIntakeInButton),
+    	rightIntakeOutButton = new JoystickButton(rightJoy, RobotMap.rightIntakeOutButton),
+		clearEncButton = new JoystickButton(duckJoy, RobotMap.clearEncButton),
+		regDriveButton = new JoystickButton(leftJoy, RobotMap.regDriveButton),
+		sineDriveButton = new JoystickButton(leftJoy, RobotMap.sineDriveButton),
 		
 		topThrottle = new JoystickButton(duckJoy, 6),
 		bottomThrottle = new JoystickButton(duckJoy, 4);
@@ -55,7 +54,7 @@ public class OI {
 		bothDuckButton.whenPressed(new BothDuckIt());
 		topDuckButton.whenPressed(new TopDuckIt());
 		bottomDuckButton.whenPressed(new BottomDuckIt());
-		clearEncButton.whenPressed(new ClearEncoders());
+		clearEncButton.whenPressed(new ClearDuckEncoders());
 		regDriveButton.whenPressed(new DriveOMatic());
 		sineDriveButton.whenPressed(new SineDriving());
 		

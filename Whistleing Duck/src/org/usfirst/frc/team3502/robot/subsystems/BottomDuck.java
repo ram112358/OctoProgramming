@@ -22,8 +22,8 @@ public class BottomDuck extends Subsystem {
 	private final int
 		izone = 0;
 
-	private static final CANTalon bottomTalon = new CANTalon(RobotMap.bottomDuckOnePort);
-	private static final CANTalon bottomAuxTalon = new CANTalon(RobotMap.bottomDuckTwoPort);
+	private static final CANTalon bottomTalon = new CANTalon(RobotMap.bottomDuckPort);
+	private static final CANTalon bottomAuxTalon = new CANTalon(RobotMap.bottomDuckAuxPort);
 	
 	public BottomDuck(){
 		bottomTalon.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
@@ -33,7 +33,7 @@ public class BottomDuck extends Subsystem {
     	bottomTalon.setPID(p, i, d, f, izone, closeLoopRampRate, 0);
     	
     	bottomAuxTalon.changeControlMode(TalonControlMode.Follower);
-    	bottomAuxTalon.set(RobotMap.bottomDuckOnePort);
+    	bottomAuxTalon.set(RobotMap.bottomDuckPort);
 	}
 	
     public void initDefaultCommand() {

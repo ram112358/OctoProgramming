@@ -20,20 +20,20 @@ public class TopDuck extends Subsystem {
 		closeLoopRampRate = 0.0;
 	
 	private final int
-		izone = 0;
+		iz = 0;
 
-	private static final CANTalon topTalon = new CANTalon(RobotMap.topDuckOnePort);
-	private static final CANTalon topAuxTalon = new CANTalon(RobotMap.topDuckTwoPort);
+	private static final CANTalon topTalon = new CANTalon(RobotMap.topDuckPort);
+	private static final CANTalon topAuxTalon = new CANTalon(RobotMap.topDuckAuxPort);
 	
 	public TopDuck(){
 		topTalon.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 		topTalon.enableLimitSwitch(true, true);
 		topTalon.changeControlMode(TalonControlMode.PercentVbus);
 		topTalon.enableBrakeMode(true);
-    	topTalon.setPID(p, i, d, f, izone, closeLoopRampRate, 0);
+    	topTalon.setPID(p, i, d, f, iz, closeLoopRampRate, 0);
     	
     	topAuxTalon.changeControlMode(TalonControlMode.Follower);
-    	topAuxTalon.set(RobotMap.topDuckOnePort);
+    	topAuxTalon.set(RobotMap.topDuckPort);
 	}
 	
     public void initDefaultCommand() {

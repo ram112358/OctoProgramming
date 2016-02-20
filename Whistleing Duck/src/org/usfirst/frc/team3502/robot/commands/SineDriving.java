@@ -6,40 +6,18 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class SineDriving extends Command {
-
-	double
-		rightJoy,
-		leftJoy,
-		rightOut,
-		leftOut;
 	
     public SineDriving() {
-    	requires(Robot.drive);
+    	requires(Robot.rightDrive);
+    	requires(Robot.leftDrive);
     }
 
     protected void initialize() {
     }
 
     protected void execute() {
-    	rightJoy = Robot.oi.getRightY();
-    	leftJoy = Robot.oi.getLeftY();
-    	
-    	if (rightJoy > 0.0)
-    		rightOut = (Math.sin((rightJoy * Math.PI) - (Math.PI / 2)) / 2) + .5;
-    	else if (rightJoy < 0.0)
-    		rightOut = -((Math.sin((rightJoy * Math.PI) - (Math.PI / 2)) / 2) + .5);
-    	else
-    		rightOut = 0.0;
-    	
-    	if (leftJoy > 0.0)
-    		leftOut = (Math.sin((leftJoy * Math.PI) - (Math.PI / 2)) / 2) + .5;
-    	else if (leftJoy < 0.0)
-    		leftOut = -((Math.sin((leftJoy * Math.PI) - (Math.PI / 2)) / 2) + .5);
-    	else
-    		leftOut = 0.0;
-    	
-    	Robot.drive.setRight(rightOut);
-    	Robot.drive.setLeft(leftOut);
+		Robot.rightDrive.setSineScaling(Robot.oi.getRightY());
+		Robot.leftDrive.setSineScaling(Robot.oi.getLeftY());
     }
 
     protected boolean isFinished() {

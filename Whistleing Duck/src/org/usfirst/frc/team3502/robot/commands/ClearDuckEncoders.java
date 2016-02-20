@@ -4,11 +4,11 @@ import org.usfirst.frc.team3502.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ClearEncoders extends Command {
+public class ClearDuckEncoders extends Command {
 	
 	public double duckYPos;
 	
-    public ClearEncoders() {
+    public ClearDuckEncoders() {
     	requires(Robot.topDuck);
     	requires(Robot.bottomDuck);
     }

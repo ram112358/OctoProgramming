@@ -29,7 +29,6 @@ public class ReadFile extends Command {
     }
     
     protected void initialize() {
-    	SmartDashboard.putString("setedup", "yo");
     	MotionProfile.readingFile = true;
         SmartDashboard.putBoolean("ReadingFile", MotionProfile.readingFile);
         x = 0;

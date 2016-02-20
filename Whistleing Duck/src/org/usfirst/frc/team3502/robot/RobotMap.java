@@ -9,15 +9,15 @@ public class RobotMap {
     
 	//Motor Ports
 	public static int
-		topDuckOnePort = 1,
-		topDuckTwoPort = 2,
-		bottomDuckOnePort = 3,
-		bottomDuckTwoPort = 4,
+		topDuckPort = 1,
+		topDuckAuxPort = 2,
+		bottomDuckPort = 3,
+		bottomDuckAuxPort = 4,
     	intakePort = 5,
-		rightOnePort = 6,
-		rightTwoPort = 7,
-		leftOnePort = 8,
-		leftTwoPort = 9;
+		rightPort = 6,
+		rightAuxPort = 7,
+		leftPort = 8,
+		leftAuxPort = 9;
     
     //Joystick Ports
     public static int
@@ -27,20 +27,21 @@ public class RobotMap {
     
     //Buttons
     public static int
-    	bothDuckButtonPort = 1,
-    	bottomDuckButtonPort = 3,
-    	topDuckButtonPort = 5,
-    	intakeInButtonPort = 4,
-    	intakeOutButtonPort = 6,
-    	bottomFullUpButtonPort = 10,
-    	bottomTimedFullUpButtonPort = 11,
+    	bothDuckButton = 1,
+    	bottomDuckButton = 3,
+    	topDuckButton = 5,
+    	intakeInButton = 4,
+    	intakeOutButton = 6,
+    	bottomFullUpButton = 10,
+    	bottomTimedFullUpButton = 11,
     	climbingButton = 7,
-    	rightIntakeInButtonPort = 2,
-    	rightIntakeOutButtonPort = 3,
-    	clearEncButtonPort = 2,
-    	regDriveButtonPort = 3,
-    	sineDriveButtonPort = 2;
+    	rightIntakeInButton = 2,
+    	rightIntakeOutButton = 3,
+    	clearEncButton = 2,
+    	regDriveButton = 3,
+    	sineDriveButton = 2;
     
+    //Pneumatics
     public static int
     	PCMPort = 33,
     	PTOForward = 0,

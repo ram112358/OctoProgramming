@@ -14,33 +14,32 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class BasicDrive extends Subsystem {
 
-	private static final CANTalon rightOne = new CANTalon(RobotMap.rightOnePort);
-	private static final CANTalon rightTwo = new CANTalon(RobotMap.rightTwoPort);
-	private static final CANTalon leftOne = new CANTalon(RobotMap.leftOnePort);
-	private static final CANTalon leftTwo = new CANTalon(RobotMap.leftTwoPort);
-	private static final DoubleSolenoid PTOShifters = new DoubleSolenoid(RobotMap.PCMPort, RobotMap.PTOForward, RobotMap.PTOReverse);
+	private static final CANTalon rightTalon = new CANTalon(RobotMap.rightPort);
+	private static final CANTalon rightAuxTalon = new CANTalon(RobotMap.rightAuxPort);
+	private static final CANTalon leftTalon = new CANTalon(RobotMap.leftPort);
+	private static final CANTalon leftAuxTalon = new CANTalon(RobotMap.leftAuxPort);
 	
 	public BasicDrive(){
-		rightOne.changeControlMode(TalonControlMode.PercentVbus);
-		leftOne.changeControlMode(TalonControlMode.PercentVbus);
+		rightTalon.changeControlMode(TalonControlMode.PercentVbus);
+		leftTalon.changeControlMode(TalonControlMode.PercentVbus);
 
-		rightOne.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		rightOne.configEncoderCodesPerRev(512);
-		leftOne.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		leftOne.configEncoderCodesPerRev(512);
+		rightTalon.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		rightTalon.configEncoderCodesPerRev(512);
+		leftTalon.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		leftTalon.configEncoderCodesPerRev(512);
 		
-		rightOne.enableBrakeMode(true);
-		leftOne.enableBrakeMode(true);
+		rightTalon.enableBrakeMode(true);
+		leftTalon.enableBrakeMode(true);
 		
-		rightTwo.changeControlMode(TalonControlMode.Follower);
-		rightTwo.set(RobotMap.rightOnePort);
-		leftTwo.changeControlMode(TalonControlMode.Follower);
-		leftTwo.set(RobotMap.leftOnePort);
+		rightAuxTalon.changeControlMode(TalonControlMode.Follower);
+		rightAuxTalon.set(RobotMap.rightPort);
+		leftAuxTalon.changeControlMode(TalonControlMode.Follower);
+		leftAuxTalon.set(RobotMap.leftPort);
 
-		rightOne.enable();
-		rightTwo.enable();
-		leftOne.enable();
-		leftTwo.enable();
+		rightTalon.enable();
+		rightAuxTalon.enable();
+		leftTalon.enable();
+		leftAuxTalon.enable();
 	}
 	
     public void initDefaultCommand() {
@@ -48,19 +47,19 @@ public class BasicDrive extends Subsystem {
     }
     
     public void setLeft(double outputValue){
-    	rightOne.set(-outputValue);
+    	rightTalon.set(-outputValue);
     }
     
     public void setRight(double outputValue){
-    	leftOne.set(outputValue);
+    	leftTalon.set(outputValue);
     }
     
     public int getRightEnc(){
-    	return rightOne.getEncPosition();
+    	return rightTalon.getEncPosition();
     }
     
     public int getLeftEnc(){
-    	return leftOne.getEncPosition();
+    	return leftTalon.getEncPosition();
     }
 }
 
