@@ -1,4 +1,4 @@
-package org.usfirst.frc.team3502.robot.commands;
+package org.usfirst.frc.team3502.robot.commands.Duck;
 
 import org.usfirst.frc.team3502.robot.Robot;
 
@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class TestBottomThrottle extends Command {
+public class BottomFullUp extends Command {
 
-    public TestBottomThrottle() {
+    public BottomFullUp() {
     	requires(Robot.topDuck);
     	requires(Robot.bottomDuck);
     }
@@ -20,7 +20,7 @@ public class TestBottomThrottle extends Command {
     }
 
     protected void execute() {
-    	Robot.bottomDuck.setSlow(Robot.oi.getDuckY());
+    	Robot.bottomDuck.set(Robot.oi.getIntakeThrottle());
     }
 
     protected boolean isFinished() {
@@ -28,12 +28,10 @@ public class TestBottomThrottle extends Command {
     }
 
     protected void end() {
-    	Robot.topDuck.setThrottleMode();
-    	Robot.bottomDuck.setThrottleMode();
+    	Robot.bottomDuck.set(0);
     }
-
+ 
     protected void interrupted() {
-    	Robot.topDuck.setThrottleMode();
-    	Robot.bottomDuck.setThrottleMode();
+    	Robot.bottomDuck.set(0);
     }
 }

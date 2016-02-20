@@ -1,7 +1,7 @@
 package org.usfirst.frc.team3502.robot.subsystems;
 
 import org.usfirst.frc.team3502.robot.RobotMap;
-import org.usfirst.frc.team3502.robot.commands.IntakeDrive;
+import org.usfirst.frc.team3502.robot.commands.Intake.IntakeDrive;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;

@@ -1,15 +1,14 @@
-package org.usfirst.frc.team3502.robot.commands;
+package org.usfirst.frc.team3502.robot.commands.Duck;
 
 import org.usfirst.frc.team3502.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-/**
- *
- */
-public class BottomFullUp extends Command {
-
-    public BottomFullUp() {
+public class ClearDuckEncoders extends Command {
+	
+	public double duckYPos;
+	
+    public ClearDuckEncoders() {
     	requires(Robot.topDuck);
     	requires(Robot.bottomDuck);
     }
@@ -20,18 +19,17 @@ public class BottomFullUp extends Command {
     }
 
     protected void execute() {
-    	Robot.bottomDuck.set(Robot.oi.getIntakeThrottle());
+    	Robot.topDuck.setEncPosition(0);
+    	Robot.bottomDuck.setEncPosition(0);
     }
 
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     protected void end() {
-    	Robot.bottomDuck.set(0);
     }
- 
+
     protected void interrupted() {
-    	Robot.bottomDuck.set(0);
     }
 }

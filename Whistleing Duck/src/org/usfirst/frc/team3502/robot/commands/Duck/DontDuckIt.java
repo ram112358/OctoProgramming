@@ -1,14 +1,15 @@
-package org.usfirst.frc.team3502.robot.commands;
+package org.usfirst.frc.team3502.robot.commands.Duck;
 
 import org.usfirst.frc.team3502.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ClearDuckEncoders extends Command {
-	
-	public double duckYPos;
-	
-    public ClearDuckEncoders() {
+/**
+ *
+ */
+public class DontDuckIt extends Command {
+
+    public DontDuckIt() {
     	requires(Robot.topDuck);
     	requires(Robot.bottomDuck);
     }
@@ -19,8 +20,7 @@ public class ClearDuckEncoders extends Command {
     }
 
     protected void execute() {
-    	Robot.topDuck.setEncPosition(0);
-    	Robot.bottomDuck.setEncPosition(0);
+    	
     }
 
     protected boolean isFinished() {

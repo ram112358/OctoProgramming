@@ -1,26 +1,25 @@
-package org.usfirst.frc.team3502.robot.commands;
+package org.usfirst.frc.team3502.robot.commands.Duck;
 
 import org.usfirst.frc.team3502.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-/**
- *
- */
-public class TestTopThrottle extends Command {
+public class BottomDuckIt extends Command {
 
-    public TestTopThrottle() {
+    public BottomDuckIt() {
     	requires(Robot.topDuck);
     	requires(Robot.bottomDuck);
     }
 
     protected void initialize() {
     	Robot.topDuck.setThrottleMode();
-    	Robot.bottomDuck.setThrottleMode();
+    	Robot.bottomDuck.setPositionMode();
     }
 
     protected void execute() {
-    	Robot.topDuck.setSlow(Robot.oi.getDuckY());
+    	Robot.bottomDuck.JoySetDrive(Robot.oi.getDuckY());
+    	Robot.topDuck.set(0.0);
     }
 
     protected boolean isFinished() {

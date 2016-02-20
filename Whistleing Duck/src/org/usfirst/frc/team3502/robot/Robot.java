@@ -1,7 +1,7 @@
 
 package org.usfirst.frc.team3502.robot;
 
-import org.usfirst.frc.team3502.robot.subsystems.BasicDrive;
+import org.usfirst.frc.team3502.robot.commands.DriveClimb.DriveOMatic;
 import org.usfirst.frc.team3502.robot.subsystems.BottomDuck;
 import org.usfirst.frc.team3502.robot.subsystems.Intake;
 import org.usfirst.frc.team3502.robot.subsystems.LeftDrive;
@@ -47,6 +47,8 @@ public class Robot extends IterativeRobot {
 
     	NetworkTable.getTable("Preferences").putNumber("Sec Run", 0);
     	NetworkTable.getTable("Preferences").putNumber("Sec Brake", 0);
+    	
+    	new DriveOMatic();
     }
 	
 	/**

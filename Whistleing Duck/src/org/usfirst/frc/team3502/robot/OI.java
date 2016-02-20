@@ -1,15 +1,13 @@
 package org.usfirst.frc.team3502.robot;
 
-import org.usfirst.frc.team3502.robot.commands.BothDuckIt;
-import org.usfirst.frc.team3502.robot.commands.BottomDuckIt;
-import org.usfirst.frc.team3502.robot.commands.BottomFullUp;
-import org.usfirst.frc.team3502.robot.commands.BottomTimedFullUp;
-import org.usfirst.frc.team3502.robot.commands.ClearDuckEncoders;
-import org.usfirst.frc.team3502.robot.commands.DriveOMatic;
-import org.usfirst.frc.team3502.robot.commands.SineDriving;
-import org.usfirst.frc.team3502.robot.commands.TestBottomThrottle;
-import org.usfirst.frc.team3502.robot.commands.TestTopThrottle;
-import org.usfirst.frc.team3502.robot.commands.TopDuckIt;
+import org.usfirst.frc.team3502.robot.commands.DriveClimb.DriveOMatic;
+import org.usfirst.frc.team3502.robot.commands.DriveClimb.SineDriving;
+import org.usfirst.frc.team3502.robot.commands.Duck.BothDuckIt;
+import org.usfirst.frc.team3502.robot.commands.Duck.BottomDuckIt;
+import org.usfirst.frc.team3502.robot.commands.Duck.BottomThrottle;
+import org.usfirst.frc.team3502.robot.commands.Duck.ClearDuckEncoders;
+import org.usfirst.frc.team3502.robot.commands.Duck.TopDuckIt;
+import org.usfirst.frc.team3502.robot.commands.Duck.TopThrottle;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -63,8 +61,8 @@ public class OI {
 		//climbingButton.whileHeld(new ClimbingMode());
 		// bottomFullUpButton.whileHeld(new BottomFullUp());
 		
-		topThrottle.whenPressed(new TestTopThrottle());
-		bottomThrottle.whenPressed(new TestBottomThrottle());
+		topThrottle.whenPressed(new TopThrottle());
+		bottomThrottle.whenPressed(new BottomThrottle());
 	}
 	
 	

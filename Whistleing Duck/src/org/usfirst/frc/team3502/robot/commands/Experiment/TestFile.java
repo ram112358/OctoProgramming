@@ -1,4 +1,4 @@
-package org.usfirst.frc.team3502.robot.commands;
+package org.usfirst.frc.team3502.robot.commands.Experiment;
 
 import java.io.BufferedWriter;
 import java.io.File;
