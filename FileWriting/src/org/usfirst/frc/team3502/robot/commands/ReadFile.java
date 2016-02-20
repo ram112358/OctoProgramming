@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import org.usfirst.frc.team3502.robot.MotionProfile;
+import org.usfirst.frc.team3502.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -21,51 +22,62 @@ public class ReadFile extends Command {
 	
 	private boolean done = false;
 	
-	private int n;
+	private int n,x;
 	
     public ReadFile() {
+    	requires(Robot.drive);
     }
     
     protected void initialize() {
+    	SmartDashboard.putString("setedup", "yo");
+    	MotionProfile.readingFile = true;
+        SmartDashboard.putBoolean("ReadingFile", MotionProfile.readingFile);
+        x = 0;
+        SmartDashboard.putNumber("x", x);
     	try {
 			setupFile();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	// MotionProfile.notProcessing = false;
-        // SmartDashboard.putBoolean("Processing Trajectory", MotionProfile.notProcessing);
+        Pos = new ArrayList<Integer>();
+        Vel = new ArrayList<Integer>();
     }
     
-    protected void execute() {/*
+    protected void execute() {
     	if (in.hasNextLine()) {
     		Vel.add(in.nextInt());
     		Pos.add(in.nextInt());
     		in.nextLine();
     	}
     	else {
-    		MotionProfile.kNumPoints = Pos.size();
-    		setProfile();
     		done = true;
-        	MotionProfile.notProcessing = true;
+        	MotionProfile.readingFile = false;
     	}
-        SmartDashboard.putBoolean("Processing Trajectory", MotionProfile.notProcessing);
-    */}
+    	x++;
+        SmartDashboard.putNumber("x", x);
+        SmartDashboard.putBoolean("ReadingFile", MotionProfile.readingFile);
+    }
     
     protected boolean isFinished() {
         return done;
     }
     
     protected void end() {
+		MotionProfile.kNumPoints = Pos.size();
+		setProfile();
     }
     
     protected void interrupted() {
+		MotionProfile.kNumPoints = Pos.size();
+		setProfile();
     }
     
     private void setupFile() throws IOException{
     	in = new Scanner(path);
-    	//in.nextLine();
-    	SmartDashboard.putString("setedup", "setedup");
+    	in.nextLine();
+    	x++;
+        SmartDashboard.putNumber("x", x);
     }
     
     private void setProfile(){
@@ -75,5 +87,7 @@ public class ReadFile extends Command {
     		MotionProfile.Points[n][1] = Vel.get(n);
     		MotionProfile.Points[n][2] = 20;
     	}
+    	x++;
+        SmartDashboard.putNumber("x", x);
     }
 }

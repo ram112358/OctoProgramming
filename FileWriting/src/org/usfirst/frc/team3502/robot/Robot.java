@@ -35,8 +35,6 @@ public class Robot extends IterativeRobot {
         chooser = new SendableChooser();
 //        chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
-        
-        SmartDashboard.putBoolean("Processing Trajectory", MotionProfile.notProcessing);
 
     	NetworkTable.getTable("Preferences").putNumber("Power Level", 0.0);
     	NetworkTable.getTable("Preferences").putString("Special Note", "");
@@ -102,6 +100,8 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+
+        SmartDashboard.putBoolean("ReadingFile", MotionProfile.readingFile);
     }
     
     /**

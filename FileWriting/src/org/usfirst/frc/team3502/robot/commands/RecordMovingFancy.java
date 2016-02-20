@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import org.usfirst.frc.team3502.robot.MotionProfile;
 import org.usfirst.frc.team3502.robot.Robot;
 
 import edu.wpi.first.wpilibj.Timer;
@@ -45,6 +46,7 @@ public class RecordMovingFancy extends Command {
     	n = -1;
     	
     	startTime = Timer.getFPGATimestamp();
+    	MotionProfile.readingFile = true;
     }
 
     protected void execute() {
@@ -86,6 +88,7 @@ public class RecordMovingFancy extends Command {
     		// TODO Auto-generated catch block
     		e.printStackTrace();
     	}
+    	MotionProfile.readingFile = false;
     }
 
     protected void interrupted() {
@@ -105,6 +108,7 @@ public class RecordMovingFancy extends Command {
     		// TODO Auto-generated catch block
     		e.printStackTrace();
     	}
+    	MotionProfile.readingFile = false;
     }
     
     private void openFile() throws IOException{

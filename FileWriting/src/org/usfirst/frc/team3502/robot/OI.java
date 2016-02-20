@@ -6,6 +6,7 @@ import org.usfirst.frc.team3502.robot.commands.ReadFile;
 import org.usfirst.frc.team3502.robot.commands.RecordMoving;
 import org.usfirst.frc.team3502.robot.commands.RecordMovingFancy;
 import org.usfirst.frc.team3502.robot.commands.RecordMovingTimeOnly;
+import org.usfirst.frc.team3502.robot.commands.PrintProfile;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -18,10 +19,11 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 
 	Joystick manStick = new Joystick(RobotMap.manJoyPort);
-	Button writeFileButton = new JoystickButton(manStick, RobotMap.manJoyThree);
+	Button writeFileButton = new JoystickButton(manStick, RobotMap.manJoyFour);
 	Button playFileButton = new JoystickButton(manStick, RobotMap.manJoyTrigger);
 	Button startFileButton = new JoystickButton(manStick, RobotMap.manJoyThumb);
-	Button readFileButton = new JoystickButton(manStick, RobotMap.manJoyFour);
+	Button readFileButton = new JoystickButton(manStick, RobotMap.manJoyThree);
+	Button printFileButton = new JoystickButton(manStick, 5);
 	
 	public OI(){
 		// button.whenPressed(new ExampleCommand());
@@ -32,11 +34,14 @@ public class OI {
 		// writeFileButton.whileHeld(new RecordMoving());
 		// writeFileButton.whenPressed(new RecordMoving());
 		// writeFileButton.whileHeld(new RecordMovingTimeOnly());
+		
 		writeFileButton.whenPressed(new RecordMovingFancy());
 		
 		playFileButton.whenPressed(new ProfileExecuter());
 		
 		readFileButton.whenPressed(new ReadFile());
+		
+		printFileButton.whenPressed(new PrintProfile());
 	}
 
     public double getManY(){
