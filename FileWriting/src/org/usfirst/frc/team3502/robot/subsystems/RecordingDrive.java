@@ -29,6 +29,8 @@ public class RecordingDrive extends Subsystem {
 
 	private static final int numLoopsTimeout = 10;
 	
+	public final int encCPR = 360;
+	
 	private static final double
 		p = 0.0,
 		i = 0.0,
@@ -48,7 +50,7 @@ public class RecordingDrive extends Subsystem {
 	public RecordingDrive(){
 		driveMotor.changeControlMode(TalonControlMode.PercentVbus);
 		driveMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		driveMotor.configEncoderCodesPerRev(360);
+		driveMotor.configEncoderCodesPerRev(encCPR);
 		driveMotor.reverseOutput(false);
 		
 		driveMotorFollow.changeControlMode(TalonControlMode.Follower);

@@ -20,7 +20,7 @@ public class DontDuckIt extends Command {
     }
 
     protected void execute() {
-    	
+    	Robot.topDuck.setBrakeMode();
     }
 
     protected boolean isFinished() {

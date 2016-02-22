@@ -21,6 +21,8 @@ public class ClearDuckEncoders extends Command {
     protected void execute() {
     	Robot.topDuck.setEncPosition(0);
     	Robot.bottomDuck.setEncPosition(0);
+    	Robot.topDuck.setJoySet(0);
+    	Robot.bottomDuck.setJoySet(0);
     }
 
     protected boolean isFinished() {

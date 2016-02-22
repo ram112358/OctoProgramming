@@ -21,31 +21,43 @@ public class RobotMap {
     
     //Joystick Ports
     public static int
-    	duckJoyPort = 1,
+    	opJoyPort = 1,
     	rightJoyPort = 2,
     	leftJoyPort = 3;
     
-    //Buttons
+    //Op Buttons
     public static int
+		dontDuckButton = 2,
     	bothDuckButton = 1,
-    	bottomDuckButton = 3,
     	topDuckButton = 5,
-    	intakeInButton = 4,
-    	intakeOutButton = 6,
+    	bottomDuckButton = 3,
+    	topDuckThrottleButton = 6,
+    	bottomDuckThrottleButton = 4,
+    	
     	bottomFullUpButton = 10,
     	bottomTimedFullUpButton = 11,
+    	clearEncButton = 12,
+		manualBrakeOnButton = 9,
+		manualBrakeOffButton = 10;
+    
+    //Right Buttons
+    public static int
     	climbingButton = 7,
     	rightIntakeInButton = 2,
-    	rightIntakeOutButton = 3,
-    	clearEncButton = 2,
+    	rightIntakeOutButton = 3;
+    
+    //Left Buttons
+    public static int
     	regDriveButton = 3,
-    	sineDriveButton = 2;
+    	sineDriveButton = 2,
+    	driveShiftButton = 4,
+    	climbShiftButton = 5;
     
     //Pneumatics
     public static int
     	PCMPort = 33,
-    	PTOForward = 0,
-    	PTOReverse = 1,
-    	BrakeForward = 2,
-    	BrakeReverse = 3;
+    	PTOForward = 2,
+    	PTOReverse = 3,
+    	BrakeForward = 0,
+    	BrakeReverse = 1;
 }

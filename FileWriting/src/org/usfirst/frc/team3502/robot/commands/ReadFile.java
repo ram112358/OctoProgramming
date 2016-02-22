@@ -1,7 +1,7 @@
- package org.usfirst.frc.team3502.robot.commands;
+package org.usfirst.frc.team3502.robot.commands;
 
-import java.io.IOException;
-import java.util.ArrayList;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import org.usfirst.frc.team3502.robot.MotionProfile;
@@ -14,79 +14,94 @@ public class ReadFile extends Command {
 	
 	private static final String path = "/home/lvuser/ProfileTest.txt";
 	
-	private Scanner in;
+	private Scanner
+		counter,
+		in;
 	
-	private ArrayList<Integer>
-		Pos,
-		Vel;
+	private int trajectoryLength;
 	
-	private boolean done = false;
-	
-	private int n,x;
+	private double[][] trajectory;
 	
     public ReadFile() {
     	requires(Robot.drive);
     }
     
     protected void initialize() {
-    	MotionProfile.readingFile = true;
-        SmartDashboard.putBoolean("ReadingFile", MotionProfile.readingFile);
-        x = 0;
-        SmartDashboard.putNumber("x", x);
-    	try {
-			setupFile();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        Pos = new ArrayList<Integer>();
-        Vel = new ArrayList<Integer>();
+    	System.out.println(0);
+    	initTrajectory();
+    	fillTrajectory();
+    	System.out.println();
+    	setTrajectory();
+    	System.out.println();
+    	for (int x = 0; x < trajectoryLength; x++) {
+    		System.out.println(trajectory[x][0]);
+    		System.out.println(trajectory[x][1]);
+    	}
+    	for (int x = 0; x < MotionProfile.kNumPoints; x++) {
+    		System.out.println(MotionProfile.Points[x][0]);
+    		System.out.println(MotionProfile.Points[x][1]);
+    	}
     }
     
     protected void execute() {
-    	if (in.hasNextLine()) {
-    		Vel.add(in.nextInt());
-    		Pos.add(in.nextInt());
-    		in.nextLine();
-    	}
-    	else {
-    		done = true;
-        	MotionProfile.readingFile = false;
-    	}
-    	x++;
-        SmartDashboard.putNumber("x", x);
-        SmartDashboard.putBoolean("ReadingFile", MotionProfile.readingFile);
+    	
     }
     
     protected boolean isFinished() {
-        return done;
+        return false;
     }
     
     protected void end() {
-		MotionProfile.kNumPoints = Pos.size();
-		setProfile();
     }
     
     protected void interrupted() {
-		MotionProfile.kNumPoints = Pos.size();
-		setProfile();
     }
     
-    private void setupFile() throws IOException{
-    	in = new Scanner(path);
-    	in.nextLine();
-    	x++;
-        SmartDashboard.putNumber("x", x);
-    }
-    
-    private void setProfile(){
-    	MotionProfile.Points = new double[MotionProfile.kNumPoints][3];
-    	for (n = 0; n < MotionProfile.kNumPoints; n++) {
-    		MotionProfile.Points[n][0] = Pos.get(n);
-    		MotionProfile.Points[n][1] = Vel.get(n);
-    		MotionProfile.Points[n][2] = 20;
+    private void initTrajectory() {
+		trajectoryLength = 0;
+    	
+    	try {
+			counter = new Scanner(new File(path));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+		counter.nextLine();
+    	while (counter.hasNextLine()){
+    		trajectoryLength++;
+    		counter.nextLine();
     	}
-    	x++;
-        SmartDashboard.putNumber("x", x);
+    	counter.close();
+    	trajectory = new double[trajectoryLength][2];
+    }
+    
+    private void fillTrajectory() {
+    	
+    	try {
+			in = new Scanner(new File(path));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	for (int y = 0; y < trajectoryLength ; y++){
+    		in.nextLine();
+    		trajectory[y][0] = in.nextInt();
+    		trajectory[y][1] = in.nextInt();
+    	}
+    	in.close();
+    }
+    
+    private void setTrajectory(){
+    	MotionProfile.kNumPoints = trajectoryLength;
+    	MotionProfile.Points = new double[MotionProfile.kNumPoints][3];
+    	for (int n = 0; n < trajectoryLength; n++){
+    		// MotionProfile.Points[n][0] = ((double)trajectory[n][0] / ((double)Robot.drive.encCPR * 4.0));
+    		// MotionProfile.Points[n][1] = ((double)(trajectory[n][1] / ((double)Robot.drive.encCPR * 4.0)) * 600.0);
+    		MotionProfile.Points[n][0] = trajectory[n][0];
+    		MotionProfile.Points[n][1] = trajectory[n][1];
+    		MotionProfile.Points[n][2] = 20.0;
+    	}
     }
 }

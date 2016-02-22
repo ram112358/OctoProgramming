@@ -5,6 +5,7 @@ import org.usfirst.frc.team3502.robot.commands.DriveClimb.DriveOMatic;
 import org.usfirst.frc.team3502.robot.subsystems.BottomDuck;
 import org.usfirst.frc.team3502.robot.subsystems.Intake;
 import org.usfirst.frc.team3502.robot.subsystems.LeftDrive;
+import org.usfirst.frc.team3502.robot.subsystems.PTOShifting;
 import org.usfirst.frc.team3502.robot.subsystems.RightDrive;
 import org.usfirst.frc.team3502.robot.subsystems.TopDuck;
 
@@ -25,11 +26,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 
-	public static final TopDuck topDuck = new TopDuck();
 	public static final BottomDuck bottomDuck = new BottomDuck();
 	public static final Intake intake = new Intake();
-	public static final RightDrive rightDrive = new RightDrive();
 	public static final LeftDrive leftDrive = new LeftDrive();
+	public static final PTOShifting shifting = new PTOShifting();
+	public static final RightDrive rightDrive = new RightDrive();
+	public static final TopDuck topDuck = new TopDuck();
 	public static OI oi;
 
     Command autonomousCommand;
@@ -118,6 +120,8 @@ public class Robot extends IterativeRobot {
     	SmartDashboard.putNumber("topError", Robot.topDuck.getClosedLoopError());
     	SmartDashboard.putNumber("topJoySet", Robot.topDuck.getJoySet());
     	SmartDashboard.putNumber("bottomJoySet", Robot.bottomDuck.getJoySet());
+    	SmartDashboard.putNumber("bottomSetpoint", Robot.bottomDuck.getSetpoint());
+    	SmartDashboard.putNumber("topSetpoint", Robot.topDuck.getSetpoint());
     	
     	// SmartDashboard.putNumber("top - bottom", Robot.topDuck.getEncPosition() - Robot.bottomDuck.getEncPosition());
     	

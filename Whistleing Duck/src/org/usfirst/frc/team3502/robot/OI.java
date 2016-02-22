@@ -1,11 +1,14 @@
 package org.usfirst.frc.team3502.robot;
 
+import org.usfirst.frc.team3502.robot.commands.DriveClimb.ClimbMode;
+import org.usfirst.frc.team3502.robot.commands.DriveClimb.DriveMode;
 import org.usfirst.frc.team3502.robot.commands.DriveClimb.DriveOMatic;
 import org.usfirst.frc.team3502.robot.commands.DriveClimb.SineDriving;
 import org.usfirst.frc.team3502.robot.commands.Duck.BothDuckIt;
 import org.usfirst.frc.team3502.robot.commands.Duck.BottomDuckIt;
 import org.usfirst.frc.team3502.robot.commands.Duck.BottomThrottle;
 import org.usfirst.frc.team3502.robot.commands.Duck.ClearDuckEncoders;
+import org.usfirst.frc.team3502.robot.commands.Duck.DontDuckIt;
 import org.usfirst.frc.team3502.robot.commands.Duck.TopDuckIt;
 import org.usfirst.frc.team3502.robot.commands.Duck.TopThrottle;
 
@@ -20,55 +23,64 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 	
 	Joystick
-		duckJoy = new Joystick(RobotMap.duckJoyPort),
+		opJoy = new Joystick(RobotMap.opJoyPort),
 		rightJoy = new Joystick(RobotMap.rightJoyPort),
 		leftJoy = new Joystick(RobotMap.leftJoyPort);
 		
 	
 	Button
-		bothDuckButton = new JoystickButton(duckJoy, RobotMap.bothDuckButton),
-	    bottomDuckButton = new JoystickButton(duckJoy, RobotMap.bottomDuckButton),
-	    topDuckButton = new JoystickButton(duckJoy, RobotMap.topDuckButton),
-	    intakeInButton = new JoystickButton(duckJoy, RobotMap.intakeInButton),
-	    intakeOutButton = new JoystickButton(duckJoy, RobotMap.intakeOutButton),
-	    bottomFullUpButton = new JoystickButton(duckJoy, RobotMap.bottomFullUpButton),
-	    bottomTimedFullUpButton = new JoystickButton(duckJoy, RobotMap.bottomTimedFullUpButton),
-    	climbingButton = new JoystickButton(rightJoy, RobotMap.climbingButton),
-    	rightIntakeInButton = new JoystickButton(rightJoy, RobotMap.rightIntakeInButton),
-    	rightIntakeOutButton = new JoystickButton(rightJoy, RobotMap.rightIntakeOutButton),
-		clearEncButton = new JoystickButton(duckJoy, RobotMap.clearEncButton),
-		regDriveButton = new JoystickButton(leftJoy, RobotMap.regDriveButton),
+		dontDuckButton = new JoystickButton(opJoy, RobotMap.dontDuckButton),
+		bothDuckButton = new JoystickButton(opJoy, RobotMap.bothDuckButton),
+		topDuckButton = new JoystickButton(opJoy, RobotMap.topDuckButton),
+		bottomDuckButton = new JoystickButton(opJoy, RobotMap.bottomDuckButton),
+	    topThrottle = new JoystickButton(opJoy, RobotMap.topDuckThrottleButton),
+	    bottomThrottle = new JoystickButton(opJoy, RobotMap.bottomDuckThrottleButton),
+	    
+	    bottomFullUpButton = new JoystickButton(opJoy, RobotMap.bottomFullUpButton),
+	    bottomTimedFullUpButton = new JoystickButton(opJoy, RobotMap.bottomTimedFullUpButton),
+	    clearEncButton = new JoystickButton(opJoy, RobotMap.clearEncButton),
+
+	    manualBrakeOnButton = new JoystickButton(opJoy, RobotMap.manualBrakeOnButton),
+    	manualBrakeOffButton = new JoystickButton(opJoy, RobotMap.manualBrakeOffButton),
+		
+	    regDriveButton = new JoystickButton(leftJoy, RobotMap.regDriveButton),
 		sineDriveButton = new JoystickButton(leftJoy, RobotMap.sineDriveButton),
 		
-		topThrottle = new JoystickButton(duckJoy, 6),
-		bottomThrottle = new JoystickButton(duckJoy, 4);
+		driveShiftButton = new JoystickButton(leftJoy, RobotMap.driveShiftButton),
+		climbShiftButton = new JoystickButton(leftJoy, RobotMap.climbShiftButton),
+		climbingButton = new JoystickButton(rightJoy, RobotMap.climbingButton),
 		
+		rightIntakeInButton = new JoystickButton(rightJoy, RobotMap.rightIntakeInButton),
+		rightIntakeOutButton = new JoystickButton(rightJoy, RobotMap.rightIntakeOutButton);
 	
 	public OI(){
 		// button.whenPressed(new ExampleCommand());
 		// button.whileHeld(new ExampleCommand());
 		// button.whenReleased(new ExampleCommand());
 		
-		bothDuckButton.whenPressed(new BothDuckIt());
-		topDuckButton.whenPressed(new TopDuckIt());
-		bottomDuckButton.whenPressed(new BottomDuckIt());
+		dontDuckButton.whenPressed(new DontDuckIt());
+		// bothDuckButton.whenPressed(new BothDuckIt());
+		// topDuckButton.whenPressed(new TopDuckIt());
+		// bottomDuckButton.whenPressed(new BottomDuckIt());
+		topThrottle.whenPressed(new TopThrottle());
+		bottomThrottle.whenPressed(new BottomThrottle());
+
+		// bottomFullUpButton.whileHeld(new BottomFullUp());
+		// bottomTimedFullUpButton.whenPressed(new BottomTimedFullUp());
 		clearEncButton.whenPressed(new ClearDuckEncoders());
+		
 		regDriveButton.whenPressed(new DriveOMatic());
 		sineDriveButton.whenPressed(new SineDriving());
 		
-		// bottomTimedFullUpButton.whenPressed(new BottomTimedFullUp());
-		
-		//climbingButton.whileHeld(new ClimbingMode());
-		// bottomFullUpButton.whileHeld(new BottomFullUp());
-		
-		topThrottle.whenPressed(new TopThrottle());
-		bottomThrottle.whenPressed(new BottomThrottle());
+		driveShiftButton.whenPressed(new DriveMode());
+		climbShiftButton.whenPressed(new ClimbMode());
+		//climbingButton.whenPressed(new ClimbMode());
 	}
 	
 	
 	public double getDuckY(){
-		if (duckJoy.getY() > 0.025 || duckJoy.getY() < -0.025)
-			return duckJoy.getY();
+		if (opJoy.getY() > 0.025 || opJoy.getY() < -0.025)
+			return opJoy.getY();
 		else
 			return 0.0;
 	}
@@ -88,18 +100,30 @@ public class OI {
 	}
 
 	public boolean getIntakeInButton(){
-		if (intakeInButton.get() || rightIntakeInButton.get())
+		if (rightIntakeInButton.get())
 			return true;
 		return false;
 	}
 
 	public boolean getIntakeOutButton(){
-		if (intakeOutButton.get() || rightIntakeOutButton.get())
+		if (rightIntakeOutButton.get())
 			return true;
 		return false;
 	}
 	
+	public int getOpPOV(){
+		return opJoy.getPOV();
+	}
+	
 	public double getIntakeThrottle(){
-		return -(duckJoy.getThrottle())/2 + 0.5;
+		return -(opJoy.getThrottle())/2 + 0.5;
+	}
+
+	public boolean getManualBrakeOnButton() {
+		return manualBrakeOnButton.get();
+	}
+	
+	public boolean getManualBrakeOffButton() {
+		return manualBrakeOffButton.get();
 	}
 }

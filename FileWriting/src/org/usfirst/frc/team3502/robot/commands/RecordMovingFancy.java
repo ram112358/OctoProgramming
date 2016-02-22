@@ -116,7 +116,7 @@ public class RecordMovingFancy extends Command {
     	if(!file.exists()) {
     		file.createNewFile();
     		BufferedWriter outputFile = new BufferedWriter(new FileWriter(path, true));
-    		outputFile.write("Vel\tPos\tTime\tBeingPowered\tPower Level: " + "JoyStick" + "\tSpecial Note: " + note);
+    		outputFile.write("Pos\tVel\tTime\tBeingPowered\tPower Level: " + "JoyStick" + "\tSpecial Note: " + note);
     		outputFile.newLine();
         	outputFile.close();
     	}
@@ -125,7 +125,7 @@ public class RecordMovingFancy extends Command {
     private void writeFile() throws IOException{
     	BufferedWriter outputFile = new BufferedWriter(new FileWriter(path, true));
     	for(counter = 0; counter < n; counter++){
-    		outputFile.write(velocity[counter] + "\t" + position[counter] + "\t" + time[counter] + "\t" + beingPowered[counter]);
+    		outputFile.write(position[counter] + "\t" + velocity[counter] + "\t" + time[counter] + "\t" + beingPowered[counter]);
     		outputFile.newLine();
     	}
     	outputFile.close();
