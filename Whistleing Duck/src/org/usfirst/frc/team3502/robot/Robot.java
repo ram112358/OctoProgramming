@@ -1,8 +1,10 @@
 
 package org.usfirst.frc.team3502.robot;
 
-import org.usfirst.frc.team3502.robot.commands.DriveClimb.DriveOMatic;
+import org.usfirst.frc.team3502.robot.commands.DriveClimb.RegDriveDuckEnd;
+import org.usfirst.frc.team3502.robot.commands.Auton.autoSetGyroAndThrottle;
 import org.usfirst.frc.team3502.robot.subsystems.BottomDuck;
+import org.usfirst.frc.team3502.robot.subsystems.Hooker;
 import org.usfirst.frc.team3502.robot.subsystems.Intake;
 import org.usfirst.frc.team3502.robot.subsystems.LeftDrive;
 import org.usfirst.frc.team3502.robot.subsystems.PTOShifting;
@@ -27,6 +29,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 
 	public static final BottomDuck bottomDuck = new BottomDuck();
+	public static final Hooker hooker = new Hooker();
 	public static final Intake intake = new Intake();
 	public static final LeftDrive leftDrive = new LeftDrive();
 	public static final PTOShifting shifting = new PTOShifting();
@@ -43,14 +46,18 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
 		oi = new OI();
+    	RobotMap.gyro.reset();
         chooser = new SendableChooser();
-//        chooser.addObject("My Auto", new MyAutoCommand());
+        
+        chooser.addDefault("Don't Go", new autoSetGyroAndThrottle(0.0, 0.0));
+        chooser.addObject("Low Bar (Slow w/ Gyro)", new autoSetGyroAndThrottle(0.0, 0.5));
+        chooser.addObject("Ramparts or Rough Terrain (Fast w/ Gyro)", new autoSetGyroAndThrottle(0.0, 1.0));
+        chooser.addObject("Portcullus", new autoSetGyroAndThrottle(0.0, 0.0)); //Change this command when the right one is written
         SmartDashboard.putData("Auto mode", chooser);
 
     	NetworkTable.getTable("Preferences").putNumber("Sec Run", 0);
     	NetworkTable.getTable("Preferences").putNumber("Sec Brake", 0);
-    	
-    	new DriveOMatic();
+    	NetworkTable.getTable("Preferences").putNumber("kP", 0);
     }
 	
 	/**
@@ -76,6 +83,7 @@ public class Robot extends IterativeRobot {
 	 * or additional comparisons to the switch structure below with additional strings & commands.
 	 */
     public void autonomousInit() {
+    	
         autonomousCommand = (Command) chooser.getSelected();
         
 		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
@@ -105,6 +113,8 @@ public class Robot extends IterativeRobot {
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
+
+    	RobotMap.gyro.reset();
         if (autonomousCommand != null) autonomousCommand.cancel();
     }
 
@@ -114,6 +124,14 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         
+        SmartDashboard.putData(shifting); 
+        SmartDashboard.putData(topDuck);
+        SmartDashboard.putData(bottomDuck);
+        SmartDashboard.putData(intake);
+        SmartDashboard.putData(leftDrive);
+        SmartDashboard.putData(rightDrive);
+        SmartDashboard.putData(hooker);
+        
         SmartDashboard.putNumber("topEnc", Robot.topDuck.getEncPosition());
     	SmartDashboard.putNumber("bottomEnc", Robot.bottomDuck.getEncPosition());
     	SmartDashboard.putNumber("bottomError", Robot.bottomDuck.getClosedLoopError());
@@ -122,6 +140,7 @@ public class Robot extends IterativeRobot {
     	SmartDashboard.putNumber("bottomJoySet", Robot.bottomDuck.getJoySet());
     	SmartDashboard.putNumber("bottomSetpoint", Robot.bottomDuck.getSetpoint());
     	SmartDashboard.putNumber("topSetpoint", Robot.topDuck.getSetpoint());
+    	SmartDashboard.putNumber("Gyro", RobotMap.gyro.getAngle());
     	
     	// SmartDashboard.putNumber("top - bottom", Robot.topDuck.getEncPosition() - Robot.bottomDuck.getEncPosition());
     	

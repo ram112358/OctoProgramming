@@ -5,19 +5,20 @@ import org.usfirst.frc.team3502.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class SineDriving extends Command {
-	
-    public SineDriving() {
-    	requires(Robot.rightDrive);
-    	requires(Robot.leftDrive);
+public class povHooker extends Command {
+
+    public povHooker() {
+    	requires(Robot.hooker);
     }
 
     protected void initialize() {
     }
 
     protected void execute() {
-		Robot.rightDrive.setSineScaling(Robot.oi.getRightY());
-		Robot.leftDrive.setSineScaling(Robot.oi.getLeftY());
+    	SmartDashboard.putNumber("POV Test", Robot.oi.getOpPOV());
+    	if(Robot.oi.getOpPOV() != -1){
+    		Robot.hooker.setServoPosition(Robot.oi.getOpPOV());
+    	}
     }
 
     protected boolean isFinished() {

@@ -1,6 +1,8 @@
 package org.usfirst.frc.team3502.robot.subsystems;
 
 import org.usfirst.frc.team3502.robot.RobotMap;
+import org.usfirst.frc.team3502.robot.commands.DriveClimb.RegDriveAttackEnd;
+import org.usfirst.frc.team3502.robot.commands.DriveClimb.RegDriveDuckEnd;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
@@ -27,17 +29,18 @@ public class LeftDrive extends Subsystem {
 	}
 	
     public void initDefaultCommand() {
+    	setDefaultCommand(new RegDriveDuckEnd());
     }
     
     public void set(double outputValue) {
-    	leftTalon.set(outputValue);
+    	leftTalon.set(- outputValue);
     }
     
     public void setSineScaling(double outputValue){
-    	if (outputValue > 0.0)
+    	if (outputValue < 0.0)
     		leftTalon.set((Math.sin((outputValue * Math.PI) - (Math.PI / 2)) / 2) + .5);
-    	else if (outputValue < 0.0)
-    		leftTalon.set(-((Math.sin((outputValue * Math.PI) - (Math.PI / 2)) / 2) + .5));
+    	else if (outputValue > 0.0)
+    		leftTalon.set(- ((Math.sin((outputValue * Math.PI) - (Math.PI / 2)) / 2) + .5));
     	else
     		leftTalon.set(0.0);
     }
@@ -68,5 +71,7 @@ public class LeftDrive extends Subsystem {
     	return leftTalon.getClosedLoopError();
     }
     
-    
+    public void setVCRampRate(double rampRate){ //Volts per second
+    	leftTalon.setVoltageCompensationRampRate(rampRate);
+    }
 }

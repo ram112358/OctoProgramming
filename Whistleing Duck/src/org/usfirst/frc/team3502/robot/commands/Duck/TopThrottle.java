@@ -20,6 +20,8 @@ public class TopThrottle extends Command {
     }
 
     protected void execute() {
+		Robot.topDuck.setSlow(Robot.oi.getDuckY());
+		/*
     	if (Robot.topDuck.getBrakeMode())
     		Robot.topDuck.setSlow(Robot.oi.getDuckY());
     	else
@@ -29,6 +31,7 @@ public class TopThrottle extends Command {
     		Robot.topDuck.setBrakeMode();
     	else if (Robot.oi.getManualBrakeOnButton())
     		Robot.topDuck.setNotBrakeMode();
+    		*/
     }
 
     protected boolean isFinished() {

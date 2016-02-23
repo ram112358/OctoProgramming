@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3502.robot.subsystems;
 
 import org.usfirst.frc.team3502.robot.RobotMap;
+import org.usfirst.frc.team3502.robot.commands.DriveClimb.RegDriveDuckEnd;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
@@ -27,6 +28,7 @@ public class RightDrive extends Subsystem {
 	}
 	
     public void initDefaultCommand() {
+    	setDefaultCommand(new RegDriveDuckEnd());
     }
     
     public void set(double outputValue) {
@@ -59,7 +61,9 @@ public class RightDrive extends Subsystem {
     	rightTalon.changeControlMode(TalonControlMode.PercentVbus);
     	rightTalon.set(0.0);
     
-    }public void setVoltageMode(){
+    }
+    
+    public void setVoltageMode(){
     	rightTalon.changeControlMode(TalonControlMode.Voltage);
     	rightTalon.set(0.0);
     }
@@ -68,5 +72,7 @@ public class RightDrive extends Subsystem {
     	return rightTalon.getClosedLoopError();
     }
     
-    
+    public void setVCRampRate(double rampRate){ //Volts per second
+    	rightTalon.setVoltageCompensationRampRate(rampRate);
+    }
 }

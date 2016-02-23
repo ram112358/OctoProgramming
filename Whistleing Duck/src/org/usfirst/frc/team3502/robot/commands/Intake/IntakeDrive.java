@@ -24,12 +24,12 @@ public class IntakeDrive extends Command {
     	else if(Robot.oi.getIntakeOutButton()){
     		Robot.intake.set(-Robot.oi.getIntakeThrottle());
     	}
-    	else if(Robot.oi.getOpPOV() == 180){
+    	/*else if(Robot.oi.getOpPOV() == 180){
     		Robot.intake.set(Robot.oi.getIntakeThrottle());
     	}
     	else if(Robot.oi.getOpPOV() == 0){
     		Robot.intake.set(-Robot.oi.getIntakeThrottle());
-    	}
+    	}*/
     	else{
     		Robot.intake.set(0.0);
     	}

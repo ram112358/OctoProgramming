@@ -3,7 +3,6 @@ package org.usfirst.frc.team3502.robot.commands.Duck;
 import org.usfirst.frc.team3502.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class BothDuckIt extends Command {
 	

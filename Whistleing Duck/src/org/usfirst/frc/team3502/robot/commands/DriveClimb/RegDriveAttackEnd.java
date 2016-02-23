@@ -4,9 +4,9 @@ import org.usfirst.frc.team3502.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class DriveOMatic extends Command {
+public class RegDriveAttackEnd extends Command {
 
-    public DriveOMatic() {
+    public RegDriveAttackEnd() {
     	requires(Robot.rightDrive);
     	requires(Robot.leftDrive);
     }
@@ -15,8 +15,8 @@ public class DriveOMatic extends Command {
     }
 
     protected void execute() {
-		Robot.rightDrive.set(Robot.oi.getRightY());
-		Robot.leftDrive.set(Robot.oi.getLeftY());
+		Robot.rightDrive.set(- Robot.oi.getLeftY());
+		Robot.leftDrive.set(- Robot.oi.getRightY());
     }
 
     protected boolean isFinished() {

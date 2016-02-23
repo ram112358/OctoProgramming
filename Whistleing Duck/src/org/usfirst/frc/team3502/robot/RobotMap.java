@@ -1,4 +1,7 @@
 package org.usfirst.frc.team3502.robot;
+
+import edu.wpi.first.wpilibj.AnalogGyro;
+
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -42,22 +45,35 @@ public class RobotMap {
     
     //Right Buttons
     public static int
-    	climbingButton = 7,
+    	climbingButton = 8,
     	rightIntakeInButton = 2,
-    	rightIntakeOutButton = 3;
+    	rightIntakeOutButton = 3,
+    	gyroDriveButton = 1,
+    	driveShiftButton = 4,
+    	climbShiftButton = 5;
     
     //Left Buttons
     public static int
-    	regDriveButton = 3,
-    	sineDriveButton = 2,
-    	driveShiftButton = 4,
-    	climbShiftButton = 5;
+    	regDriveDuckEndButton = 3,
+    	regDriveAttackEndButton = 2,
+    	sineDriveDuckEndButton = 5,
+    	sineDriveAttackEndButton = 4,
+    	turn180Button = 6,
+    	turn360Button = 7,
+    	resetGyroButton = 8;
     
     //Pneumatics
     public static int
     	PCMPort = 33,
-    	PTOForward = 2,
-    	PTOReverse = 3,
-    	BrakeForward = 0,
-    	BrakeReverse = 1;
+    	PTOForward = 0,
+    	PTOReverse = 1,
+    	BrakeForward = 3,
+    	BrakeReverse = 2;
+    
+    // Misc
+    public static int
+    	HookerReleaseServo = 2;
+    
+    // Gyro
+	public static final AnalogGyro gyro = new AnalogGyro(1);
 }
