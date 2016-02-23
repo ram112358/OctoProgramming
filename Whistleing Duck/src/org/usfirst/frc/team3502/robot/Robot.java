@@ -10,6 +10,7 @@ import org.usfirst.frc.team3502.robot.subsystems.PTOShifting;
 import org.usfirst.frc.team3502.robot.subsystems.RightDrive;
 import org.usfirst.frc.team3502.robot.subsystems.TopDuck;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -35,6 +36,7 @@ public class Robot extends IterativeRobot {
 	public static final RightDrive rightDrive = new RightDrive();
 	public static final TopDuck topDuck = new TopDuck();
 	public static OI oi;
+	public static final String cameraName = "cam0";
 
     Command autonomousCommand;
     SendableChooser chooser;
@@ -57,8 +59,14 @@ public class Robot extends IterativeRobot {
     	NetworkTable.getTable("Preferences").putNumber("Sec Brake", 0);
     	NetworkTable.getTable("Preferences").putNumber("kP", 0.5);
     	
+    	// Gyro Handleing
     	RobotMap.gyro.initGyro();
     	RobotMap.gyro.reset();
+    	
+        //Initialize Camera
+        CameraServer camera = CameraServer.getInstance();
+        camera.setQuality(50);
+        camera.startAutomaticCapture(cameraName);
     }
 	
 	/**
