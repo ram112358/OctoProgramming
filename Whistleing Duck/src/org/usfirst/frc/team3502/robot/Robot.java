@@ -72,6 +72,18 @@ public class Robot extends IterativeRobot {
 	
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
+		
+		SmartDashboard.putNumber("topEnc", Robot.topDuck.getEncPosition());
+    	SmartDashboard.putNumber("bottomEnc", Robot.bottomDuck.getEncPosition());
+    	SmartDashboard.putNumber("bottomError", Robot.bottomDuck.getClosedLoopError());
+    	SmartDashboard.putNumber("topError", Robot.topDuck.getClosedLoopError());
+    	SmartDashboard.putNumber("topJoySet", Robot.topDuck.getJoySet());
+    	SmartDashboard.putNumber("bottomJoySet", Robot.bottomDuck.getJoySet());
+    	SmartDashboard.putNumber("bottomSetpoint", Robot.bottomDuck.getSetpoint());
+    	SmartDashboard.putNumber("topSetpoint", Robot.topDuck.getSetpoint());
+    	SmartDashboard.putNumber("Gyro", RobotMap.gyro.getAngle());
+    	SmartDashboard.putNumber("Throttle scaled to 12", Robot.oi.getIntakeThrottle() * 12);
+    
 	}
 
 	/**
@@ -142,9 +154,7 @@ public class Robot extends IterativeRobot {
     	SmartDashboard.putNumber("bottomSetpoint", Robot.bottomDuck.getSetpoint());
     	SmartDashboard.putNumber("topSetpoint", Robot.topDuck.getSetpoint());
     	SmartDashboard.putNumber("Gyro", RobotMap.gyro.getAngle());
-    	
-    	// SmartDashboard.putNumber("top - bottom", Robot.topDuck.getEncPosition() - Robot.bottomDuck.getEncPosition());
-    	
+    	SmartDashboard.putNumber("Throttle scaled to 12", Robot.oi.getIntakeThrottle() * 12);
     }
     
     /**

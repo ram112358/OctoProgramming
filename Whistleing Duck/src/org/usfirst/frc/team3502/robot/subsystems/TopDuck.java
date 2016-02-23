@@ -20,8 +20,9 @@ public class TopDuck extends Subsystem {
 		d = 0.0,
 		f = 0.0,
 		closeLoopRampRate = 0.0;
+	public final int
+		izone = 0;
 	private final int
-		izone = 0,
 		profile = 0;
 	
 	// unducked
@@ -31,8 +32,9 @@ public class TopDuck extends Subsystem {
 		dUn = 0.0,
 		fUn = 0.0,
 		closeLoopRampRateUn = 0.0;
+	public final int
+		izoneUn = 150;
 	private final int
-		izoneUn = 150,
 		profileUn = 1;
 
 	private final CANTalon topTalon = new CANTalon(RobotMap.topDuckPort);
@@ -99,6 +101,10 @@ public class TopDuck extends Subsystem {
     	topTalon.changeControlMode(TalonControlMode.PercentVbus);
     	setNotBrakeMode();
     	topTalon.set(0);
+    }
+    
+    public void setVoltageMode(){
+    	topTalon.changeControlMode(TalonControlMode.Voltage);
     }
     
     public int getClosedLoopError(){

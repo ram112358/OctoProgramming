@@ -9,7 +9,9 @@ import org.usfirst.frc.team3502.robot.commands.DriveClimb.SineDriveAttackEnd;
 import org.usfirst.frc.team3502.robot.commands.DriveClimb.SineDriveDuckEnd;
 import org.usfirst.frc.team3502.robot.commands.Duck.BothDuckIt;
 import org.usfirst.frc.team3502.robot.commands.Duck.BottomDuckIt;
+import org.usfirst.frc.team3502.robot.commands.Duck.BottomFullUp;
 import org.usfirst.frc.team3502.robot.commands.Duck.BottomThrottle;
+import org.usfirst.frc.team3502.robot.commands.Duck.BottomTimedFullUp;
 import org.usfirst.frc.team3502.robot.commands.Duck.ClearDuckEncoders;
 import org.usfirst.frc.team3502.robot.commands.Duck.DontDuckIt;
 import org.usfirst.frc.team3502.robot.commands.Duck.TopDuckIt;
@@ -78,8 +80,8 @@ public class OI {
 		topThrottle.whenPressed(new TopThrottle());
 		bottomThrottle.whenPressed(new BottomThrottle());
 
-		// bottomFullUpButton.whileHeld(new BottomFullUp());
-		// bottomTimedFullUpButton.whenPressed(new BottomTimedFullUp());
+		bottomFullUpButton.whileHeld(new BottomFullUp());
+		bottomTimedFullUpButton.whenPressed(new BottomTimedFullUp());
 		clearEncButton.whenPressed(new ClearDuckEncoders());
 		
 		regDriveDuckEndButton.whenPressed(new RegDriveDuckEnd());

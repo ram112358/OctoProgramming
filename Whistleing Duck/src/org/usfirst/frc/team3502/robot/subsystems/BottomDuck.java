@@ -14,13 +14,14 @@ public class BottomDuck extends Subsystem {
 	
 	//ducked
 	private final double
-		p = 0.0001,
+		p = 0.45,
 		i = 0.0,
 		d = 0.0,
 		f = 0.0,
 		closeLoopRampRate = 0.0;
+	public final int
+		izone = 0;
 	private final int
-		izone = 0,
 		profile = 0;
 	
 	// unducked
@@ -30,8 +31,9 @@ public class BottomDuck extends Subsystem {
 		dUn = 0.0,
 		fUn = 0.0,
 		closeLoopRampRateUn = 0.0;
+	public final int
+		izoneUn = 150;
 	private final int
-		izoneUn = 150,
 		profileUn = 1;
 
 	private final CANTalon bottomTalon = new CANTalon(RobotMap.bottomDuckPort);
@@ -94,6 +96,10 @@ public class BottomDuck extends Subsystem {
     public void setThrottleMode(){
     	bottomTalon.changeControlMode(TalonControlMode.PercentVbus);
     	bottomTalon.set(0);
+    }
+    
+    public void setVoltageMode(){
+    	bottomTalon.changeControlMode(TalonControlMode.Voltage);
     }
     
     public int getClosedLoopError(){

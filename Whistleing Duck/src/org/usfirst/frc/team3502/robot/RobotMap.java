@@ -37,7 +37,7 @@ public class RobotMap {
     	topDuckThrottleButton = 6,
     	bottomDuckThrottleButton = 4,
     	
-    	bottomFullUpButton = 10,
+    	bottomFullUpButton = 7,
     	bottomTimedFullUpButton = 11,
     	clearEncButton = 12,
 		manualBrakeOnButton = 9,
@@ -81,4 +81,8 @@ public class RobotMap {
 	public static double
 		brownLimit = 8.0,
 		brownScale = 0.5;
+	
+	// Misc Values
+	public static int
+		squeezeFactor = 0;
 }
