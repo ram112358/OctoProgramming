@@ -15,8 +15,8 @@ public class RegDriveAttackEnd extends Command {
     }
 
     protected void execute() {
-		Robot.rightDrive.set(- Robot.oi.getLeftY());
-		Robot.leftDrive.set(- Robot.oi.getRightY());
+		Robot.rightDrive.setBrown(- Robot.oi.getLeftY());
+		Robot.leftDrive.setBrown(- Robot.oi.getRightY());
     }
 
     protected boolean isFinished() {

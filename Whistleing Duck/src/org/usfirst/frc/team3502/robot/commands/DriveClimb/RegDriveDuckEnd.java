@@ -16,8 +16,8 @@ public class RegDriveDuckEnd extends Command {
     }
 
     protected void execute() {
-		Robot.rightDrive.set(Robot.oi.getRightY());
-		Robot.leftDrive.set(Robot.oi.getLeftY());
+		Robot.rightDrive.setBrown(Robot.oi.getRightY());
+		Robot.leftDrive.setBrown(Robot.oi.getLeftY());
 		
 		if (Robot.oi.getResetGyro())
 			RobotMap.gyro.reset();

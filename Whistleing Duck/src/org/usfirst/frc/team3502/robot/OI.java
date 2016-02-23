@@ -1,11 +1,8 @@
 package org.usfirst.frc.team3502.robot;
 
 import org.usfirst.frc.team3502.robot.commands.DriveClimb.ClimbMode;
-import org.usfirst.frc.team3502.robot.commands.DriveClimb.Gyro.DriveGyro180;
-import org.usfirst.frc.team3502.robot.commands.DriveClimb.Gyro.DriveGyro360;
 import org.usfirst.frc.team3502.robot.commands.DriveClimb.DriveMode;
-import org.usfirst.frc.team3502.robot.commands.DriveClimb.Gyro.DriveGyroForward;
-import org.usfirst.frc.team3502.robot.commands.DriveClimb.Gyro.DriveToGyroHeading;
+import org.usfirst.frc.team3502.robot.commands.DriveClimb.DriveToGyroHeading;
 import org.usfirst.frc.team3502.robot.commands.DriveClimb.RegDriveAttackEnd;
 import org.usfirst.frc.team3502.robot.commands.DriveClimb.RegDriveDuckEnd;
 import org.usfirst.frc.team3502.robot.commands.DriveClimb.SineDriveAttackEnd;
@@ -57,7 +54,7 @@ public class OI {
     	climbingButton = new JoystickButton(rightJoy, RobotMap.climbingButton),
     	driveShiftButton = new JoystickButton(rightJoy, RobotMap.driveShiftButton),
     	climbShiftButton = new JoystickButton(rightJoy, RobotMap.climbShiftButton),
-    	gyroDriveButton = new JoystickButton(rightJoy, RobotMap.gyroDriveButton),
+    	gyroDriveStraightButton = new JoystickButton(rightJoy, RobotMap.gyroDriveStraightButton),
     	
     	//Left Joystick Buttons    	
     	regDriveDuckEndButton = new JoystickButton(leftJoy, RobotMap.regDriveDuckEndButton),
@@ -94,9 +91,9 @@ public class OI {
 		climbShiftButton.whenPressed(new ClimbMode());
 		// climbingButton.whenPressed(new ClimbMode());
 
-		gyroDriveButton.whileHeld(new DriveGyroForward());
-		turn180Button.whileHeld(new DriveGyro180());
-		turn360Button.whileHeld(new DriveGyro360());
+		gyroDriveStraightButton.whileHeld(new DriveToGyroHeading());
+		turn180Button.whileHeld(new DriveToGyroHeading());
+		turn360Button.whileHeld(new DriveToGyroHeading());
 
 	}
 	
@@ -152,5 +149,17 @@ public class OI {
 	
     public boolean getResetGyro(){
     	return resetGyroButton.get();
+    }
+    
+    public boolean getGyroDriveStraightButton(){
+    	return gyroDriveStraightButton.get();
+    }
+    
+    public boolean getTurn180Button(){
+    	return turn180Button.get();
+    }
+    
+    public boolean getTurn360Button(){
+    	return turn360Button.get();
     }
 }

@@ -4,14 +4,20 @@ import org.usfirst.frc.team3502.robot.RobotMap;
 import org.usfirst.frc.team3502.robot.commands.DriveClimb.RegDriveDuckEnd;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class RightDrive extends Subsystem {
 
 	private static final CANTalon rightTalon = new CANTalon(RobotMap.rightPort);
 	private static final CANTalon rightAuxTalon = new CANTalon(RobotMap.rightAuxPort);
+	
+	private double 
+		batteryVoltage,
+		rampRate = 24;
 	
 	public RightDrive(){
 		rightTalon.changeControlMode(TalonControlMode.PercentVbus);
@@ -30,9 +36,13 @@ public class RightDrive extends Subsystem {
     public void initDefaultCommand() {
     	setDefaultCommand(new RegDriveDuckEnd());
     }
-    
+
     public void set(double outputValue) {
     	rightTalon.set(outputValue);
+    }
+
+    public void setBrown(double outputValue) {
+    	rightTalon.set(brownOutWatch(outputValue));
     }
     
     public void setSineScaling(double outputValue){
@@ -42,6 +52,21 @@ public class RightDrive extends Subsystem {
     		rightTalon.set(-((Math.sin((outputValue * Math.PI) - (Math.PI / 2)) / 2) + .5));
     	else
     		rightTalon.set(0.0);
+    }
+    
+    public double brownOutWatch(double outputValue){
+    	/*batteryVoltage = DriverStation.getInstance().getBatteryVoltage();
+    	outputValue *= batteryVoltage;
+    	if (batteryVoltage < RobotMap.brownLimit){
+    		setVCRampRate(12.0);
+    		setVoltageMode();
+        	outputValue *= RobotMap.brownScale;
+    	}
+    	else {
+    		setVCRampRate(24.0);
+    		setThrottleMode();
+    	}*/
+    	return outputValue;
     }
     
     public int getEncPosition(){
@@ -73,6 +98,9 @@ public class RightDrive extends Subsystem {
     }
     
     public void setVCRampRate(double rampRate){ //Volts per second
-    	rightTalon.setVoltageCompensationRampRate(rampRate);
+    	if (rampRate != this.rampRate){
+    		this.rampRate = rampRate;
+    		rightTalon.setVoltageCompensationRampRate(this.rampRate);
+    	}
     }
 }

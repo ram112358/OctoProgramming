@@ -1,7 +1,6 @@
 
 package org.usfirst.frc.team3502.robot;
 
-import org.usfirst.frc.team3502.robot.commands.DriveClimb.RegDriveDuckEnd;
 import org.usfirst.frc.team3502.robot.commands.Auton.autoSetGyroAndThrottle;
 import org.usfirst.frc.team3502.robot.subsystems.BottomDuck;
 import org.usfirst.frc.team3502.robot.subsystems.Hooker;
@@ -46,7 +45,6 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
 		oi = new OI();
-    	RobotMap.gyro.reset();
         chooser = new SendableChooser();
         
         chooser.addDefault("Don't Go", new autoSetGyroAndThrottle(0.0, 0.0));
@@ -57,7 +55,10 @@ public class Robot extends IterativeRobot {
 
     	NetworkTable.getTable("Preferences").putNumber("Sec Run", 0);
     	NetworkTable.getTable("Preferences").putNumber("Sec Brake", 0);
-    	NetworkTable.getTable("Preferences").putNumber("kP", 0);
+    	NetworkTable.getTable("Preferences").putNumber("kP", 0.5);
+    	
+    	RobotMap.gyro.initGyro();
+    	RobotMap.gyro.reset();
     }
 	
 	/**

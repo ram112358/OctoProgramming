@@ -36,8 +36,8 @@ public class ClimbMode extends Command {
     	error = -Robot.shifting.getAccelX();
     	leftValue = Math.abs(Robot.oi.getRightY() * battVolt + error * kP);
     	rightValue = Math.abs(Robot.oi.getRightY() * battVolt - error * kP);
-    	Robot.leftDrive.set(leftValue);
-    	Robot.rightDrive.set(-rightValue);
+    	Robot.leftDrive.setBrown(leftValue);
+    	Robot.rightDrive.setBrown(-rightValue);
     	
     	if (Robot.shifting.getAccelZ() < 0.8){
     		done = true;
@@ -53,8 +53,8 @@ public class ClimbMode extends Command {
     	Robot.rightDrive.setThrottleMode();
     	Robot.leftDrive.setVCRampRate(24);
     	Robot.rightDrive.setVCRampRate(24);
-    	Robot.leftDrive.set(0);
-    	Robot.rightDrive.set(0);
+    	Robot.leftDrive.setBrown(0);
+    	Robot.rightDrive.setBrown(0);
     }
 
     protected void interrupted() {
@@ -62,8 +62,8 @@ public class ClimbMode extends Command {
     	Robot.rightDrive.setThrottleMode();
     	Robot.leftDrive.setVCRampRate(24);
     	Robot.rightDrive.setVCRampRate(24);
-    	Robot.leftDrive.set(0);
-    	Robot.rightDrive.set(0);
+    	Robot.leftDrive.setBrown(0);
+    	Robot.rightDrive.setBrown(0);
     	
     }
 }

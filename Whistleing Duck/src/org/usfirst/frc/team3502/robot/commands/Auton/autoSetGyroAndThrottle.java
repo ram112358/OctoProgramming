@@ -32,8 +32,8 @@ public class autoSetGyroAndThrottle extends Command {
     	error = setpoint - RobotMap.gyro.getAngle();
     	leftValue = -throttle - error * kP;    	
     	rightValue = -throttle + error * kP;
-    	Robot.leftDrive.set(leftValue);
-    	Robot.rightDrive.set(rightValue);
+    	Robot.leftDrive.setBrown(leftValue);
+    	Robot.rightDrive.setBrown(rightValue);
     }
 
     protected boolean isFinished() {

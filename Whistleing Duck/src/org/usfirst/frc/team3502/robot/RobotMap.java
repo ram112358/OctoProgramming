@@ -48,7 +48,7 @@ public class RobotMap {
     	climbingButton = 8,
     	rightIntakeInButton = 2,
     	rightIntakeOutButton = 3,
-    	gyroDriveButton = 1,
+    	gyroDriveStraightButton = 1,
     	driveShiftButton = 4,
     	climbShiftButton = 5;
     
@@ -76,4 +76,9 @@ public class RobotMap {
     
     // Gyro
 	public static final AnalogGyro gyro = new AnalogGyro(1);
+	
+	//Brownout Values
+	public static double
+		brownLimit = 8.0,
+		brownScale = 0.5;
 }

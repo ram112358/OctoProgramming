@@ -1,4 +1,4 @@
-package org.usfirst.frc.team3502.robot.commands.DriveClimb.Gyro;
+package org.usfirst.frc.team3502.robot.commands.DriveClimb;
 
 import org.usfirst.frc.team3502.robot.Robot;
 import org.usfirst.frc.team3502.robot.RobotMap;
@@ -15,22 +15,30 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class DriveToGyroHeading extends Command {
 	
 	double setpoint, error, rightValue, leftValue, battVolt;
-	private double kP = 1.0; //retune for new robot
+	private double kP; //retune for new robot
 
-    public DriveToGyroHeading(double targetHeading) {
+    public DriveToGyroHeading() {
     	requires(Robot.leftDrive);
     	requires(Robot.rightDrive);
-    	this.setpoint = targetHeading;
     	System.out.println("yellow");
     }
 
     protected void initialize() {
+    	if (Robot.oi.getGyroDriveStraightButton())
+    		setpoint = RobotMap.gyro.getAngle();
+    	else if (Robot.oi.getTurn180Button())
+    		setpoint = RobotMap.gyro.getAngle() + 180;
+    	else if (Robot.oi.getTurn360Button())
+    		setpoint = RobotMap.gyro.getAngle() + 360;
+    	
     	Robot.leftDrive.setVoltageMode();
     	Robot.rightDrive.setVoltageMode();
+    	
+    	kP = 0.5;
     }
 
     protected void execute() {
-    	NetworkTable.getTable("Preferences").getNumber("kP", 0);
+    	kP = NetworkTable.getTable("Preferences").getNumber("kP", 0);
     	System.out.println("gyro target is" + setpoint);
     	//CCW (right side forward) makes gyro change in negative direction
     	//CW (left side forward) makes gyro change in positive direction
@@ -40,8 +48,8 @@ public class DriveToGyroHeading extends Command {
     	battVolt = DriverStation.getInstance().getBatteryVoltage();
     	leftValue = Robot.oi.getRightY() * battVolt - error * kP;    	
     	rightValue = Robot.oi.getRightY() * battVolt + error * kP;
-    	Robot.leftDrive.set(leftValue);
-    	Robot.rightDrive.set(rightValue);
+    	Robot.leftDrive.setBrown(leftValue);
+    	Robot.rightDrive.setBrown(rightValue);
     }
 
     protected boolean isFinished() {
