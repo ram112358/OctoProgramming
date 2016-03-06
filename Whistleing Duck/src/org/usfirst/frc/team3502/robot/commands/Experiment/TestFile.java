@@ -47,7 +47,7 @@ public class TestFile extends Command {
     protected void interrupted() {
     }
     
-    private void openFile() throws IOException{
+    private void openFile() throws IOException {
     	File file = new File(path);
     	if(!file.exists()) {
     		file.createNewFile();
@@ -58,7 +58,7 @@ public class TestFile extends Command {
     	}
     }
     
-    private void writeFile() throws IOException{
+    private void writeFile() throws IOException {
     	BufferedWriter outputFile = new BufferedWriter(new FileWriter(path, true));
     	outputFile.write(time+"\t"+"I'm jut a test yes I'm only a test");
     	outputFile.newLine();

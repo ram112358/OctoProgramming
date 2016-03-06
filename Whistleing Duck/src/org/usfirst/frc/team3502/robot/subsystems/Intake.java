@@ -11,7 +11,7 @@ public class Intake extends Subsystem {
 	
 	private static final CANTalon intakeMotor = new CANTalon(RobotMap.intakePort);
 	
-    public Intake(){
+    public Intake() {
     	intakeMotor.changeControlMode(TalonControlMode.PercentVbus);
     	intakeMotor.enable();
     }
@@ -21,7 +21,7 @@ public class Intake extends Subsystem {
     }
     
     
-    public void set(double outputValue){
+    public void set(double outputValue) {
     	intakeMotor.set(outputValue);
     } 
 }

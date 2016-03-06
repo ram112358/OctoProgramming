@@ -26,7 +26,12 @@ public class BottomTimedFullUp extends Command {
     protected void initialize() {
     	Robot.topDuck.setVoltageMode();
     	Robot.bottomDuck.setVoltageMode();
+    	// Robot.topDuck.setThrottleMode();
+    	// Robot.bottomDuck.setThrottleMode();
+    	
     	timer.start();
+    	isDone = false;
+    	
     	timeToRun = NetworkTable.getTable("Preferences").getNumber("Sec Run", 0);
     	timeToBrake = NetworkTable.getTable("Preferences").getNumber("Sec Brake", 0) + timeToRun;
     }
@@ -34,9 +39,12 @@ public class BottomTimedFullUp extends Command {
     protected void execute() {
     	time = timer.get();
     	if (time < timeToRun)
-    		Robot.bottomDuck.set(Robot.oi.getIntakeThrottle() * 12);
+        	Robot.bottomDuck.set(Robot.oi.getIntakeThrottle() * 12);
+        	// Robot.bottomDuck.set(Robot.oi.getIntakeThrottle());
     	else if (time < timeToBrake)
-    		Robot.bottomDuck.set(1.0);
+    		Robot.bottomDuck.set(- 0.1);
+    	else
+    		isDone = true;
     }
 
     protected boolean isFinished() {

@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3502.robot.subsystems;
 
 import org.usfirst.frc.team3502.robot.RobotMap;
+import org.usfirst.frc.team3502.robot.commands.DriveClimb.RegDriveAttackEnd;
 import org.usfirst.frc.team3502.robot.commands.DriveClimb.RegDriveDuckEnd;
 
 import edu.wpi.first.wpilibj.CANTalon;
@@ -19,7 +20,7 @@ public class RightDrive extends Subsystem {
 		batteryVoltage,
 		rampRate = 24;
 	
-	public RightDrive(){
+	public RightDrive() {
 		rightTalon.changeControlMode(TalonControlMode.PercentVbus);
 		rightTalon.enableBrakeMode(true);
 		
@@ -34,7 +35,7 @@ public class RightDrive extends Subsystem {
 	}
 	
     public void initDefaultCommand() {
-    	setDefaultCommand(new RegDriveDuckEnd());
+    	setDefaultCommand(new RegDriveAttackEnd());
     }
 
     public void set(double outputValue) {
@@ -45,7 +46,7 @@ public class RightDrive extends Subsystem {
     	rightTalon.set(brownOutWatch(outputValue));
     }
     
-    public void setSineScaling(double outputValue){
+    public void setSineScaling(double outputValue) {
     	if (outputValue > 0.0)
     		rightTalon.set((Math.sin((outputValue * Math.PI) - (Math.PI / 2)) / 2) + .5);
     	else if (outputValue < 0.0)
@@ -54,10 +55,10 @@ public class RightDrive extends Subsystem {
     		rightTalon.set(0.0);
     }
     
-    public double brownOutWatch(double outputValue){
+    public double brownOutWatch(double outputValue) {
     	/*batteryVoltage = DriverStation.getInstance().getBatteryVoltage();
     	outputValue *= batteryVoltage;
-    	if (batteryVoltage < RobotMap.brownLimit){
+    	if (batteryVoltage < RobotMap.brownLimit) {
     		setVCRampRate(12.0);
     		setVoltageMode();
         	outputValue *= RobotMap.brownScale;
@@ -69,38 +70,42 @@ public class RightDrive extends Subsystem {
     	return outputValue;
     }
     
-    public int getEncPosition(){
+    public int getEncPosition() {
     	return rightTalon.getEncPosition();
     }
     
-    public void setEncPosition(int newPosition){
+    public void setEncPosition(int newPosition) {
     	rightTalon.setEncPosition(newPosition);
     }
     
-    public void setPositionMode(){
+    public void setPositionMode() {
     	rightTalon.changeControlMode(TalonControlMode.Position);
     	rightTalon.set(getEncPosition());
     }
     
-    public void setThrottleMode(){
+    public void setThrottleMode() {
     	rightTalon.changeControlMode(TalonControlMode.PercentVbus);
     	rightTalon.set(0.0);
     
     }
     
-    public void setVoltageMode(){
+    public void setVoltageMode() {
     	rightTalon.changeControlMode(TalonControlMode.Voltage);
     	rightTalon.set(0.0);
     }
     
-    public int getClosedLoopError(){
+    public int getClosedLoopError() {
     	return rightTalon.getClosedLoopError();
     }
     
-    public void setVCRampRate(double rampRate){ //Volts per second
-    	if (rampRate != this.rampRate){
+    public void setVCRampRate(double rampRate) { //Volts per second
+    	if (rampRate != this.rampRate) {
     		this.rampRate = rampRate;
     		rightTalon.setVoltageCompensationRampRate(this.rampRate);
     	}
+    }
+    
+    public double getSetpoint() {
+    	return rightTalon.getSetpoint();
     }
 }

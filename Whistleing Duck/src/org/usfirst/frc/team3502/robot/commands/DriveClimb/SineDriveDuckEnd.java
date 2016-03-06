@@ -16,7 +16,7 @@ public class SineDriveDuckEnd extends Command {
 
     protected void execute() {
 		Robot.rightDrive.setSineScaling(Robot.oi.getRightY());
-		Robot.leftDrive.setSineScaling(Robot.oi.getLeftY());
+		Robot.leftDrive.setSineScaling(- Robot.oi.getLeftY());
     }
 
     protected boolean isFinished() {

@@ -16,7 +16,7 @@ public class DontDuckIt extends Command {
 
     protected void initialize() {
     	Robot.topDuck.setThrottleMode();
-    	Robot.bottomDuck.setThrottleMode();
+    	Robot.bottomDuck.setPositionMode();
     }
 
     protected void execute() {
@@ -24,7 +24,7 @@ public class DontDuckIt extends Command {
     }
 
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     protected void end() {

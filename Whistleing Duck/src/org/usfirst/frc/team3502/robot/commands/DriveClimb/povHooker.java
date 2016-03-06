@@ -12,13 +12,16 @@ public class povHooker extends Command {
     }
 
     protected void initialize() {
+		Robot.hooker.setServoPosition(90);
     }
 
     protected void execute() {
     	SmartDashboard.putNumber("POV Test", Robot.oi.getOpPOV());
-    	if(Robot.oi.getOpPOV() != -1){
+    	if(Robot.oi.getOpPOV() != -1) {
     		Robot.hooker.setServoPosition(Robot.oi.getOpPOV());
     	}
+    	else
+    		Robot.hooker.setServoPosition(90);
     }
 
     protected boolean isFinished() {

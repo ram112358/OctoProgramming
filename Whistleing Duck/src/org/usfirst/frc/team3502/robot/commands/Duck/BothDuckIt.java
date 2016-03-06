@@ -6,6 +6,8 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class BothDuckIt extends Command {
 	
+	private double duckY;
+	
     public BothDuckIt() {
     	requires(Robot.topDuck);
     	requires(Robot.bottomDuck);
@@ -17,8 +19,23 @@ public class BothDuckIt extends Command {
 }
 
     protected void execute() {
-    	Robot.topDuck.JoySetDrive(Robot.oi.getDuckY());
-    	Robot.bottomDuck.JoySetDrive(Robot.oi.getDuckY());
+    	duckY = Robot.oi.getDuckY();
+    	if (!Robot.topDuck.getTopLimit() && !Robot.bottomDuck.getBottomLimit()) {
+    		Robot.topDuck.JoySetDrive(duckY);
+    		Robot.bottomDuck.JoySetDrive(duckY);
+    	}
+    	else if (duckY > 0.0 && !Robot.bottomDuck.getBottomLimit()) {
+    		Robot.topDuck.JoySetDrive(duckY);
+    		Robot.bottomDuck.JoySetDrive(duckY);
+    	}
+    	else if (duckY < 0.0 && !Robot.topDuck.getTopLimit()) {
+    		Robot.topDuck.JoySetDrive(duckY);
+    		Robot.bottomDuck.JoySetDrive(duckY);
+    	}
+    	else{
+    		Robot.topDuck.JoySetDrive(0.0);
+    		Robot.bottomDuck.JoySetDrive(0.0);
+    	}
     }
 
     protected boolean isFinished() {

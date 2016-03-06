@@ -20,7 +20,6 @@ public class DriveToGyroHeading extends Command {
     public DriveToGyroHeading() {
     	requires(Robot.leftDrive);
     	requires(Robot.rightDrive);
-    	System.out.println("yellow");
     }
 
     protected void initialize() {
@@ -66,6 +65,5 @@ public class DriveToGyroHeading extends Command {
     	Robot.leftDrive.setThrottleMode();
     	Robot.rightDrive.setThrottleMode();
     	System.out.println("interupt");
-    	
     }
 }

@@ -18,16 +18,16 @@ public class IntakeDrive extends Command {
     }
 
     protected void execute() {
-    	if (Robot.oi.getIntakeInButton()){
+    	if (Robot.oi.getIntakeInButton()) {
     		Robot.intake.set(Robot.oi.getIntakeThrottle());
     	}
-    	else if(Robot.oi.getIntakeOutButton()){
+    	else if(Robot.oi.getIntakeOutButton()) {
     		Robot.intake.set(-Robot.oi.getIntakeThrottle());
     	}
-    	/*else if(Robot.oi.getOpPOV() == 180){
+    	/*else if(Robot.oi.getOpPOV() == 180) {
     		Robot.intake.set(Robot.oi.getIntakeThrottle());
     	}
-    	else if(Robot.oi.getOpPOV() == 0){
+    	else if(Robot.oi.getOpPOV() == 0) {
     		Robot.intake.set(-Robot.oi.getIntakeThrottle());
     	}*/
     	else{

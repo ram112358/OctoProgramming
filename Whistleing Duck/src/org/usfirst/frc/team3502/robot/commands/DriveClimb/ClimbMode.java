@@ -11,6 +11,7 @@ public class ClimbMode extends Command {
 	private boolean done;
 	private double leftValue, rightValue, battVolt, error;
 	private double kP = 10.0;
+	private double accelZSetpoint;
 	
     public ClimbMode() {
     	requires(Robot.shifting);
@@ -20,11 +21,16 @@ public class ClimbMode extends Command {
 
     protected void initialize() {
     	done = false;
+    	
     	Robot.shifting.setClimbMode();
+    	
     	Robot.rightDrive.setVoltageMode();
     	Robot.leftDrive.setVoltageMode();
+    	
     	Robot.rightDrive.setVCRampRate(12);
     	Robot.leftDrive.setVCRampRate(12);
+    	
+    	accelZSetpoint = Robot.shifting.getAccelZ();
     }
 
     protected void execute() {
@@ -34,18 +40,19 @@ public class ClimbMode extends Command {
     	
     	battVolt = DriverStation.getInstance().getBatteryVoltage();
     	error = -Robot.shifting.getAccelX();
-    	leftValue = Math.abs(Robot.oi.getRightY() * battVolt + error * kP);
-    	rightValue = Math.abs(Robot.oi.getRightY() * battVolt - error * kP);
+    	leftValue = - Math.abs(- Robot.oi.getRightY() * battVolt - error * kP);
+    	rightValue = - Math.abs(- Robot.oi.getRightY() * battVolt + error * kP);
     	Robot.leftDrive.setBrown(leftValue);
-    	Robot.rightDrive.setBrown(-rightValue);
+    	Robot.rightDrive.setBrown(rightValue);
     	
-    	if (Robot.shifting.getAccelZ() < 0.8){
+    	if (Robot.shifting.getAccelZ() < 0.7) {
     		done = true;
     	}
     }
 
     protected boolean isFinished() {
-    	return done;
+    	// return done;
+    	return false;
     }
 
     protected void end() {

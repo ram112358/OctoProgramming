@@ -17,10 +17,13 @@ public class BottomFullUp extends Command {
     protected void initialize() {
     	Robot.topDuck.setVoltageMode();
     	Robot.bottomDuck.setVoltageMode();
+    	// Robot.topDuck.setThrottleMode();
+    	// Robot.bottomDuck.setThrottleMode();
     }
 
     protected void execute() {
     	Robot.bottomDuck.set(Robot.oi.getIntakeThrottle() * 12);
+    	// Robot.bottomDuck.set(Robot.oi.getIntakeThrottle());
     }
 
     protected boolean isFinished() {
