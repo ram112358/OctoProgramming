@@ -27,7 +27,6 @@ public class TopDuck extends Subsystem {
 		duckTalon.enableLimitSwitch(true, true);
 		
 		duckTalon.changeControlMode(TalonControlMode.PercentVbus);
-		duckTalon.enableBrakeMode(true);
     	
 		// duckTalon.setPID(Constants.kTopPUn, Constants.kTopIUn, Constants.kTopDUn, Constants.kTopFUn, Constants.kTopIzoneUn, Constants.kTopCloseLoopRampRateUn, Constants.kTopProfileUn);
     	duckTalon.setPID(Constants.kTopP, Constants.kTopI, Constants.kTopD, Constants.kTopF, Constants.kTopIzone, Constants.kTopCloseLoopRampRate, Constants.kTopProfile);
