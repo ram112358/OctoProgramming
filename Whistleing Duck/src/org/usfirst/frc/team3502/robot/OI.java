@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3502.robot;
 
+import org.usfirst.frc.team3502.robot.commands.DriveClimb.BasicClimbMode;
 import org.usfirst.frc.team3502.robot.commands.DriveClimb.ClimbMode;
 import org.usfirst.frc.team3502.robot.commands.DriveClimb.DriveMode;
 import org.usfirst.frc.team3502.robot.commands.DriveClimb.DriveToGyroHeading;
@@ -57,18 +58,15 @@ public class OI {
     	rightIntakeOutButton = new JoystickButton(rightJoy, DriverStationMap.rightIntakeOutButton),
     	
     	climbingButton = new JoystickButton(rightJoy, DriverStationMap.climbingButton),
-    	driveShiftButton = new JoystickButton(rightJoy, DriverStationMap.driveShiftButton),
-    	climbShiftButton = new JoystickButton(rightJoy, DriverStationMap.climbShiftButton),
-    	gyroDriveStraightButton = new JoystickButton(rightJoy, DriverStationMap.gyroDriveStraightButton),
+    	gyroDriveStraightButton = new JoystickButton(leftJoy, DriverStationMap.gyroDriveStraightButton),
     	
     	//Left Joystick Buttons    	
-    	regDriveDuckEndButton = new JoystickButton(leftJoy, DriverStationMap.regDriveDuckEndButton),
-    	regDriveAttackEndButton = new JoystickButton(leftJoy, DriverStationMap.regDriveAttackEndButton),
-    	sineDriveDuckEndButton = new JoystickButton(leftJoy, DriverStationMap.sineDriveDuckEndButton),
+    	// regDriveDuckEndButton = new JoystickButton(leftJoy, DriverStationMap.regDriveDuckEndButton),
+    	// regDriveAttackEndButton = new JoystickButton(leftJoy, DriverStationMap.regDriveAttackEndButton),
+    	sineDriveDuckEndButton = new JoystickButton(rightJoy, DriverStationMap.sineDriveDuckEndButton),
     	sineDriveAttackEndButton = new JoystickButton(leftJoy, DriverStationMap.sineDriveAttackEndButton),
     	
 		turn180Button = new JoystickButton(leftJoy, DriverStationMap.turn180Button),
-		turn360Button = new JoystickButton(leftJoy, DriverStationMap.turn360Button),
 		resetGyroButton = new JoystickButton(leftJoy, DriverStationMap.resetGyroButton);
 	
 	public OI() {
@@ -89,18 +87,15 @@ public class OI {
 		setBothUpButton.whenPressed(new SetBothDucksGround());
 		setBothGroundButton.whenPressed(new SetBothDucksGround());
 			    
-		regDriveDuckEndButton.whenPressed(new RegDriveDuckEnd());
-		regDriveAttackEndButton.whenPressed(new RegDriveAttackEnd());
+		// regDriveDuckEndButton.whenPressed(new RegDriveDuckEnd());
+		// regDriveAttackEndButton.whenPressed(new RegDriveAttackEnd());
 		sineDriveDuckEndButton.whenPressed(new SineDriveDuckEnd());
 		sineDriveAttackEndButton.whenPressed(new SineDriveAttackEnd());
 		
-		driveShiftButton.whenPressed(new DriveMode());
-		climbShiftButton.whenPressed(new ClimbMode());
-		climbingButton.whenPressed(new ClimbMode());
+		climbingButton.whenPressed(new BasicClimbMode());
 
 		gyroDriveStraightButton.whileHeld(new DriveToGyroHeading(false, 0));  //The 2nd argument is only used for autonomous
 		turn180Button.whileHeld(new DriveToGyroHeading(false, 0));
-		turn360Button.whileHeld(new DriveToGyroHeading(false, 0));
 	}
 	
 	
@@ -163,9 +158,5 @@ public class OI {
     
     public boolean getTurn180Button() {
     	return turn180Button.get();
-    }
-    
-    public boolean getTurn360Button() {
-    	return turn360Button.get();
     }
 }

@@ -27,20 +27,15 @@ public class DriverStationMap {
     
     //Right Buttons
     public static int
-    	climbingButton = 8,
+    	sineDriveDuckEndButton = 1,
+    	climbingButton = 11,
     	rightIntakeInButton = 2,
-    	rightIntakeOutButton = 3,
-    	gyroDriveStraightButton = 1,
-    	driveShiftButton = 4,
-    	climbShiftButton = 5;
-    
+    	rightIntakeOutButton = 3;
+    	
     //Left Buttons
     public static int
-    	regDriveDuckEndButton = 3,
-    	regDriveAttackEndButton = 2,
-    	sineDriveDuckEndButton = 5,
-    	sineDriveAttackEndButton = 4,
-    	turn180Button = 6,
-    	turn360Button = 7,
-    	resetGyroButton = 8;
+    	sineDriveAttackEndButton = 1,
+    	gyroDriveStraightButton = 2,
+    	turn180Button = 3,
+    	resetGyroButton = 6;
 }

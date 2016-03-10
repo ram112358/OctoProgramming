@@ -17,6 +17,7 @@ public class ClimbMode extends Command {
     	requires(Robot.shifting);
     	requires(Robot.leftDrive);
     	requires(Robot.rightDrive);
+    	requires(Robot.hooker);
     }
 
     protected void initialize() {
@@ -31,6 +32,7 @@ public class ClimbMode extends Command {
     	Robot.leftDrive.setVCRampRate(12);
     	
     	accelZSetpoint = Robot.shifting.getAccelZ();
+		Robot.hooker.setServoPosition(0);
     }
 
     protected void execute() {

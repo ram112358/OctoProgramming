@@ -35,11 +35,6 @@ public class DriveToGyroHeading extends Command {
     		kP = Constants.kTurnP;
     		kD = Constants.kTurnD;
     	}
-    	else if (Robot.oi.getTurn360Button()) {
-    		setpoint = RobotMap.gyro.getAngle() + 360;
-    		kP = Constants.kTurnP;
-    		kD = Constants.kTurnD;
-    	}
 
     	Robot.leftDrive.setVoltageMode();
     	Robot.rightDrive.setVoltageMode();

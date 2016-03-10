@@ -3,25 +3,24 @@ package org.usfirst.frc.team3502.robot.commands.DriveClimb;
 import org.usfirst.frc.team3502.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class povHooker extends Command {
+public class BasicClimbMode extends Command {
 
-    public povHooker() {
+    public BasicClimbMode() {
+    	requires(Robot.shifting);
     	requires(Robot.hooker);
+    	requires(Robot.rightDrive);
+    	requires(Robot.leftDrive);
     }
 
     protected void initialize() {
-		Robot.hooker.setServoPosition(90);
+    	Robot.shifting.setClimbMode();
+    	Robot.hooker.setServoPosition(0);
     }
 
     protected void execute() {
-    	SmartDashboard.putNumber("POV Test", Robot.oi.getOpPOV());
-    	if(Robot.oi.getOpPOV() != -1) {
-    		Robot.hooker.setServoPosition(Robot.oi.getOpPOV());
-    	}
-    	else
-    		Robot.hooker.setServoPosition(90);
+    	Robot.rightDrive.set(- Math.abs(Robot.oi.getLeftY()));
+    	Robot.leftDrive.set(- Math.abs(Robot.oi.getRightY()));
     }
 
     protected boolean isFinished() {
