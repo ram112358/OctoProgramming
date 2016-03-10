@@ -1,7 +1,15 @@
 package org.usfirst.frc.team3502.robot;
 
 public class Constants {
+	
+	public static boolean
+		killPID = false;
+	
 	// Top Duck
+	
+	public static final int
+		kTopErrorExcede = 999999999;
+	
 	// Ducked
 	public static final double
 		kTopP = 0.96,
@@ -27,6 +35,10 @@ public class Constants {
 		kTopProfileUn = 1;
 	
 	// Bottom Duck
+	
+	public static final int
+		kBottomErrorExcede = 999999999;
+	
 	// Ducked
 	public static final double
 		kBottomP = 0.35,
@@ -51,7 +63,13 @@ public class Constants {
 	public static final int
 		kBottomProfileUn = 1;
 	
-	//Brownout Values
+	// Drive Train Stuff
+	public static final double
+		kStraightP = 0.5;
+	public static final double
+		kTurnP = 0.1;
+	
+	// Brownout Values
 	public static double
 		kBrownLimit = 8.0,
 		kBrownScale = 0.5;

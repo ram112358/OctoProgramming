@@ -1,4 +1,4 @@
-package org.usfirst.frc.team3502.robot.commands;
+/*package org.usfirst.frc.team3502.robot.commands.machOne;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -38,8 +38,8 @@ public class ReadFile extends Command {
     		System.out.println(trajectory[x][1]);
     	}
     	for (int x = 0; x < MotionProfile.kNumPoints; x++) {
-    		System.out.println(MotionProfile.Points[x][0]);
-    		System.out.println(MotionProfile.Points[x][1]);
+    		System.out.println(MotionProfile.doublePoints[x][0]);
+    		System.out.println(MotionProfile.doublePoints[x][1]);
     	}
     }
     
@@ -104,4 +104,4 @@ public class ReadFile extends Command {
     		MotionProfile.Points[n][2] = 20.0;
     	}
     }
-}
+}*/

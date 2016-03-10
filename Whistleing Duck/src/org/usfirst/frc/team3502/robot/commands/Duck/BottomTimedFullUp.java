@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3502.robot.commands.Duck;
 
+import org.usfirst.frc.team3502.robot.Constants;
 import org.usfirst.frc.team3502.robot.Robot;
 
 import edu.wpi.first.wpilibj.Timer;
@@ -48,7 +49,9 @@ public class BottomTimedFullUp extends Command {
     }
 
     protected boolean isFinished() {
-    	if (isDone)
+    	if (Constants.killPID)
+    		return true;
+    	else if (isDone)
     		return true;
     	return false;
     }

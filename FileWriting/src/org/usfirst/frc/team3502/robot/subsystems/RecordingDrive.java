@@ -155,7 +155,7 @@ public class RecordingDrive extends Subsystem {
 						MPStarted = false;
 	
 						MPValue = CANTalon.SetValueMotionProfile.Disable;
-						startFilling(MotionProfile.Points, MotionProfile.kNumPoints);
+						startFilling(MotionProfile.doublePoints, MotionProfile.kNumPoints);
 						/*
 						 * MP is being sent to CAN bus, wait a small amount of time
 						 */

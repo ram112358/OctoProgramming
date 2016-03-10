@@ -4,5 +4,7 @@ public class MotionProfile {
 	public static int kNumPoints;		
 	// Position (rotations)	Velocity (RPM)	Duration (ms)
 	//  [rows][columns]
-	public static double [][]Points;
+	public static double[][] doublePoints;
+	
+	public static int[] intPoints;
 }

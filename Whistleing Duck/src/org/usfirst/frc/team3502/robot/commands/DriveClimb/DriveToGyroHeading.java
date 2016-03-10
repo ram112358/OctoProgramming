@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3502.robot.commands.DriveClimb;
 
+import org.usfirst.frc.team3502.robot.Constants;
 import org.usfirst.frc.team3502.robot.Robot;
 import org.usfirst.frc.team3502.robot.RobotMap;
 
@@ -9,9 +10,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-/**
- *
- */
 public class DriveToGyroHeading extends Command {
 	
 	double setpoint, error, rightValue, leftValue, battVolt;
@@ -23,17 +21,22 @@ public class DriveToGyroHeading extends Command {
     }
 
     protected void initialize() {
-    	if (Robot.oi.getGyroDriveStraightButton())
+    	if (Robot.oi.getGyroDriveStraightButton()) {
     		setpoint = RobotMap.gyro.getAngle();
-    	else if (Robot.oi.getTurn180Button())
+    		kP = Constants.kStraightP;
+    	}
+    	else if (Robot.oi.getTurn180Button()) {
     		setpoint = RobotMap.gyro.getAngle() + 180;
-    	else if (Robot.oi.getTurn360Button())
+    		kP = Constants.kTurnP;
+    	}
+    	else if (Robot.oi.getTurn360Button()) {
     		setpoint = RobotMap.gyro.getAngle() + 360;
-    	
+    		kP = Constants.kTurnP;
+    	}
+
     	Robot.leftDrive.setVoltageMode();
     	Robot.rightDrive.setVoltageMode();
     	
-    	kP = 0.5;
     }
 
     protected void execute() {

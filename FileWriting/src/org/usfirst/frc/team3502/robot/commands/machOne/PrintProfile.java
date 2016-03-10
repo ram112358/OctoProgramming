@@ -1,4 +1,4 @@
-package org.usfirst.frc.team3502.robot.commands;
+package org.usfirst.frc.team3502.robot.commands.machOne;
 
 import org.usfirst.frc.team3502.robot.MotionProfile;
 import org.usfirst.frc.team3502.robot.Robot;
@@ -20,8 +20,8 @@ public class PrintProfile extends Command {
     protected void execute() {
     	SmartDashboard.putBoolean("ReadingFile", true);
     	for (n = 0; n < MotionProfile.kNumPoints; n++) {
-    		SmartDashboard.putNumber("pos", MotionProfile.Points[n][0]);
-    		SmartDashboard.putNumber("vel", MotionProfile.Points[n][1]);
+    		SmartDashboard.putNumber("pos", MotionProfile.doublePoints[n][0]);
+    		SmartDashboard.putNumber("vel", MotionProfile.doublePoints[n][1]);
     	}
     	//SmartDashboard.putBoolean("ReadingFile", false);
     }

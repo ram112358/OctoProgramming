@@ -2,6 +2,7 @@
 package org.usfirst.frc.team3502.robot;
 
 import org.usfirst.frc.team3502.robot.commands.Auton.autoSetGyroAndThrottle;
+import org.usfirst.frc.team3502.robot.commands.Duck.BothDuckIt;
 import org.usfirst.frc.team3502.robot.subsystems.BottomDuck;
 import org.usfirst.frc.team3502.robot.subsystems.Hooker;
 import org.usfirst.frc.team3502.robot.subsystems.Intake;
@@ -159,6 +160,10 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        
+        topDuck.izoneBraker();
+        topDuck.errorExceder();
+        bottomDuck.errorExceder();
         
         SmartDashboard.putData(shifting); 
         SmartDashboard.putData(topDuck);

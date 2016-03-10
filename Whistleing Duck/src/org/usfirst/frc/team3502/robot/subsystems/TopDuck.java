@@ -45,7 +45,7 @@ public class TopDuck extends Subsystem {
     }
 
     public void setSlow(double outputValue) {
-    	duckTalon.set(outputValue * 0.4);
+    	set(outputValue * 0.4);
     }
 
     public void JoySetDrive(double joystickValue) {
@@ -119,5 +119,27 @@ public class TopDuck extends Subsystem {
     	if (duckBrake.get() == DoubleSolenoid.Value.kForward)
     		return true;
     	return false;
+    }
+    
+    public void izoneBraker() {
+    	if (getTalonMode() != TalonControlMode.PercentVbus) {
+    		if (duckTalon.getError() <= duckTalon.getIZone())
+    			setBrakeMode();
+    		else
+    			setNotBrakeMode();
+    	}
+    }
+    
+    public void errorExceder() {
+    	if (getTalonMode() != TalonControlMode.PercentVbus) {
+    		if (duckTalon.getError() > Constants.kTopErrorExcede)
+    			Constants.killPID = true;
+    		else
+    			Constants.killPID = false;
+    	}
+    }
+    
+    public TalonControlMode getTalonMode() {
+    	return duckTalon.getControlMode();
     }
 }

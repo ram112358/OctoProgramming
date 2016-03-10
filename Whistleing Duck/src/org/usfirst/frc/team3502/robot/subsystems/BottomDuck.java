@@ -39,7 +39,7 @@ public class BottomDuck extends Subsystem {
     }
 
     public void setSlow(double outputValue) {
-    	duckTalon.set(- outputValue * 0.3);
+    	set(outputValue * 0.3);
     }
 
     public void JoySetDrive(double joystickValue) {
@@ -97,5 +97,18 @@ public class BottomDuck extends Subsystem {
     
     public boolean getBottomLimit() {
     	return !duckTalon.isRevLimitSwitchClosed();
+    }
+    
+    public void errorExceder() {
+    	if (getTalonMode() != TalonControlMode.PercentVbus) {
+    		if (duckTalon.getError() > Constants.kBottomErrorExcede)
+    			Constants.killPID = true;
+    		else
+    			Constants.killPID = false;
+    	}
+    }
+    
+    public TalonControlMode getTalonMode() {
+    	return duckTalon.getControlMode();
     }
 }

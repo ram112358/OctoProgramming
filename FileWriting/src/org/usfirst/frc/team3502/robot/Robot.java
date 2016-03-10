@@ -1,6 +1,6 @@
-
 package org.usfirst.frc.team3502.robot;
 
+import org.usfirst.frc.team3502.robot.subsystems.DriveRecord;
 import org.usfirst.frc.team3502.robot.subsystems.RecordingDrive;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -19,8 +19,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
-	
-	public static final RecordingDrive drive = new RecordingDrive();
+
+	//public static final RecordingDrive drive = new RecordingDrive();
+	public static final DriveRecord drive = new DriveRecord();
 	public static OI oi;
 
     Command autonomousCommand;
@@ -51,6 +52,11 @@ public class Robot extends IterativeRobot {
 	
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
+		
+		SmartDashboard.putNumber("EncValue", drive.getPosition());
+		SmartDashboard.putNumber("EncVel", drive.getVelocity());
+		SmartDashboard.putNumber("setpoint", drive.getSetpoint());
+		SmartDashboard.putNumber("Error", drive.getClosedLoopError());
 	}
 
 	/**
@@ -101,7 +107,10 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
 
-        SmartDashboard.putBoolean("ReadingFile", MotionProfile.readingFile);
+		SmartDashboard.putNumber("EncValue", drive.getPosition());
+		SmartDashboard.putNumber("EncVel", drive.getVelocity());
+		SmartDashboard.putNumber("setpoint", drive.getSetpoint());
+		SmartDashboard.putNumber("Error", drive.getClosedLoopError());
     }
     
     /**

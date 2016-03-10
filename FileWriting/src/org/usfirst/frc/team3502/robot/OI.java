@@ -1,12 +1,10 @@
 package org.usfirst.frc.team3502.robot;
 
-import org.usfirst.frc.team3502.robot.commands.FileTester;
-import org.usfirst.frc.team3502.robot.commands.ProfileExecuter;
-import org.usfirst.frc.team3502.robot.commands.ReadFile;
-import org.usfirst.frc.team3502.robot.commands.RecordMoving;
-import org.usfirst.frc.team3502.robot.commands.RecordMovingFancy;
-import org.usfirst.frc.team3502.robot.commands.RecordMovingTimeOnly;
-import org.usfirst.frc.team3502.robot.commands.PrintProfile;
+import org.usfirst.frc.team3502.robot.commands.machTwo.PlayArrayPos;
+import org.usfirst.frc.team3502.robot.commands.machTwo.PlayArrayVel;
+import org.usfirst.frc.team3502.robot.commands.machTwo.PrintArray;
+import org.usfirst.frc.team3502.robot.commands.machTwo.RecordArrayPos;
+import org.usfirst.frc.team3502.robot.commands.machTwo.RecordArrayVel;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -30,6 +28,7 @@ public class OI {
 	    // button.whileHeld(new ExampleCommand());
 	    // button.whenReleased(new ExampleCommand());
 		
+		/*
 		// writeFileButton.whileHeld(new FileTester());
 		// writeFileButton.whileHeld(new RecordMoving());
 		// writeFileButton.whenPressed(new RecordMoving());
@@ -42,6 +41,11 @@ public class OI {
 		readFileButton.whenPressed(new ReadFile());
 		
 		printFileButton.whenPressed(new PrintProfile());
+		*/
+		
+		writeFileButton.whenPressed(new RecordArrayPos());
+		printFileButton.whenPressed(new PrintArray());
+		playFileButton.whenPressed(new PlayArrayPos());
 	}
 
     public double getManY(){

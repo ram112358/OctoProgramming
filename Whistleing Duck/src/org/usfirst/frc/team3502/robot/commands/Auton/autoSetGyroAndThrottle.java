@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3502.robot.commands.Auton;
 
+import org.usfirst.frc.team3502.robot.Constants;
 import org.usfirst.frc.team3502.robot.Robot;
 import org.usfirst.frc.team3502.robot.RobotMap;
 
@@ -9,11 +10,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class autoSetGyroAndThrottle extends Command {
 	
 	private double setpoint, throttle, error, rightValue, leftValue;
-	private double kP = 0.03; //.095 works when joystick is 0
-
+	// private double kP = 0.03; //.095 works when joystick is 0
+	private double kP = Constants.kStraightP;
+	
     public autoSetGyroAndThrottle(double targetHeading, double desiredSpeed) {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     	requires(Robot.leftDrive);
     	requires(Robot.rightDrive);
     	this.setpoint = targetHeading;

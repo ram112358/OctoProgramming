@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3502.robot.commands.Duck;
 
+import org.usfirst.frc.team3502.robot.Constants;
 import org.usfirst.frc.team3502.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -22,6 +23,8 @@ public class BottomDuckIt extends Command {
     }
 
     protected boolean isFinished() {
+    	if (Constants.killPID)
+    		return true;
         return false;
     }
 
