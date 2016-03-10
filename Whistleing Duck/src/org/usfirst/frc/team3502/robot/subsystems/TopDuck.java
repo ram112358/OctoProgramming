@@ -131,7 +131,7 @@ public class TopDuck extends Subsystem {
     }
     
     public void errorExceder() {
-    	if (getTalonMode() != TalonControlMode.PercentVbus) {
+    	if (getTalonMode() == TalonControlMode.Position) {
     		if (duckTalon.getError() > Constants.kTopErrorExcede)
     			Constants.killPID = true;
     		else

@@ -98,9 +98,9 @@ public class OI {
 		climbShiftButton.whenPressed(new ClimbMode());
 		climbingButton.whenPressed(new ClimbMode());
 
-		gyroDriveStraightButton.whileHeld(new DriveToGyroHeading());
-		turn180Button.whileHeld(new DriveToGyroHeading());
-		turn360Button.whileHeld(new DriveToGyroHeading());
+		gyroDriveStraightButton.whileHeld(new DriveToGyroHeading(false, 0));  //The 2nd argument is only used for autonomous
+		turn180Button.whileHeld(new DriveToGyroHeading(false, 0));
+		turn360Button.whileHeld(new DriveToGyroHeading(false, 0));
 	}
 	
 	

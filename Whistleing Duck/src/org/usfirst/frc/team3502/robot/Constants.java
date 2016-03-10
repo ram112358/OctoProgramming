@@ -65,9 +65,11 @@ public class Constants {
 	
 	// Drive Train Stuff
 	public static final double
-		kStraightP = 0.5;
+		kStraightP = 0.5,
+		kStraightD = 0.15;
 	public static final double
-		kTurnP = 0.1;
+		kTurnP = 0.1,  //Needs tuning
+		kTurnD = 0;  //Needs tuning
 	
 	// Brownout Values
 	public static double
