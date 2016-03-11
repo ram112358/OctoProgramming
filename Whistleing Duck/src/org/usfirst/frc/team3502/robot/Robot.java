@@ -50,9 +50,9 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
         chooser = new SendableChooser();
         
-        chooser.addDefault("Don't Go", new AutoDriveStraight(0.0));
-        chooser.addObject("Low Bar (Slow w/ Gyro)", new AutoDriveStraight(0.5));
-        chooser.addObject("Ramparts or Rough Terrain (Fast w/ Gyro)", new AutoDriveStraight(1.0));
+        chooser.addDefault("Don't Go", new AutoDriveStraight(0.0, 0));
+        chooser.addObject("Low Bar (Slow w/ Gyro)", new AutoDriveStraight(0.5, 2));
+        chooser.addObject("Ramparts or Rough Terrain (Fast w/ Gyro)", new AutoDriveStraight(1.0, 2));
         //chooser.addObject("Portcullus", new AutoDriveStraight(0.0, 0.0)); //Change this command when the right one is written
         SmartDashboard.putData("Auto mode", chooser);
 
@@ -120,7 +120,6 @@ public class Robot extends IterativeRobot {
 	 * or additional comparisons to the switch structure below with additional strings & commands.
 	 */
     public void autonomousInit() {
-    	RobotMap.gyro.reset();
         autonomousCommand = (Command) chooser.getSelected();
         
 		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
@@ -151,7 +150,6 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
 
-    	RobotMap.gyro.reset();
         if (autonomousCommand != null) autonomousCommand.cancel();
     }
 

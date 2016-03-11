@@ -23,8 +23,10 @@ public class BottomDuckIt extends Command {
     }
 
     protected boolean isFinished() {
-    	if (Constants.killPID)
+    	if (Constants.killPID) {
+    		Constants.killPID = true;
     		return true;
+    	}
         return false;
     }
 

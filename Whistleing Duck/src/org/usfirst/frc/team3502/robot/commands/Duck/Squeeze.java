@@ -24,8 +24,10 @@ public class Squeeze extends Command {
     }
 
     protected boolean isFinished() {
-    	if (Constants.killPID)
+    	if (Constants.killPID) {
+    		Constants.killPID = true;
     		return true;
+    	}
     	return Robot.topDuck.getClosedLoopError() <= Constants.kTopIzone ||
     			Robot.bottomDuck.getClosedLoopError() <= Constants.kTopIzone;
     }

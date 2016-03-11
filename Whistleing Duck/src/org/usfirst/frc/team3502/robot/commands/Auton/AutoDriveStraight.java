@@ -10,16 +10,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *
  */
 public class AutoDriveStraight extends CommandGroup {
-	
-	private static final Timer timer = new Timer();
-    
-    public  AutoDriveStraight(double throttle) {
-    	
-    	timer.start();
-    	timer.reset();
-    	
-    	if(timer.get() <= 4) //Will need to test for time
-    		addSequential(new DriveToGyroHeading(true, throttle));
+
+	public  AutoDriveStraight(double throttle, double timeOut) {
+		addSequential(new DriveToGyroHeading(true, throttle), timeOut);
     	
     	//TODO: Add code to drive to wall to shoot ball
     	

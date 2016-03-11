@@ -18,15 +18,17 @@ public class DontDuckIt extends Command {
     protected void initialize() {
     	Robot.topDuck.setThrottleMode();
     	Robot.bottomDuck.setPositionMode();
-    }
-
-    protected void execute() {
     	Robot.topDuck.setBrakeMode();
     }
 
+    protected void execute() {
+    }
+
     protected boolean isFinished() {
-    	if (Constants.killPID)
+    	if (Constants.killPID) {
+    		Constants.killPID = true;
     		return true;
+    	}
         return false;
     }
 

@@ -13,7 +13,6 @@ import org.usfirst.frc.team3502.robot.commands.Duck.BottomDuckIt;
 import org.usfirst.frc.team3502.robot.commands.Duck.BottomFullUp;
 import org.usfirst.frc.team3502.robot.commands.Duck.BottomThrottle;
 import org.usfirst.frc.team3502.robot.commands.Duck.BottomTimedFullUp;
-import org.usfirst.frc.team3502.robot.commands.Duck.ClearDuckEncoders;
 import org.usfirst.frc.team3502.robot.commands.Duck.DontDuckIt;
 import org.usfirst.frc.team3502.robot.commands.Duck.SetBothDucksGround;
 import org.usfirst.frc.team3502.robot.commands.Duck.TopDuckIt;
@@ -46,7 +45,6 @@ public class OI {
 	    
 	    // bottomFullUpButton = new JoystickButton(opJoy, DriverStationMap.bottomFullUpButton),
 	    // bottomTimedFullUpButton = new JoystickButton(opJoy, DriverStationMap.bottomTimedFullUpButton),
-	    clearEncButton = new JoystickButton(opJoy, DriverStationMap.clearEncButton),
 	    setBothUpButton = new JoystickButton(opJoy, DriverStationMap.setBothUpButton),
 	    setBothGroundButton = new JoystickButton(opJoy, DriverStationMap.setBothGroundButton),
 	    
@@ -83,7 +81,6 @@ public class OI {
 
 		// bottomFullUpButton.whileHeld(new BottomFullUp());
 		// bottomTimedFullUpButton.whenPressed(new BottomTimedFullUp());
-		clearEncButton.whenPressed(new ClearDuckEncoders());
 		setBothUpButton.whenPressed(new SetBothDucksGround());
 		setBothGroundButton.whenPressed(new SetBothDucksGround());
 			    
