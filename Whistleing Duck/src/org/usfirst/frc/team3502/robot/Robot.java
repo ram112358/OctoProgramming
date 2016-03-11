@@ -51,8 +51,8 @@ public class Robot extends IterativeRobot {
         chooser = new SendableChooser();
         
         chooser.addDefault("Don't Go", new AutoDriveStraight(0.0));
-        chooser.addObject("Low Bar (Slow w/ Gyro)", new AutoDriveStraight(-0.5));
-        chooser.addObject("Ramparts or Rough Terrain (Fast w/ Gyro)", new AutoDriveStraight(-1.0));
+        chooser.addObject("Low Bar (Slow w/ Gyro)", new AutoDriveStraight(0.5));
+        chooser.addObject("Ramparts or Rough Terrain (Fast w/ Gyro)", new AutoDriveStraight(1.0));
         //chooser.addObject("Portcullus", new AutoDriveStraight(0.0, 0.0)); //Change this command when the right one is written
         SmartDashboard.putData("Auto mode", chooser);
 
@@ -162,8 +162,6 @@ public class Robot extends IterativeRobot {
         Scheduler.getInstance().run();
         
         topDuck.izoneBraker();
-        // topDuck.errorExceder();
-        // bottomDuck.errorExceder();
         
         SmartDashboard.putData(shifting); 
         SmartDashboard.putData(topDuck);

@@ -24,6 +24,8 @@ public class TopDuck extends Subsystem {
 	
 	public TopDuck() {
 		duckTalon.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+		duckTalon.setEncPosition(duckTalon.getPulseWidthPosition());
+		
 		duckTalon.enableLimitSwitch(true, true);
 		
 		duckTalon.changeControlMode(TalonControlMode.PercentVbus);
@@ -34,6 +36,7 @@ public class TopDuck extends Subsystem {
     	
     	topAuxTalon.changeControlMode(TalonControlMode.Follower);
     	topAuxTalon.set(RobotMap.topDuckPort);
+    	
 	}
 	
     public void initDefaultCommand() {;
@@ -126,15 +129,6 @@ public class TopDuck extends Subsystem {
     			setBrakeMode();
     		else
     			setNotBrakeMode();
-    	}
-    }
-    
-    public void errorExceder() {
-    	if (getTalonMode() == TalonControlMode.Position) {
-    		if (duckTalon.getError() > Constants.kTopErrorExcede)
-    			Constants.killPID = true;
-    		else
-    			Constants.killPID = false;
     	}
     }
     

@@ -63,11 +63,13 @@ public class DriveToGyroHeading extends Command {
     	
     	leftValue = throttle * battVolt - error * kP + speed * kD;    	
     	rightValue = throttle * battVolt + error * kP - speed * kD;
-    	Robot.leftDrive.setBrown(leftValue);
-    	Robot.rightDrive.setBrown(rightValue);
+    	Robot.leftDrive.setBrown(- rightValue);
+    	Robot.rightDrive.setBrown(- leftValue);
     }
 
     protected boolean isFinished() {
+    	if (autoMode && throttle == 0.0)
+    		return true;
         return Robot.oi.getOpPOV() == 0;
     }
 

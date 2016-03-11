@@ -18,6 +18,8 @@ public class BottomDuck extends Subsystem {
 	
 	public BottomDuck() {
 		duckTalon.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+		duckTalon.setEncPosition(duckTalon.getPulseWidthPosition());
+		
 		duckTalon.enableLimitSwitch(true, true);
 		
 		duckTalon.changeControlMode(TalonControlMode.PercentVbus);
@@ -97,15 +99,6 @@ public class BottomDuck extends Subsystem {
     
     public boolean getBottomLimit() {
     	return !duckTalon.isRevLimitSwitchClosed();
-    }
-    
-    public void errorExceder() {
-    	if (getTalonMode() != TalonControlMode.PercentVbus) {
-    		if (duckTalon.getError() > Constants.kBottomErrorExcede)
-    			Constants.killPID = true;
-    		else
-    			Constants.killPID = false;
-    	}
     }
     
     public TalonControlMode getTalonMode() {

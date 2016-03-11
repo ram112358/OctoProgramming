@@ -8,7 +8,9 @@ public class Constants {
 	// Top Duck
 	
 	public static final int
-		kTopErrorExcede = 999999999;
+		kTopUpSoftLimit = 0,
+		kTopIntakePos = 0,
+		kTopClimbingPos = 0;
 	
 	// Ducked
 	public static final double
@@ -37,7 +39,8 @@ public class Constants {
 	// Bottom Duck
 	
 	public static final int
-		kBottomErrorExcede = 999999999;
+		kBottomDownSoftLimit = 0,
+		kBottomClimbPos = 0;
 	
 	// Ducked
 	public static final double
