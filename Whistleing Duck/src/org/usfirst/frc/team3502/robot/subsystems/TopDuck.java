@@ -52,7 +52,7 @@ public class TopDuck extends Subsystem {
 
     public void JoySetDrive(double joystickValue) {
     	if (getTopLimit() && joystickValue >= 0.0 || 
-    			getTopLimit() && joystickValue <= 0.0)
+    			getBottomLimit() && joystickValue <= 0.0)
     		JoySet += joystickValue / 4096 * 100;
     	duckTalon.set(JoySet);
     }
@@ -102,11 +102,11 @@ public class TopDuck extends Subsystem {
     }
     
     public boolean getTopLimit() {
-    	return !duckTalon.isRevLimitSwitchClosed();
+    	return !duckTalon.isFwdLimitSwitchClosed();
     }
     
     public boolean getBottomLimit() {
-    	return !duckTalon.isFwdLimitSwitchClosed();
+    	return !duckTalon.isRevLimitSwitchClosed();
     }
     
     public void setBrakeMode() {
@@ -124,7 +124,7 @@ public class TopDuck extends Subsystem {
     }
     
     public void izoneBraker() {
-    	if (getTalonMode() != TalonControlMode.PercentVbus) {
+    	if (getTalonMode() == TalonControlMode.Position) {
     		if (duckTalon.getError() <= duckTalon.getIZone())
     			setBrakeMode();
     		else
@@ -134,5 +134,9 @@ public class TopDuck extends Subsystem {
     
     public TalonControlMode getTalonMode() {
     	return duckTalon.getControlMode();
+    }
+    
+    public int getPulseWidthPos() {
+    	return duckTalon.getPulseWidthPosition();
     }
 }

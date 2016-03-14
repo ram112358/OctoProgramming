@@ -24,8 +24,10 @@ public class RegDriveAttackEnd extends Command {
     }
 
     protected void end() {
+    	System.out.println("3");
     }
 
     protected void interrupted() {
+    	System.out.println("4");
     }
 }

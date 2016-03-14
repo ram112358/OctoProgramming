@@ -21,23 +21,23 @@ public class BothDuckIt extends Command {
 
     protected void execute() {
     	duckY = Robot.oi.getDuckY();
-    	if (!Robot.topDuck.getTopLimit() && !Robot.bottomDuck.getBottomLimit()) {
+    	if (duckY == 0.0){
     		Robot.topDuck.JoySetDrive(duckY);
     		Robot.bottomDuck.JoySetDrive(duckY);
     	}
-    	else if (duckY > 0.0 && !Robot.bottomDuck.getBottomLimit()) {
+    	else if (Robot.topDuck.getTopLimit() && Robot.bottomDuck.getBottomLimit()) {
     		Robot.topDuck.JoySetDrive(duckY);
     		Robot.bottomDuck.JoySetDrive(duckY);
     	}
-    	else if (duckY < 0.0 && !Robot.topDuck.getTopLimit()) {
+    	else if (duckY < 0.0 && Robot.bottomDuck.getBottomLimit()) {
     		Robot.topDuck.JoySetDrive(duckY);
     		Robot.bottomDuck.JoySetDrive(duckY);
     	}
-    	else{
-    		Robot.topDuck.JoySetDrive(0.0);
-    		Robot.bottomDuck.JoySetDrive(0.0);
+    	else if (duckY > 0.0 && Robot.topDuck.getTopLimit()) {
+    		Robot.topDuck.JoySetDrive(duckY);
+    		Robot.bottomDuck.JoySetDrive(duckY);
     	}
-    }
+ 	}
 
     protected boolean isFinished() {
     	if (Constants.killPID) {

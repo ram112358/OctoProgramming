@@ -16,19 +16,19 @@ public class DriverStationMap {
     	topDuckThrottleButton = 6,
     	bottomDuckThrottleButton = 4,
     	
-    	bottomFullUpButton = 7,
-    	bottomTimedFullUpButton = 11,
-    	clearEncButton = 12,
-    	setBothUpButton = 7,
-    	setBothGroundButton = 11,
+    	bottomFullUpButton = 9,
+    	bottomTimedFullUpButton = 10,
+    	setBothHoldButton = 8,
+    	setBothIntakeButton = 7,
     	
-		manualBrakeOnButton = 9,
-		manualBrakeOffButton = 10;
+		manualBrakeOnButton = 0,
+		manualBrakeOffButton = 0;
     
     //Right Buttons
     public static int
     	sineDriveDuckEndButton = 1,
     	climbingButton = 11,
+    	driveModeButton = 9,
     	rightIntakeInButton = 2,
     	rightIntakeOutButton = 3;
     	

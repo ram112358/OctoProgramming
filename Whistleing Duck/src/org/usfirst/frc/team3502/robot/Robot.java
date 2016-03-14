@@ -29,13 +29,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 
-	public static final BottomDuck bottomDuck = new BottomDuck();
 	public static final Hooker hooker = new Hooker();
 	public static final Intake intake = new Intake();
 	public static final LeftDrive leftDrive = new LeftDrive();
 	public static final PTOShifting shifting = new PTOShifting();
 	public static final RightDrive rightDrive = new RightDrive();
 	public static final TopDuck topDuck = new TopDuck();
+	public static final BottomDuck bottomDuck = new BottomDuck();
 	public static OI oi;
 	public static final String cameraName = "cam0";
 
@@ -51,18 +51,18 @@ public class Robot extends IterativeRobot {
         chooser = new SendableChooser();
         
         chooser.addDefault("Don't Go", new AutoDriveStraight(0.0, 0));
-        chooser.addObject("Low Bar (Slow w/ Gyro)", new AutoDriveStraight(0.5, 2));
-        chooser.addObject("Ramparts or Rough Terrain (Fast w/ Gyro)", new AutoDriveStraight(1.0, 2));
+        chooser.addObject("Slow (75%)", new AutoDriveStraight(0.75, 2));
+        chooser.addObject("Fast (100%)", new AutoDriveStraight(1.0, 2));
         //chooser.addObject("Portcullus", new AutoDriveStraight(0.0, 0.0)); //Change this command when the right one is written
         SmartDashboard.putData("Auto mode", chooser);
 
     	NetworkTable.getTable("Preferences").putNumber("Sec Run", 0.11);
     	NetworkTable.getTable("Preferences").putNumber("Sec Brake", 0.0);
-    	NetworkTable.getTable("Preferences").putNumber("kP", 0.5);
-    	NetworkTable.getTable("Preferences").putNumber("groundTopPos", 0);
-    	NetworkTable.getTable("Preferences").putNumber("groundBottomPos", 0);
-    	NetworkTable.getTable("Preferences").putNumber("upTopPos", 0);
-    	NetworkTable.getTable("Preferences").putNumber("upBottomPos", 0);
+    	NetworkTable.getTable("Preferences").putNumber("topUpPos", 0);
+    	NetworkTable.getTable("Preferences").putNumber("bottomDownSoftPos", -0.152);
+    	NetworkTable.getTable("Preferences").putNumber("topIntakePos", 0.265);
+    	NetworkTable.getTable("Preferences").putNumber("topHoldPos", 1.507);
+    	NetworkTable.getTable("Preferences").putNumber("bottomHoldPos", 1.061);
     	
     	// Gyro Handleing
     	RobotMap.gyro.initGyro();
@@ -72,6 +72,8 @@ public class Robot extends IterativeRobot {
         // CameraServer camera = CameraServer.getInstance();
         // camera.setQuality(50);
         // camera.startAutomaticCapture(cameraName);
+    	
+    	// bottomDuck.setEncPosition(- topDuck.getPulseWidthPos());
     }
 	
 	/**
@@ -85,7 +87,18 @@ public class Robot extends IterativeRobot {
 	
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
+
+		SmartDashboard.putNumber("topPulse", Robot.topDuck.getPulseWidthPos());
+		SmartDashboard.putNumber("bottomPulse", Robot.bottomDuck.getPulseWidthPos());
 		
+		SmartDashboard.putData(shifting); 
+        SmartDashboard.putData(topDuck);
+        SmartDashboard.putData(bottomDuck);
+        SmartDashboard.putData(intake);
+        SmartDashboard.putData(leftDrive);
+        SmartDashboard.putData(rightDrive);
+        SmartDashboard.putData(hooker);
+        
 		SmartDashboard.putNumber("topEnc", Robot.topDuck.getEncPosition());
     	SmartDashboard.putNumber("bottomEnc", Robot.bottomDuck.getEncPosition());
     	SmartDashboard.putNumber("topError", Robot.topDuck.getClosedLoopError());
@@ -100,11 +113,11 @@ public class Robot extends IterativeRobot {
     	SmartDashboard.putNumber("Throttle", Robot.oi.getIntakeThrottle());
     	SmartDashboard.putNumber("Z-accel", Robot.shifting.getAccelZ());
     	
-    	SmartDashboard.putNumber("rightEnc", Robot.rightDrive.getEncPosition());
-    	SmartDashboard.putNumber("leftEnc", Robot.leftDrive.getEncPosition());
-    	SmartDashboard.putNumber("rightError", Robot.rightDrive.getClosedLoopError());
-    	SmartDashboard.putNumber("leftError", Robot.leftDrive.getClosedLoopError());
-    	SmartDashboard.putNumber("rightpSetpoint", Robot.rightDrive.getSetpoint());
+    	// SmartDashboard.putNumber("rightEnc", Robot.rightDrive.getEncPosition());
+    	// SmartDashboard.putNumber("leftEnc", Robot.leftDrive.getEncPosition());
+    	// SmartDashboard.putNumber("rightError", Robot.rightDrive.getClosedLoopError());
+    	// SmartDashboard.putNumber("leftError", Robot.leftDrive.getClosedLoopError());
+    	SmartDashboard.putNumber("rightSetpoint", Robot.rightDrive.getSetpoint());
     	SmartDashboard.putNumber("leftSetpoint", Robot.leftDrive.getSetpoint());
     	
     
@@ -121,7 +134,7 @@ public class Robot extends IterativeRobot {
 	 */
     public void autonomousInit() {
         autonomousCommand = (Command) chooser.getSelected();
-        
+        // autonomousCommand = new AutoDriveStraight(1.0, 2);
 		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
 		switch(autoSelected) {
 		case "My Auto":
@@ -142,24 +155,6 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
-    }
-
-    public void teleopInit() {
-		// This makes sure that the autonomous stops running when
-        // teleop starts running. If you want the autonomous to 
-        // continue until interrupted by another command, remove
-        // this line or comment it out.
-
-        if (autonomousCommand != null) autonomousCommand.cancel();
-    }
-
-    /**
-     * This function is called periodically during operator control
-     */
-    public void teleopPeriodic() {
-        Scheduler.getInstance().run();
-        
-        topDuck.izoneBraker();
         
         SmartDashboard.putData(shifting); 
         SmartDashboard.putData(topDuck);
@@ -183,10 +178,57 @@ public class Robot extends IterativeRobot {
     	SmartDashboard.putNumber("Throttle", Robot.oi.getIntakeThrottle());
     	SmartDashboard.putNumber("Z-accel", Robot.shifting.getAccelZ());
     	
-    	SmartDashboard.putNumber("rightEnc", Robot.rightDrive.getEncPosition());
-    	SmartDashboard.putNumber("leftEnc", Robot.leftDrive.getEncPosition());
-    	SmartDashboard.putNumber("rightError", Robot.rightDrive.getClosedLoopError());
-    	SmartDashboard.putNumber("leftError", Robot.leftDrive.getClosedLoopError());
+    	// SmartDashboard.putNumber("rightEnc", Robot.rightDrive.getEncPosition());
+    	// SmartDashboard.putNumber("leftEnc", Robot.leftDrive.getEncPosition());
+    	// SmartDashboard.putNumber("rightError", Robot.rightDrive.getClosedLoopError());
+    	// SmartDashboard.putNumber("leftError", Robot.leftDrive.getClosedLoopError());
+    	SmartDashboard.putNumber("rightpSetpoint", Robot.rightDrive.getSetpoint());
+    	SmartDashboard.putNumber("leftSetpoint", Robot.leftDrive.getSetpoint());
+    }
+
+    public void teleopInit() {
+		// This makes sure that the autonomous stops running when
+        // teleop starts running. If you want the autonomous to 
+        // continue until interrupted by another command, remove
+        // this line or comment it out.
+
+        if (autonomousCommand != null) autonomousCommand.cancel();
+    }
+
+    /**
+     * This function is called periodically during operator control
+     */
+    public void teleopPeriodic() {
+        Scheduler.getInstance().run();
+        
+        // topDuck.izoneBraker();
+        
+        SmartDashboard.putData(shifting); 
+        SmartDashboard.putData(topDuck);
+        SmartDashboard.putData(bottomDuck);
+        SmartDashboard.putData(intake);
+        SmartDashboard.putData(leftDrive);
+        SmartDashboard.putData(rightDrive);
+        SmartDashboard.putData(hooker);
+        
+        SmartDashboard.putNumber("topEnc", Robot.topDuck.getEncPosition());
+    	SmartDashboard.putNumber("bottomEnc", Robot.bottomDuck.getEncPosition());
+    	SmartDashboard.putNumber("topError", Robot.topDuck.getClosedLoopError());
+    	SmartDashboard.putNumber("bottomError", Robot.bottomDuck.getClosedLoopError());
+    	SmartDashboard.putNumber("topJoySet", Robot.topDuck.getJoySet());
+    	SmartDashboard.putNumber("bottomJoySet", Robot.bottomDuck.getJoySet());
+    	SmartDashboard.putNumber("topSetpoint", Robot.topDuck.getSetpoint());
+    	SmartDashboard.putNumber("bottomSetpoint", Robot.bottomDuck.getSetpoint());
+    	
+    	SmartDashboard.putNumber("Gyro", RobotMap.gyro.getAngle());
+    	SmartDashboard.putNumber("Throttle scaled to 12", Robot.oi.getIntakeThrottle() * 12);
+    	SmartDashboard.putNumber("Throttle", Robot.oi.getIntakeThrottle());
+    	SmartDashboard.putNumber("Z-accel", Robot.shifting.getAccelZ());
+    	
+    	// SmartDashboard.putNumber("rightEnc", Robot.rightDrive.getEncPosition());
+    	// SmartDashboard.putNumber("leftEnc", Robot.leftDrive.getEncPosition());
+    	// SmartDashboard.putNumber("rightError", Robot.rightDrive.getClosedLoopError());
+    	// SmartDashboard.putNumber("leftError", Robot.leftDrive.getClosedLoopError());
     	SmartDashboard.putNumber("rightpSetpoint", Robot.rightDrive.getSetpoint());
     	SmartDashboard.putNumber("leftSetpoint", Robot.leftDrive.getSetpoint());
     }

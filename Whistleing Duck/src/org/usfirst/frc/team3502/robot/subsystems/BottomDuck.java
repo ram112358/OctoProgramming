@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3502.robot.subsystems;
 
 import org.usfirst.frc.team3502.robot.Constants;
+import org.usfirst.frc.team3502.robot.Robot;
 import org.usfirst.frc.team3502.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.CANTalon;
@@ -18,12 +19,11 @@ public class BottomDuck extends Subsystem {
 	
 	public BottomDuck() {
 		duckTalon.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
-		duckTalon.setEncPosition(duckTalon.getPulseWidthPosition());
+		duckTalon.setEncPosition(- Robot.topDuck.getPulseWidthPos());
 		
 		duckTalon.enableLimitSwitch(true, true);
 		
 		duckTalon.changeControlMode(TalonControlMode.PercentVbus);
-		duckTalon.enableBrakeMode(true);
     	
 		// duckTalon.setPID(Constants.kBottomPUn, Constants.kBottomIUn, Constants.kBottomDUn, Constants.kBottomFUn, Constants.kBottomIzoneUn, Constants.kBottomCloseLoopRampRateUn, Constants.kBottomProfileUn);
     	duckTalon.setPID(Constants.kBottomP, Constants.kBottomI, Constants.kBottomD, Constants.kBottomF, Constants.kBottomIzone, Constants.kBottomCloseLoopRampRate, Constants.kBottomProfile);
@@ -45,8 +45,8 @@ public class BottomDuck extends Subsystem {
     }
 
     public void JoySetDrive(double joystickValue) {
-    	if (getTopLimit() && joystickValue <= 0.0 || 
-    			getBottomLimit() && joystickValue >= 0.0)
+    	if (getTopLimit() && joystickValue >= 0.0 || 
+    			getBottomLimit() && joystickValue <= 0.0)
     		JoySet += joystickValue / 4096 * 100;
     	duckTalon.set(- JoySet);
     }
@@ -94,14 +94,26 @@ public class BottomDuck extends Subsystem {
     }
     
     public boolean getTopLimit() {
-    	return !duckTalon.isFwdLimitSwitchClosed();
+    	return !duckTalon.isRevLimitSwitchClosed();
     }
     
     public boolean getBottomLimit() {
-    	return !duckTalon.isRevLimitSwitchClosed();
+    	return !duckTalon.isFwdLimitSwitchClosed();
     }
     
     public TalonControlMode getTalonMode() {
     	return duckTalon.getControlMode();
+    }
+    
+    public void setJoystickPIDValues() {
+    	duckTalon.setProfile(Constants.kBottomProfile);
+    }
+    
+    public void setPositionPIDValues() {
+    	duckTalon.setProfile(Constants.kBottomProfileUn);
+    }
+    
+    public int getPulseWidthPos() {
+    	return duckTalon.getPulseWidthPosition();
     }
 }

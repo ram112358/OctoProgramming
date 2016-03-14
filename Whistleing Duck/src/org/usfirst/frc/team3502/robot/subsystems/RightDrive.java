@@ -24,8 +24,8 @@ public class RightDrive extends Subsystem {
 		rightTalon.changeControlMode(TalonControlMode.PercentVbus);
 		rightTalon.enableBrakeMode(true);
 		
-		rightTalon.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		rightTalon.configEncoderCodesPerRev(512);
+		// rightTalon.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		// rightTalon.configEncoderCodesPerRev(512);
 		
 		rightAuxTalon.changeControlMode(TalonControlMode.Follower);
 		rightAuxTalon.set(RobotMap.rightPort);

@@ -13,6 +13,8 @@ public class AutoDriveStraight extends CommandGroup {
 
 	public  AutoDriveStraight(double throttle, double timeOut) {
 		addSequential(new DriveToGyroHeading(true, throttle), timeOut);
+		//addSequential(new DriveToGyroHeading(true, 0), 2);
+		//addSequential(new DriveToGyroHeading(true, throttle), timeOut);
     	
     	//TODO: Add code to drive to wall to shoot ball
     	

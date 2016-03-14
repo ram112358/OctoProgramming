@@ -23,8 +23,8 @@ public class LeftDrive extends Subsystem {
 		leftTalon.changeControlMode(TalonControlMode.PercentVbus);
 		leftTalon.enableBrakeMode(true);
 		
-		leftTalon.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		leftTalon.configEncoderCodesPerRev(512);
+		// leftTalon.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		// leftTalon.configEncoderCodesPerRev(512);
 		
 		leftAuxTalon.changeControlMode(TalonControlMode.Follower);
 		leftAuxTalon.set(RobotMap.leftPort);

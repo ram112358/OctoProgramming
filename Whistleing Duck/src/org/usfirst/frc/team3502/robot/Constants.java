@@ -7,9 +7,10 @@ public class Constants {
 	
 	// Top Duck
 	
-	public static final int
+	public static final double
 		kTopUpSoftLimit = 0,
-		kTopIntakePos = 0,
+		kTopIntakePos = 0.75219,
+		kTopHoldPos = -0.73999,
 		kTopClimbingPos = 0;
 	
 	// Ducked
@@ -32,14 +33,15 @@ public class Constants {
 		kTopFUn = 0.0,
 		kTopCloseLoopRampRateUn = 0.0;
 	public static final int
-		kTopIzoneUn = 150;
+		kTopIzoneUn = 0;
 	public static final int
 		kTopProfileUn = 1;
 	
 	// Bottom Duck
 	
-	public static final int
-		kBottomDownSoftLimit = 0,
+	public static final double
+		kBottomDownSoftLimit = 0.33618,
+		kBottomHoldPos = 1.78808,
 		kBottomClimbPos = 0;
 	
 	// Ducked
@@ -56,22 +58,22 @@ public class Constants {
 	
 	// Unducked
 	public static final double
-		kBottomPUn = 0.09,
-		kBottomIUn = 0.0002,
+		kBottomPUn = 0.07,
+		kBottomIUn = 0.0,
 		kBottomDUn = 0.0,
 		kBottomFUn = 0.0,
 		kBottomCloseLoopRampRateUn = 0.0;
 	public static final int
-		kBottomIzoneUn = 150;
+		kBottomIzoneUn = 0;
 	public static final int
 		kBottomProfileUn = 1;
 	
 	// Drive Train Stuff
 	public static final double
 		kStraightP = 0.5,
-		kStraightD = 0.15;
+		kStraightD = 0.14;
 	public static final double
-		kTurnP = 0.1,  //Needs tuning
+		kTurnP = 0.15,  //Needs tuning
 		kTurnD = 0;  //Needs tuning
 	
 	// Brownout Values

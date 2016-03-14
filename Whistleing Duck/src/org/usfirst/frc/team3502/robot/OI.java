@@ -14,6 +14,8 @@ import org.usfirst.frc.team3502.robot.commands.Duck.BottomFullUp;
 import org.usfirst.frc.team3502.robot.commands.Duck.BottomThrottle;
 import org.usfirst.frc.team3502.robot.commands.Duck.BottomTimedFullUp;
 import org.usfirst.frc.team3502.robot.commands.Duck.DontDuckIt;
+import org.usfirst.frc.team3502.robot.commands.Duck.HoldPosition;
+import org.usfirst.frc.team3502.robot.commands.Duck.IntakePosition;
 import org.usfirst.frc.team3502.robot.commands.Duck.SetBothDucksGround;
 import org.usfirst.frc.team3502.robot.commands.Duck.TopDuckIt;
 import org.usfirst.frc.team3502.robot.commands.Duck.TopThrottle;
@@ -45,17 +47,15 @@ public class OI {
 	    
 	    // bottomFullUpButton = new JoystickButton(opJoy, DriverStationMap.bottomFullUpButton),
 	    // bottomTimedFullUpButton = new JoystickButton(opJoy, DriverStationMap.bottomTimedFullUpButton),
-	    setBothUpButton = new JoystickButton(opJoy, DriverStationMap.setBothUpButton),
-	    setBothGroundButton = new JoystickButton(opJoy, DriverStationMap.setBothGroundButton),
+	    setBothHoldButton = new JoystickButton(opJoy, DriverStationMap.setBothHoldButton),
+	    setBothIntakeButton = new JoystickButton(opJoy, DriverStationMap.setBothIntakeButton),
 	    
-	    manualBrakeOnButton = new JoystickButton(opJoy, DriverStationMap.manualBrakeOnButton),
-    	manualBrakeOffButton = new JoystickButton(opJoy, DriverStationMap.manualBrakeOffButton),
-
     	//Right Joystick Buttons
     	rightIntakeInButton = new JoystickButton(rightJoy, DriverStationMap.rightIntakeInButton),
     	rightIntakeOutButton = new JoystickButton(rightJoy, DriverStationMap.rightIntakeOutButton),
     	
     	climbingButton = new JoystickButton(rightJoy, DriverStationMap.climbingButton),
+    	driveModeButton = new JoystickButton(rightJoy, DriverStationMap.driveModeButton),
     	gyroDriveStraightButton = new JoystickButton(leftJoy, DriverStationMap.gyroDriveStraightButton),
     	
     	//Left Joystick Buttons    	
@@ -81,8 +81,8 @@ public class OI {
 
 		// bottomFullUpButton.whileHeld(new BottomFullUp());
 		// bottomTimedFullUpButton.whenPressed(new BottomTimedFullUp());
-		setBothUpButton.whenPressed(new SetBothDucksGround());
-		setBothGroundButton.whenPressed(new SetBothDucksGround());
+		setBothHoldButton.whenPressed(new HoldPosition());
+		setBothIntakeButton.whenPressed(new IntakePosition());
 			    
 		// regDriveDuckEndButton.whenPressed(new RegDriveDuckEnd());
 		// regDriveAttackEndButton.whenPressed(new RegDriveAttackEnd());
@@ -90,6 +90,7 @@ public class OI {
 		sineDriveAttackEndButton.whenPressed(new SineDriveAttackEnd());
 		
 		climbingButton.whenPressed(new BasicClimbMode());
+		driveModeButton.whenPressed(new DriveMode());
 
 		gyroDriveStraightButton.whileHeld(new DriveToGyroHeading(false, 0));  //The 2nd argument is only used for autonomous
 		turn180Button.whileHeld(new DriveToGyroHeading(false, 0));
@@ -135,14 +136,6 @@ public class OI {
 	
 	public double getIntakeThrottle() {
 		return -(opJoy.getThrottle())/2 + 0.5;
-	}
-
-	public boolean getManualBrakeOnButton() {
-		return manualBrakeOnButton.get();
-	}
-	
-	public boolean getManualBrakeOffButton() {
-		return manualBrakeOffButton.get();
 	}
 	
     public boolean getResetGyro() {

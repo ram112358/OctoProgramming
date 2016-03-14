@@ -25,8 +25,10 @@ public class RegDriveDuckEnd extends Command {
     }
 
     protected void end() {
+    	System.out.println("1");
     }
 
     protected void interrupted() {
+    	System.out.println("2");
     }
 }
